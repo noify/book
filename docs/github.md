@@ -18,9 +18,14 @@ $ git remote add yourRepo git@github.com:yourName/yourRepo.git
 $ git clone git@github.com:yourName/yourRepo.git
 ```
 
-添加文件/提交修改/上传
+添加文件/提交修改/上传/下载
 ```
 $ git add -A
 $ git commit -m "提交修改"
 $ git push yourRepo master
-``` 
+$ git pull yourRepo master
+```
+
+.gitignore 配置不需要上传的文件夹和文件
+
+使用vs code图形界面操作git
