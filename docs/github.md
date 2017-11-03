@@ -15,10 +15,34 @@ $ git config --global user.name "your name"
 $ git config --global user.email "your_email@youremail.com"
 ```
 
-克隆远程仓库
+克隆远程仓库并设置主机名
+
+```bash
+$ git clone -o yourRepo git@github.com:yourName/yourRepo.git
+```
+
+添加远程主机
+
 ```bash
 $ git remote add yourRepo git@github.com:yourName/yourRepo.git
-$ git clone git@github.com:yourName/yourRepo.git
+```
+
+删除远程主机
+
+```bash
+$ git remote rm yourRepo
+```
+
+改名远程主机
+
+```bash
+$ git remote rename oldYourRepo newYourRepo
+```
+
+获取更新
+
+```bash
+$ git fetch yourRepo master
 ```
 
 添加文件/提交修改/上传/下载
