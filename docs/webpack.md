@@ -25,9 +25,9 @@ $ npm install --save-dev webpack
 
 项目的描述文件，配置项目相关的元数据和依赖项
 
-```json
+```js
 {
-// ......
+  // ......
   "scripts": {
     "build": "webpack", // 命令行脚本 使用方法`npm run build`
     // ......

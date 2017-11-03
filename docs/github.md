@@ -31,8 +31,8 @@ $ git pull yourRepo master
 
 .gitignore 配置不需要上传的文件夹和文件
 ```
-## 文件夹
-## *.后缀名的文件
+文件夹
+*.后缀名的文件
 ```
 
 使用vs code图形界面操作git
