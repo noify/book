@@ -1,5 +1,7 @@
 # github 使用指南
 
+---
+
 ```
 $ ssh-keygen -t rsa -C "your_email@youremail.com"
 ```
