@@ -10,11 +10,11 @@
 
 有时npm比较卡，可使用淘宝镜像的cnpm
 
-```
+```bash
 $ npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
-```
+```bash
 //全局安装
 $ npm install -g webpack
 //安装到你的项目目录
@@ -25,7 +25,7 @@ $ npm install --save-dev webpack
 
 项目的描述文件，配置项目相关的元数据和依赖项
 
-```
+```json
 {
 // ......
   "scripts": {
