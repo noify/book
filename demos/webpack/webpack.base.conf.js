@@ -85,7 +85,6 @@ module.exports = {
       _: 'lodash',
     }),
     new webpack.HashedModuleIdsPlugin(), // 替换掉原来的`module.id`
-    new CleanWebpackPlugin(['dist']), // 第一个参数是要清理的目录的字符串数组
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {
@@ -102,11 +101,8 @@ module.exports = {
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
+      name: 'manifest', // 将 webpack 自身的运行时代码放在 manifest 模块
       chunks: ['vendor']
     }),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'runtime' // 将 webpack 自身的运行时代码放在 runtime 模块
-    // })
   ],
 };
