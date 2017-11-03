@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack') // 引入 webpack 便于调用其内置插件
 const Merge = require('webpack-merge')
 const CommonConfig = require('./webpack.base.conf.js')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = Merge(CommonConfig, {
   devtool: 'cheap-module-source-map', // 控制是否生成以及如何生成 source map
