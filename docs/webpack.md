@@ -2,9 +2,7 @@
 
 ---
 
-# 入门
-
-## 安装
+# 安装
 
 只需安装node.js，node.js自带npm。
 
@@ -21,7 +19,7 @@ $ npm install -g webpack
 $ npm install --save-dev webpack
 ```
 
-## package.json
+# package.json
 
 项目的描述文件，配置项目相关的元数据和依赖项
 
@@ -44,11 +42,11 @@ $ npm install --save-dev webpack
 }
 ```
 
-## webpack.config.js
+# webpack.config.js
 
-### webpack配置文件 
+webpack配置文件
 
-如何使用
+## 如何使用
 
 ```bash
 # --progress 可选 显示进度 默认不显示
@@ -56,7 +54,7 @@ $ npm install --save-dev webpack
 $ webpack --progress --config webpack.prod.conf.js
 ```
 
-### webpack 基本配置
+## 基本配置
 
 查看[完整配置](https://webpack.js.org/configuration/#options)
 
@@ -90,9 +88,9 @@ module.exports = {
 }
 ```
 
-### 常用loader
+## 常用loader
 
-预处理js的loader
+### 预处理js的loader
 
 ```js
 // padckage.json
@@ -135,7 +133,7 @@ module.exports = {
 }
 ```
 
-预处理css的loader和插件
+### 预处理css的loader和插件
 
 - autoprefixer 自动添加浏览器厂商的前缀
 - less-loader 将less编译成css
@@ -201,7 +199,7 @@ module.exports = {
   }
 }
 ```
-预处理图片和字体的loader
+### 预处理图片和字体的loader
 
 ```js
 // padckage.json
@@ -235,16 +233,24 @@ module.exports = {
 }
 ```
 
-### 常用自带插件和配置
+## 常用自带插件和配置
+
+### 配置
 
 [source-map](http://cheng.logdown.com/posts/2016/03/25/679045)用于还原打包之前的代码 方便查找错误
+
 ```js
 // webpack.config.js
 // ......
 devtool: 'cheap-module-source-map', // 控制是否生成以及如何生成 source map
 devtool: 'inline-source-map', // 控制是否生成以及如何生成 source map
 // ......
-//plugins
+```
+
+### 自带插件
+
+```js
+// webpack.config.js plugins
 plugins: [
   new webpack.ProvidePlugin({ // 设置全局变量
     _: 'lodash',
@@ -275,7 +281,7 @@ plugins: [
 ]
 ```
 
-### 常用插件
+## 常用插件
 
 ```js
 // padckage.json
@@ -288,7 +294,7 @@ plugins: [
 }
 ```
 
-部分插件的用法
+### 部分插件的用法
 
 ```js
 const Merge = require('webpack-merge')
@@ -312,7 +318,7 @@ module.exports = Merge(CommonConfig,{
 )}
 ```
 
-## webpack-dev-server
+### webpack-dev-server
 
 使用node.js 服务器构建开发环境，实现实时加载代码
 
@@ -364,7 +370,7 @@ if(module.hot) { // 习惯上我们会检查是否可以访问 `module.hot` 属�
 }
 ```
 
-## html-webpack-plugin
+### html-webpack-plugin
 
 自动生成 html 文件
 
@@ -380,7 +386,9 @@ plugins: [ // 插件属性，是插件的实例数组
 ]
 ```
 
-## import()
+## 常用函数
+
+### import()
 
 用于动态加载/懒加载
 
@@ -394,7 +402,10 @@ import(/* webpackChunkName: "login" */ './login') // /* webpackChunkName: "login
     console.log(error)
 })
 ```
-##  关于 output.publicPath、devServer.contentBase、devServer.publicPath的区别
+
+## 其他
+
+###  关于 output.publicPath、devServer.contentBase、devServer.publicPath的区别
 
 - output.publicPath: 对于这个选项，我们无需关注什么绝对相对路径，因为两种路径都可以。我们只需要知道一点：这个选项是指定 HTML 文件中资源文件 (字体、图片、JS文件等) 的文件名的公共 URL 部分的。在实际情况中，我们首先会通过output.filename或有些 loader 如file-loader的name属性设置文件名的原始部分，webpack 将文件名的原始部分和公共部分结合之后，HTML 文件就能获取到资源文件了。
 - devServer.contentBase: 设置静态资源的根目录，html-webpack-plugin生成的 html 不是静态资源。当用 html 文件里的地址无法找到静态资源文件时就会去这个目录下去找。
