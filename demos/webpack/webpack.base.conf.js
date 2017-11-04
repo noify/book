@@ -83,7 +83,6 @@ module.exports = {
     new webpack.ProvidePlugin({ // 设置全局变量
       _: 'lodash',
     }),
-    new webpack.HashedModuleIdsPlugin(), // 替换掉原来的`module.id`
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: function (module, count) {

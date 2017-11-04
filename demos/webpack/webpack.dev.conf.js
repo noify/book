@@ -18,6 +18,7 @@ module.exports = Merge(CommonConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development') // 在编译的代码里设置了`process.env.NODE_ENV`变量
     }),
+    new webpack.HashedModuleIdsPlugin(), // 替换掉原来的`module.id`
     new webpack.HotModuleReplacementPlugin(), // 启用 HMR
     new webpack.NamedModulesPlugin() // 打印日志信息时 webpack 默认使用模块的数字 ID 指代模块，不便于 debug，这个插件可以将其替换为模块的真实路径
   ],

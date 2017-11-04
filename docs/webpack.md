@@ -56,6 +56,8 @@ $ webpack --progress --config webpack.prod.conf.js
 
 ### webpack 基本配置
 
+[完整配置](https://webpack.js.org/configuration/#options)
+
 ```js
 module.exports = {
   entry:{ // 入口js 可设置多个
@@ -88,7 +90,7 @@ module.exports = {
 
 ### webpack 常用loader
 
-处理js的loader
+预处理js的loader
 
 ```js
 // padckage.json
@@ -131,12 +133,12 @@ module.exports = {
 }
 ```
 
-处理css的loader和插件
+预处理css的loader和插件
 
 - autoprefixer 自动添加浏览器厂商的前缀
 - less-loader 将less编译成css
-- css-loader  处理css中的url()等
-- style-loader 将ccs插入页面中的style标签
+- css-loader  处理css中的@import/url()等
+- style-loader 通过插入style标签将css加入页面
 - extract-text-webpack-plugin 提取css文件
 
 ```js
@@ -197,7 +199,7 @@ module.exports = {
   }
 }
 ```
-处理图片和字体的loader
+预处理图片和字体的loader
 
 ```js
 // padckage.json
@@ -247,6 +249,7 @@ module.exports = {
 ```
 
 部分简单插件的用法
+
 ```js
 const Merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
@@ -269,6 +272,136 @@ module.exports = Merge(CommonConfig,{
 )}
 ```
 
+### webpack 常用自带插件
+
+[source-map](http://cheng.logdown.com/posts/2016/03/25/679045)用于还原打包之前的代码 方便查找错误
+```js
+// webpack.config.js
+// ......
+devtool: 'cheap-module-source-map', // 控制是否生成以及如何生成 source map
+devtool: 'inline-source-map', // 控制是否生成以及如何生成 source map
+// ......
+//plugins
+plugins: [
+  new webpack.ProvidePlugin({ // 设置全局变量
+    _: 'lodash',
+  }),
+  new webpack.HashedModuleIdsPlugin(), // 替换掉原来的`module.id`
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    minChunks: function (module, count) {
+      // any required modules inside node_modules are extracted to vendor
+      return (
+        module.resource &&
+        /\.js$/.test(module.resource) &&
+        module.resource.indexOf(
+          path.join(__dirname, '../node_modules')
+        ) === 0
+      )
+    }
+  }),
+  // extract webpack runtime and module manifest to its own file in order to
+  // prevent vendor hash from being updated whenever app bundle is updated
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'manifest', // 将 webpack 自身的运行时代码放在 manifest 模块
+    chunks: ['vendor']
+  }),
+  new webpack.optimize.UglifyJsPlugin(), //压缩 JS
+  new webpack.HotModuleReplacementPlugin(), // 启用 HMR
+  new webpack.NamedModulesPlugin() // 打印日志信息时 webpack 默认使用模块的数字 ID 指代模块，不便于 debug，这个插件可以将其替换为模块的真实路径
+]
+```
 
 
 
+## webpack-dev-server
+
+使用node.js 服务器构建开发环境，实现实时加载代码
+
+```js
+// package.json
+{
+  // ......
+  "scripts": {
+    "dev": "webpack-dev-server --open --config webpack.dev.conf.js",
+    // ......
+  },
+  // ......
+  "devDependencies": {
+    "webpack-dev-server": "^2.9.4",
+    // ......
+  }
+  // ......
+}
+```
+
+```js
+// webpack.config.js
+devServer: { // 检测代码变化并自动重新编译并自动刷新浏览器
+  contentBase: path.resolve(__dirname, 'dist'), // 设置静态资源的根目录
+  hot: true, // 告诉 dev-server 我们在用 HMR
+  hotOnly: true // 指定如果热加载失败了禁止刷新页面 (这是 webpack 的默认行为)，这样便于我们知道失败是因为何种错误
+},
+```
+
+### 模块热替换
+
+模块热替换（HMR）只更新发生变更（替换、添加、删除）的模块，而无需重新加载整个页面（实时加载，LiveReload），这样可以显著加快开发速度，一旦打开了 webpack-dev-server 的 hot 模式，在试图重新加载整个页面之前，热模式会尝试使用 HMR 来更新。
+
+```js
+// webpack.config.js plugins
+new webpack.HotModuleReplacementPlugin(), // 启用 HMR [chunkhash]不能和 HMR 一起使用
+new webpack.NamedModulesPlugin() // 打印日志信息时 webpack 默认使用模块的数字 ID 指代模块，不便于 debug，这个插件可以将其替换为模块的真实路径
+```
+
+我们已经开启了 HMR 的功能，HMR 的接口已经暴露在module.hot属性之下，我们只需要调用 [HMR API](https://webpack.js.org/api/hot-module-replacement/) 即可实现热加载。当“被加载模块”发生改变时，依赖该模块的模块便能检测到改变并接收改变之后的模块。
+
+```js
+// index.js
+if(module.hot) { // 习惯上我们会检查是否可以访问 `module.hot` 属性
+  module.hot.accept('./print.js', function() { // 接受给定依赖模块的更新，并触发一个回调函数来对这些更新做出响应
+    console.log('Accepting the updated printMe module!');
+    printMe();
+  });
+}
+```
+
+## html-webpack-plugin
+
+自动生成 html 文件
+
+```js
+// webpack.config.js
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+plugins: [ // 插件属性，是插件的实例数组
+  new HtmlWebpackPlugin({
+    title: 'webpack demo',  // 生成 HTML 文档的标题
+    filename: 'index.html' // 写入 HTML 文件的文件名，默认 `index.html`
+  })
+]
+```
+
+## import()
+
+用于动态加载/懒加载
+
+```js
+// 使用该方法后 login模块会自动分离出一个js 并且只有执行到该方法时才会引入login模块的js 实现懒加载 亦可用于动态加载
+import(/* webpackChunkName: "login" */ './login') // /* webpackChunkName: "login" */ 注释不能省略 用于命名分离出来的js 所以babel编译js时要保留注释 注释留到最后压缩js时去除
+.then(module => {
+  module.default // 引入模块的默认函数
+})
+.catch(error => {
+    console.log(error)
+})
+```
+##  关于 output.publicPath、devServer.contentBase、devServer.publicPath的区别
+
+- output.publicPath: 对于这个选项，我们无需关注什么绝对相对路径，因为两种路径都可以。我们只需要知道一点：这个选项是指定 HTML 文件中资源文件 (字体、图片、JS文件等) 的文件名的公共 URL 部分的。在实际情况中，我们首先会通过output.filename或有些 loader 如file-loader的name属性设置文件名的原始部分，webpack 将文件名的原始部分和公共部分结合之后，HTML 文件就能获取到资源文件了。
+- devServer.contentBase: 设置静态资源的根目录，html-webpack-plugin生成的 html 不是静态资源。当用 html 文件里的地址无法找到静态资源文件时就会去这个目录下去找。
+- devServer.publicPath: 指定浏览器上访问所有 打包(bundled)文件 (在dist里生成的所有文件) 的根目录，这个根目录是相对服务器地址及端口的，比devServer.contentBase和output.publicPath优先。
+
+## webpack.DefinePlugin
+
+待补

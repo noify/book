@@ -39,14 +39,13 @@ function component() {
             import(/* webpackChunkName: "print" */ './print')
             .then(function(module) {
               const printMe = module.default // 引入模块的默认函数
-        
               printMe()
             })
-          };
-        return element
-    }).catch(function(error) {
-        console.log('An error occurred while loading the component')
-    })
+        };
+            return element
+        }).catch(function(error) {
+            console.log('An error occurred while loading the component')
+        })
   }
 
 //   var element = component()
