@@ -14,6 +14,7 @@ module.exports = Merge(CommonConfig, {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production') // 在编译的代码里设置了`process.env.NODE_ENV`变量
     }),
+    new webpack.HashedModuleIdsPlugin(), // 替换掉原来的`module.id`
     new webpack.optimize.UglifyJsPlugin(), //压缩 JS
     new CleanWebpackPlugin(['dist']), // 第一个参数是要清理的目录的字符串数组
   ]
