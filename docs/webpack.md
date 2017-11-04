@@ -48,6 +48,8 @@ $ npm install --save-dev webpack
 
 ### webpack配置文件 
 
+如何使用
+
 ```bash
 # --progress 可选 显示进度 默认不显示
 # --config webpack.prod.conf.js 可选 指定配置文件 默认webpack.config.js
@@ -56,7 +58,7 @@ $ webpack --progress --config webpack.prod.conf.js
 
 ### webpack 基本配置
 
-[完整配置](https://webpack.js.org/configuration/#options)
+查看[完整配置](https://webpack.js.org/configuration/#options)
 
 ```js
 module.exports = {
@@ -88,7 +90,7 @@ module.exports = {
 }
 ```
 
-### webpack 常用loader
+### 常用loader
 
 预处理js的loader
 
@@ -117,7 +119,7 @@ module.exports = {
 ```
 
 ```js
-// 需在根目录新建babel配置文件 .babelrc 
+// 在根目录新建babel配置文件 .babelrc 
 {
   "presets": [
     ["env", { // 总是最新的转码规则
@@ -233,46 +235,7 @@ module.exports = {
 }
 ```
 
-### webpack 常用插件
-
-部分插件会详细展开
-
-```js
-// padckage.json
-"devDependencies": {
-  "webpack-dev-server": "^2.9.4", // 小型Node.js Express服务器
-  "webpack-merge": "^4.1.1", // 合并配置
-  "html-webpack-plugin": "^2.30.1", // 自动生产html
-  "clean-webpack-plugin": "^0.1.17", // 清空文件夹
-  "extract-text-webpack-plugin": "3.0.2", //抽离css样式
-}
-```
-
-部分简单插件的用法
-
-```js
-const Merge = require('webpack-merge')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-
-// 抽离css样式
-const extractLess = new ExtractTextPlugin({
-  filename: "css/[name].css", // .[contenthash]
-  disable: process.env.NODE_ENV === "development"
-})
-
-// 合并配置
-module.exports = Merge(CommonConfig,{
-  // ......
-  plugins:[
-    extractLess,// 抽离css样式
-    new CleanWebpackPlugin(['dist']), // 清空dist文件夹
-  ]
-}
-)}
-```
-
-### webpack 常用自带插件
+### 常用自带插件和配置
 
 [source-map](http://cheng.logdown.com/posts/2016/03/25/679045)用于还原打包之前的代码 方便查找错误
 ```js
@@ -312,7 +275,42 @@ plugins: [
 ]
 ```
 
+### 常用插件
 
+```js
+// padckage.json
+"devDependencies": {
+  "webpack-dev-server": "^2.9.4", // 小型Node.js Express服务器
+  "webpack-merge": "^4.1.1", // 合并配置
+  "html-webpack-plugin": "^2.30.1", // 自动生产html
+  "clean-webpack-plugin": "^0.1.17", // 清空文件夹
+  "extract-text-webpack-plugin": "3.0.2", //抽离css样式
+}
+```
+
+部分插件的用法
+
+```js
+const Merge = require('webpack-merge')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+
+// 抽离css样式
+const extractLess = new ExtractTextPlugin({
+  filename: "css/[name].css", // .[contenthash]
+  disable: process.env.NODE_ENV === "development"
+})
+
+// 合并配置
+module.exports = Merge(CommonConfig,{
+  // ......
+  plugins:[
+    extractLess,// 抽离css样式
+    new CleanWebpackPlugin(['dist']), // 清空dist文件夹
+  ]
+}
+)}
+```
 
 ## webpack-dev-server
 
