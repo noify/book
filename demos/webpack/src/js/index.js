@@ -4,7 +4,7 @@ import bJpg from '../img/b.jpg' // Icon 是图片的 URL
 // import printMe from './print.js'
 
 function component() {
-    console.log(_)
+    console.log(_, process.env.NODE_ENV)
     // const element = document.createElement('div');
       
     // element.innerHTML = join(['Hello', 'webpack?'], ' ')

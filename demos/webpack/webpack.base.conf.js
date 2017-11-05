@@ -10,7 +10,7 @@ function resolve (dir) {
 
 const extractLess = new ExtractTextPlugin({
   filename: "css/[name].css", // .[contenthash]
-  disable: process.env.NODE_ENV === "development"
+  disable: process.env.NODE_ENV === "development"  //开发环境 不使用该插件
 })
 
 module.exports = {
@@ -23,7 +23,8 @@ module.exports = {
     ]
   },
   output: { // 输出，只可指定一个输出配置
-    path: path.resolve(__dirname, 'dist') // 输出文件所在的目录
+    path: path.resolve(__dirname, 'dist'), // 输出文件所在的目录
+    publicPath: "", // 静态资源的url
   },
   module: { // 如何处理项目中不同类型的模块
     rules: [ // 用于规定在不同模块被创建时如何处理模块的规则数组
@@ -98,6 +99,8 @@ module.exports = {
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
+    // webpack会在最后一个CommonsChunkPlugin产出的chunk注入webpackJsonp的定义及异步加载相关的定义(webpack调用CommonsChunkPlugin处理后模块管理的核心,因为是核心,所以要第一个进行加载,不然会报错)
+    // 因为会经常变动，所以隔离在vendor之外
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest', // 将 webpack 自身的运行时代码放在 manifest 模块
       chunks: ['vendor']

@@ -71,6 +71,7 @@ module.exports = {
     filename: '[name].js', // 根据入口起点名动态生成输出文件名，可以使用像 "js/[name].[chunkhash]/bundle.js" 这样的文件夹结构
     chunkFilename: '[name].js', // 指定非入口块文件输出的名字
     path: path.resolve(__dirname, 'dist') // 输出文件所在的目录
+    publicPath: "", // 静态资源的url
   },
   module: { // 使用xx-loader处理项目中不同类型文件
     rules: [
@@ -256,6 +257,7 @@ plugins: [
     _: 'lodash',
   }),
   new webpack.HashedModuleIdsPlugin(), // 替换掉原来的`module.id`
+  // 提取公共代码
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: function (module, count) {
@@ -271,6 +273,8 @@ plugins: [
   }),
   // extract webpack runtime and module manifest to its own file in order to
   // prevent vendor hash from being updated whenever app bundle is updated
+  // webpack会在最后一个CommonsChunkPlugin产出的chunk注入webpackJsonp的定义及异步加载相关的定义(webpack调用CommonsChunkPlugin处理后模块管理的核心,因为是核心,所以要第一个进行加载,不然会报错)
+  // 因为会经常变动，所以隔离在vendor之外
   new webpack.optimize.CommonsChunkPlugin({
     name: 'manifest', // 将 webpack 自身的运行时代码放在 manifest 模块
     chunks: ['vendor']
@@ -304,7 +308,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 // 抽离css样式
 const extractLess = new ExtractTextPlugin({
   filename: "css/[name].css", // .[contenthash]
-  disable: process.env.NODE_ENV === "development"
+  disable: process.env.NODE_ENV === "development" //开发环境 不使用该插件
 })
 
 // 合并配置
@@ -378,12 +382,31 @@ if(module.hot) { // 习惯上我们会检查是否可以访问 `module.hot` 属�
 // webpack.config.js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-plugins: [ // 插件属性，是插件的实例数组
+plugins: [
   new HtmlWebpackPlugin({
     title: 'webpack demo',  // 生成 HTML 文档的标题
     filename: 'index.html' // 写入 HTML 文件的文件名，默认 `index.html`
   })
 ]
+```
+
+### webpack.DefinePlugin
+
+将变量设置为全局变量
+
+```js
+// webpack.config.js
+plugins: [
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('development') // 在编译的代码里设置了`process.env.NODE_ENV`变量
+  }),
+]
+```
+
+```js
+// index.js
+console.log(process.env.NODE_ENV)
+// development
 ```
 
 ## 常用函数
@@ -410,7 +433,3 @@ import(/* webpackChunkName: "login" */ './login') // /* webpackChunkName: "login
 - output.publicPath: 对于这个选项，我们无需关注什么绝对相对路径，因为两种路径都可以。我们只需要知道一点：这个选项是指定 HTML 文件中资源文件 (字体、图片、JS文件等) 的文件名的公共 URL 部分的。在实际情况中，我们首先会通过output.filename或有些 loader 如file-loader的name属性设置文件名的原始部分，webpack 将文件名的原始部分和公共部分结合之后，HTML 文件就能获取到资源文件了。
 - devServer.contentBase: 设置静态资源的根目录，html-webpack-plugin生成的 html 不是静态资源。当用 html 文件里的地址无法找到静态资源文件时就会去这个目录下去找。
 - devServer.publicPath: 指定浏览器上访问所有 打包(bundled)文件 (在dist里生成的所有文件) 的根目录，这个根目录是相对服务器地址及端口的，比devServer.contentBase和output.publicPath优先。
-
-## webpack.DefinePlugin
-
-待补
