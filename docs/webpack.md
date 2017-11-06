@@ -1,5 +1,7 @@
 # webpack 使用指南
 
+查看[demo](https://github.com/noify/webpackify)
+
 ---
 
 # 安装
