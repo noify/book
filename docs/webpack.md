@@ -426,6 +426,24 @@ import(/* webpackChunkName: "login" */ './login') // /* webpackChunkName: "login
 })
 ```
 
+## 其他配置
+
+### resolve
+
+```js
+// webpack.config.js
+resolve: {
+  // 默认解析扩展路径，引入文件可节约后缀名
+  extensions: ['.js', '.less', '.css', '.json'],
+  // 设置解析器查找模块的目录，默认node_modules
+  modules: ['node_modules'],
+  // 设置模块别名，便于我们更方便引用
+  alias: {
+    'src': path.resolve(__dirname, 'src'),
+  }
+}
+```
+
 ## 其他
 
 ###  关于 output.publicPath、devServer.contentBase、devServer.publicPath的区别
