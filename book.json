@@ -1,12 +1,12 @@
 ﻿{
-    "title" : "书",
-    "author" : "noify",
-    "description" : "记录文字的书",
-    "language" : "zh-hans",
+    "title": "书",
+    "author": "noify",
+    "description": "记录文字的书",
+    "language": "zh-hans",
     "plugins": [
         "-lunr",
         "-search",
-        "search-pro", // 支持中文搜索
-        "-sharing" // 禁用分享
+        "search-pro",
+        "-sharing"
     ]
 }
