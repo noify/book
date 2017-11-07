@@ -8,17 +8,5 @@
         "-search",
         "search-pro", // 支持中文搜索
         "-sharing" // 禁用分享
-        //"favicon" // 更改网站的 favicon.ico
     ]
-    // "pluginsConfig": {
-    //     "favicon": {
-    //         "shortcut": "assets/images/favicon.ico",
-    //         "bookmark": "assets/images/favicon.ico",
-    //         "appleTouch": "assets/images/apple-touch-icon.png",
-    //         "appleTouchMore": {
-    //             "120x120": "assets/images/apple-touch-icon-120x120.png",
-    //             "180x180": "assets/images/apple-touch-icon-180x180.png"
-    //         }
-    //     }
-    // }
 }
