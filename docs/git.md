@@ -62,6 +62,20 @@ $ git remote rm origin
 $ git remote rename originOld originNew
 ```
 
+## git add
+
+```bash
+# 全部添加
+$ git add -A
+```
+
+## git commit
+
+```bash
+# 提交
+$ git commit -m "any"
+```
+
 ## git branch && git checkout
 
 创建/切换分支
