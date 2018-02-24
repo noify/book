@@ -71,3 +71,23 @@ post 向指定的资源提交要被处理的数据。get 方法，查询请求�
 Q：使用 CSS 预处理器的优缺点有哪些？(SASS，Compass，Stylus，LESS)
 
 Q：描述下你曾经使用过的 CSS 预处理的优缺点。
+
+
+## f能不能拿到a方法和b方法
+
+```js
+var F = function(){};
+Object.prototype.a = function(){};
+Function.prototype.b = function(){};
+var f = new F();
+```
+
+## bd
+
+```js
+var a = {n: 1}
+var b = a;
+a.x = a = {n: 2}
+console.log(a.x);
+console.log(b.x)
+```
