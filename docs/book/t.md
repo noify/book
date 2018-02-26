@@ -15,7 +15,7 @@
 - [WeUI](https://github.com/Tencent/weui.js)
 - [面试常见问题1](https://fe.padding.me/#/questions/3)
 - [面试常见问题2](https://fe.padding.me/#/questions/4)
-- [octype（文档类型）的作用](http://padding.me/blog/2014/07/04/mode-or-standard/)
+- [doctype（文档类型）的作用](http://padding.me/blog/2014/07/04/mode-or-standard/)
 - [jQuery的deferred对象](http://www.ruanyifeng.com/blog/2011/08/a_detailed_explanation_of_jquery_deferred_object.html)
 
 ## QA
@@ -89,5 +89,6 @@ var a = {n: 1}
 var b = a;
 a.x = a = {n: 2}
 console.log(a.x);
+
 console.log(b.x)
 ```
