@@ -1,16 +1,12 @@
-## <a name='css'>CSS</a>
-
 - 介绍一下标准的CSS的盒子模型？低版本IE的盒子模型有什么不同的？
 
 		（1）有两种， IE 盒子模型、W3C 盒子模型；
 		（2）盒模型： 内容(content)、填充(padding)、边界(margin)、 边框(border)；
 		（3）区  别： IE的content部分把 border 和 padding计算了进去;
 
-
-
 - CSS选择符有哪些？哪些属性可以继承？
 
-		*   1.id选择器（ # myid）
+		* 1.id选择器（ # myid）
 			2.类选择器（.myclassname）
 			3.标签选择器（div, h1, p）
 			4.相邻选择器（h1 + p）
@@ -28,179 +24,90 @@
 
 - CSS优先级算法如何计算？
 
-		*   优先级就近原则，同权重情况下样式定义最近者为准;
-		*   载入样式以最后载入的定位为准;
+  *   优先级就近原则，同权重情况下样式定义最近者为准;
+  *   载入样式以最后载入的定位为准;
 
-		优先级为:
-			同权重: 内联样式表（标签内部）> 嵌入样式表（当前文件中）> 外部样式表（外部文件中）。
-			!important >  id > class > tag
-			important 比 内联优先级高
+  优先级为:
+    同权重: 内联样式表（标签内部）> 嵌入样式表（当前文件中）> 外部样式表（外部文件中）。
+    !important >  id > class > tag
+    important 比 内联优先级高
+
+  css定义的权重规则：
+  
+  标签的权重为1，class的权重为10，id的权重为100，以下例子是演示各种定义的权重值
+
+  ```css
+  div{} /*权重为1*/
+  
+  .class1{} /*权重为10*/
+  
+  #id1{} /*权重为100*/
+  
+  #id1 div{} /*权重为100+1=101*/
+  
+  .class1 div{} /*权重为10+1=11*/
+
+  .class1 .class2 div{} /*权重为10+10+1=21*/
+  ```
+  如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现
 
 - CSS3新增伪类有那些？
 
-			举例：
-			p:first-of-type	选择属于其父元素的首个 <p> 元素的每个 <p> 元素。
-			p:last-of-type	选择属于其父元素的最后 <p> 元素的每个 <p> 元素。
-	        p:only-of-type	选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。
-			p:only-child		选择属于其父元素的唯一子元素的每个 <p> 元素。
-			p:nth-child(2)	选择属于其父元素的第二个子元素的每个 <p> 元素。
+  p:first-of-type	选择属于其父元素的首个 <p> 元素的每个 <p> 元素。
+  p:last-of-type	选择属于其父元素的最后 <p> 元素的每个 <p> 元素。
+  p:only-of-type	选择属于其父元素唯一的 <p> 元素的每个 <p> 元素。
+  p:only-child		选择属于其父元素的唯一子元素的每个 <p> 元素。
+  p:nth-child(2)	选择属于其父元素的第二个子元素的每个 <p> 元素。
 
-			::after			在元素之前添加内容,也可以用来做清除浮动。
-			::before			在元素之后添加内容
-	 	    :enabled  		
-			:disabled 		控制表单控件的禁用状态。
-			:checked        单选框或复选框被选中。
-
-- 如何居中div？
-
-
-	*  水平居中：给div设置一个宽度，然后添加margin:0 auto属性
-
-			div{
-				width:200px;
-				margin:0 auto;
-			 }
-
-	*  让绝对定位的div居中
-
-			div {
-				position: absolute;
-				width: 300px;
-				height: 300px;
-				margin: auto;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				right: 0;
-				background-color: pink;	/* 方便看效果 */
-			}
-
-	*  水平垂直居中一
-
-			确定容器的宽高 宽500 高 300 的层
-			设置层的外边距
-
-			div {
-				position: relative;		/* 相对定位或绝对定位均可 */
-				width:500px;
-				height:300px;
-				top: 50%;
-				left: 50%;
-				margin: -150px 0 0 -250px;     	/* 外边距为自身宽高的一半 */
-				background-color: pink;	 	/* 方便看效果 */
-
-			 }
-
-	*  水平垂直居中二
-
-			未知容器的宽高，利用 `transform` 属性
-
-			div {
-				position: absolute;		/* 相对定位或绝对定位均可 */
-				width:500px;
-				height:300px;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				background-color: pink;	 	/* 方便看效果 */
-
-			}
-
-	*  水平垂直居中三
-
-			利用 flex 布局
-			实际使用时应考虑兼容性
-
-			.container {
-				display: flex;
-				align-items: center; 		/* 垂直居中 */
-				justify-content: center;	/* 水平居中 */
-
-			}
-			.container div {
-				width: 100px;
-				height: 100px;
-				background-color: pink;		/* 方便看效果 */
-			}  
-
+  ::after			  在元素之前添加内容,也可以用来做清除浮动。
+  ::before			在元素之后添加内容
+  :enabled  		
+  :disabled 		控制表单控件的禁用状态。
+  :checked      单选框或复选框被选中。
 
 - display有哪些值？说明他们的作用。
 
-		  block       	块类型。默认宽度为父元素宽度，可设置宽高，换行显示。
-		  none        	缺省值。象行内元素类型一样显示。
-		  inline      	行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。
-		  inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。
-		  list-item   	象块类型元素一样显示，并添加样式列表标记。
-		  table       	此元素会作为块级表格来显示。
-		  inherit     	规定应该从父元素继承 display 属性的值。
+  block       	块类型。默认宽度为父元素宽度，可设置宽高，换行显示。
+  none        	缺省值。象行内元素类型一样显示。
+  inline      	行内元素类型。默认宽度为内容宽度，不可设置宽高，同行显示。
+  inline-block  默认宽度为内容宽度，可以设置宽高，同行显示。
+  list-item   	象块类型元素一样显示，并添加样式列表标记。
+  table       	此元素会作为块级表格来显示。
+  inherit     	规定应该从父元素继承 display 属性的值。
 
 
-- position的值relative和absolute定位原点是？
+- position有哪些值？说明他们的作用。
 
-		  absolute
-			生成绝对定位的元素，相对于值不为 static的第一个父元素进行定位。
-		  fixed （老IE不支持）
-			生成绝对定位的元素，相对于浏览器窗口进行定位。
-		  relative
-			生成相对定位的元素，相对于其正常位置进行定位。
-		  static
-			默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right z-index 声明）。
-		  inherit
-			规定从父元素继承 position 属性的值。
+  
+  absolute  生成绝对定位的元素，相对于值不为static的第一个父元素进行定位。
+  fixed     生成绝对定位的元素，相对于浏览器窗口进行定位。（老IE不支持）
+  relative  生成相对定位的元素，相对于其正常位置进行定位。
+  static    默认值。没有定位，元素出现在正常的流中（忽略 top, bottom, left, right z-index 声明）。
+  inherit   规定从父元素继承 position 属性的值。
 
 - CSS3有哪些新特性？
 
-		  新增各种CSS选择器	（: not(.input)：所有 class 不是“input”的节点）
-  		  圆角		    （border-radius:8px）
-		  多列布局	    （multi-column layout）
-		  阴影和反射	（Shadow\Reflect）
-		  文字特效		（text-shadow、）
-		  文字渲染		（Text-decoration）
-		  线性渐变		（gradient）
-		  旋转		 	（transform）
-          缩放,定位,倾斜,动画,多背景
-		  例如:transform:\scale(0.85,0.90)\ translate(0px,-30px)\ skew(-9deg,0deg)\Animation:
-
-- 请解释一下CSS3的Flexbox（弹性盒布局模型）,以及适用场景？
-
-		 一个用于页面布局的全新CSS3功能，Flexbox可以把列表放在同一个方向（从上到下排列，从左到右），并让列表能延伸到占用可用的空间。
-		 较为复杂的布局还可以通过嵌套一个伸缩容器（flex container）来实现。
-		 采用Flex布局的元素，称为Flex容器（flex container），简称"容器"。
-		 它的所有子元素自动成为容器成员，称为Flex项目（flex item），简称"项目"。
-		 常规布局是基于块和内联流方向，而Flex布局是基于flex-flow流可以很方便的用来做局中，能对不同屏幕大小自适应。
-		 在布局上有了比以前更加灵活的空间。
-
-		 具体：http://www.w3cplus.com/css3/flexbox-basics.html
-
-- 用纯CSS创建一个三角形的原理是什么？
-
-		把上、左、右三条边隐藏掉（颜色设为 transparent）
-		#demo {
-		  width: 0;
-		  height: 0;
-		  border-width: 20px;
-		  border-style: solid;
-		  border-color: transparent transparent red transparent;
-		}
-
-- 一个满屏 品 字布局 如何设计?
-
-		简单的方式：
-			上面的div宽100%，
-			下面的两个div分别宽50%，
-			然后用float或者inline使其不换行即可
+  新增各种CSS选择器	（: not(.input)：所有 class 不是“input”的节点）
+  圆角		    （border-radius:8px）
+  多列布局	    （multi-column layout）
+  阴影和反射	（Shadow\Reflect）
+  文字特效		（text-shadow）
+  文字渲染		（Text-decoration）
+  线性渐变		（gradient）
+  旋转		 	（transform）
+  缩放,定位,倾斜,动画,多背景
+  例如:transform:\scale(0.85,0.90)\ translate(0px,-30px)\ skew(-9deg,0deg)\Animation:
 
 - css多列等高如何实现？
 
-		利用padding-bottom|margin-bottom正负值相抵；
-		设置父容器设置超出隐藏（overflow:hidden），这样子父容器的高度就还是它里面的列没有设定padding-bottom时的高度，
-		当它里面的任 一列高度增加了，则父容器的高度被撑到里面最高那列的高度，
-		其他比这列矮的列会用它们的padding-bottom补偿这部分高度差。
-
+  利用padding-bottom|margin-bottom正负值相抵；
+  设置父容器设置超出隐藏（overflow:hidden），这样子父容器的高度就还是它里面的列没有设定padding-bottom时的高度，
+  当它里面的任 一列高度增加了，则父容器的高度被撑到里面最高那列的高度，
+  其他比这列矮的列会用它们的padding-bottom补偿这部分高度差。
 
 - 经常遇到的浏览器的兼容性有哪些？原因，解决方法是什么，常用hack的技巧 ？
 
-	    * png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.
+	  * png24位的图片在iE6浏览器上出现背景，解决方案是做成PNG8.
 
 		* 浏览器默认的margin和padding不同。解决方案是加一个全局的*{margin:0;padding:0;}来统一。
 
@@ -208,7 +115,7 @@
 
 		  浮动ie产生的双倍距离 #box{ float:left; width:10px; margin:0 0 0 100px;}
 
-	      这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)
+	    这种情况之下IE会产生20px的距离，解决方案是在float的标签样式控制中加入 ——_display:inline;将其转化为行内属性。(_这个符号只有ie6会识别)
 
 		  渐进识别的方式，从总体中逐渐排除局部。
 
@@ -239,12 +146,6 @@
 
 		超链接访问过后hover样式就不出现了 被点击访问过的超链接样式不在具有hover和active了解决方法是改变CSS属性的排列顺序:
 	    L-V-H-A :  a:link {} a:visited {} a:hover {} a:active {}
-
-
-- li与li之间有看不见的空白间隔是什么原因引起的？有什么解决办法？
-
-		行框的排列会受到中间空白（回车\空格）等的影响，因为空格也属于字符,这些空白也会被应用样式，占据空间，所以会有间隔，把字符大小设为0，就没有空格了。
-
 
 - 为什么要初始化CSS样式。
 
@@ -300,90 +201,14 @@
 		 一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。
 		 不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。
 
-- css定义的权重
-
-		以下是权重的规则：标签的权重为1，class的权重为10，id的权重为100，以下例子是演示各种定义的权重值：
-
-		/*权重为1*/
-		div{
-		}
-		/*权重为10*/
-		.class1{
-		}
-		/*权重为100*/
-		#id1{
-		}
-		/*权重为100+1=101*/
-		#id1 div{
-		}
-		/*权重为10+1=11*/
-		.class1 div{
-		}
-		/*权重为10+10+1=21*/
-		.class1 .class2 div{
-		}
-
-		如果权重相同，则最后定义的样式会起作用，但是应该避免这种情况出现
-
-
-- 请解释一下为什么需要清除浮动？清除浮动的方式
-
-	清除浮动是为了清除使用浮动元素产生的影响。浮动的元素，高度会塌陷，而高度的塌陷使我们页面后面的布局不能正常显示。
-
-		1、父级div定义height；
-		2、父级div 也一起浮动；
-		3、常规的使用一个class；
-			.clearfix::before, .clearfix::after {
-			    content: " ";
-			    display: table;
-			}
-			.clearfix::after {
-			    clear: both;
-			}
-			.clearfix {
-			    *zoom: 1;
-			}
-
-		4、SASS编译的时候，浮动元素的父级div定义伪类:after
-			&::after,&::before{
-			    content: " ";
-		        visibility: hidden;
-		        display: block;
-		        height: 0;
-		        clear: both;
-			}
-
-		解析原理：
-		1) display:block 使生成的元素以块级元素显示,占满剩余空间;
-		2) height:0 避免生成内容破坏原有布局的高度。
-		3) visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;
-		4）通过 content:"."生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:".",有些版本可能content 里面内容为空,一丝冰凉是不推荐这样做的,firefox直到7.0 content:”" 仍然会产生额外的空隙；
-		5）zoom：1 触发IE hasLayout。
-
-		通过分析发现，除了clear：both用来闭合浮动的，其他代码无非都是为了隐藏掉content生成的内容，这也就是其他版本的闭合浮动为什么会有font-size：0，line-height：0。
-
 - 什么是外边距合并？
 
 		外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
 		合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
 		w3school介绍网址： http://www.w3school.com.cn/css/css_margin_collapsing.asp
 
-- zoom:1的清除浮动原理?
-
-		清除浮动，触发hasLayout；
-		Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。
-		譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。
-
-		来龙去脉大概如下：
-		当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变zoom值时其实也会发生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。
-
-		Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现在 CSS 3.0 规范草案中。
-
-		目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？
-		可以通过css3里面的动画属性scale进行缩放。
 
 - 移动端的布局用过媒体查询吗？
-
 
 	假设你现在正用一台显示设备来阅读这篇文章，同时你也想把它投影到屏幕上，或者打印出来，
 	而显示设备、屏幕投影和打印等这些媒介都有自己的特点，CSS就是为文档提供在不同媒介上展示的适配方法
@@ -406,19 +231,16 @@
 		}
 	</style>
 
+- 使用 CSS 预处理器吗？有什么好处优势呢？
 
-
-- 使用 CSS 预处理器吗？喜欢那个？
-
-		SASS (SASS、LESS没有本质区别，只因为团队前端都是用的SASS)
-
+  支持嵌套、支持变量定义、支持mixin，模块化、运算、函数。让 CSS 更易维护、方便制作主题、扩充。
 
 - CSS优化、提高性能的方法有哪些？
 
-		关键选择器（key selector）。选择器的最后面的部分为关键选择器（即用来匹配目标元素的部分）；
-		如果规则拥有 ID 选择器作为其关键选择器，则不要为规则增加标签。过滤掉无关的规则（这样样式系统就不会浪费时间去匹配它们了）；
-		提取项目的通用公有样式，增强可复用性，按模块编写组件；增强项目的协同开发性、可维护性和可扩展性;
-		使用预处理工具或构建工具（gulp对css进行语法检查、自动补前缀、打包压缩、自动优雅降级）；
+  关键选择器（key selector）。选择器的最后面的部分为关键选择器（即用来匹配目标元素的部分）；
+  如果规则拥有 ID 选择器作为其关键选择器，则不要为规则增加标签。过滤掉无关的规则（这样样式系统就不会浪费时间去匹配它们了）；
+  提取项目的通用公有样式，增强可复用性，按模块编写组件；增强项目的协同开发性、可维护性和可扩展性;
+  使用预处理工具或构建工具（gulp对css进行语法检查、自动补前缀、打包压缩、自动优雅降级）；
 
 
 - 浏览器是怎样解析CSS选择器的？
@@ -426,25 +248,29 @@
 		样式系统从关键选择器开始匹配，然后左移查找规则选择器的祖先元素。
 		只要选择器的子树一直在工作，样式系统就会持续左移，直到和规则匹配，或者是因为不匹配而放弃该规则。
 
-
-- 在网页中的应该使用奇数还是偶数的字体？为什么呢？
-
 - margin和padding分别适合什么场景使用？
 
-		margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
-		margin用于布局分开元素使元素与元素互不相干；
-		padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段
+  margin是用来隔开元素与元素的间距；padding是用来隔开元素与内容的间隔。
+  margin用于布局分开元素使元素与元素互不相干；
+  padding用于元素与内容之间的间隔，让内容（文字）与（包裹）元素之间有一段
 
+- 抽离样式模块怎么写，说出思路？
 
-- 抽离样式模块怎么写，说出思路，有无实践经验？[阿里航旅的面试题]
+  提取出公共的部分整合起来。例如所有的按钮相同的样式，圆角、边框、颜色等提取出来整合。后期要是修改圆角的话可以只需要修改一次即可。
 
 - 元素竖向的百分比设定是相对于容器的高度吗？
 
+  当按百分比设定一个元素的宽度时，它是相对于父容器的宽度计算的，但是，对于一些表示竖向距离的属性，例如padding-top,padding-bottom,margin-top,margin-bottom等，当按百分比设定它们时，依据的也是父容器的宽度，而不是高度。
+
 - 全屏滚动的原理是什么？用到了CSS的那些属性？
+
+  图片轮播原理,图片宽高100%、超出隐藏、调整比例适应屏幕大小
 
 - 什么是响应式设计？响应式设计的基本原理是什么？如何兼容低版本的IE？
 
-- 视差滚动效果，如何给每页做不同的动画？（回到顶部，向下滑动要再次出现，和只出现一次分别怎么做？）
+  基于css3的media query，页面的设计和开发应当根据用户行为以及设备环境（系统平台、屏幕尺寸、屏幕定向等）进行相应的响应和调整。具体的实践方式由多方面组成，包括弹性网格和布局、图片、css media query的使用等。无论用户正在使用笔记本还是iPad，我们的页面都应该能够自动切换分辨率、图片尺寸及相关脚本功能等，以适应不同设备；换句话说，页面应该有能力去自动响应用户的设备环境。使用Respond.js 兼容低版本的IE。
+
+响应式网页设计就是一个网站能够兼容多个终端——而不是为每个终端做一个特定的版本。这样，我们就可以不必为不断到来的新设备做专门的版本设计和开发了。
 
 - ::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用。
 
@@ -460,13 +286,20 @@
 
 - 如何修改chrome记住密码后自动填充表单的黄色背景 ？
 
-		input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-		  background-color: rgb(250, 255, 189); /* #FAFFBD; */
-		  background-image: none;
-		  color: rgb(0, 0, 0);
-		}
+ ```css
+  input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(250, 255, 189); /* #FAFFBD; */
+    background-image: none;
+    color: rgb(0, 0, 0);
+  }
+  ```
 
 - 你对line-height是如何理解的？
+
+  * line-height只影响行内元素，并不能直接应用于块级元素。
+  * line-height 具有可继承性，块级元素的子元素会继承该特性，并且在行内元素上生效。
+  * vertical-align：top,middle,baseline,bottom
+  * line-boxes的高度取决于其包含的inline-boxes中最高的那一个
 
 - 设置元素浮动后，该元素的display值是多少？
 
@@ -498,16 +331,53 @@
 
 		多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms
 
-- display:inline-block 什么时候会显示间隙？(携程)
+- display:inline-block 什么时候会显示间隙？
 
-		移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing
+	移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing
 
-- overflow: scroll时不能平滑滚动的问题怎么处理？
+- 如何让overflow:auto页面滚动条出现时不跳动
+
+  ```css
+  html {
+    overflow-y: scroll;
+  }
+
+  :root {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  :root body {
+    position: absolute;
+  }
+
+  body {
+    width: 100vw;
+    overflow: hidden;
+  }
+  ```
+
+- overflow: scroll时不能平滑滚动的问题怎么处理(如何优化h5滚动效果)？
+
+  在safari上 `-webkit-overflow-scrolling : touch;`可以快速实现效果。
+  
+
+  ```css
+  {
+    -webkit-overflow-scrolling: touch;
+    /* position:absolute; 如果使用了绝对定位，则需要加上z-index。
+    z-index:1; */
+  }
+
+```
 
 - 有一个高度自适应的div，里面有两个div，一个高度100px，希望另一个填满剩下的高度。
 
-- png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
+  [外链](https://segmentfault.com/q/1010000000762512)
 
+  absolute以后，会继承父辈一个static的高度，top和bottom相应的值影响其高度
+
+- png、jpg、gif 这些图片格式解释一下，分别什么时候用。有没有了解过webp？
 
 - 什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）
 
@@ -523,6 +393,10 @@
 
 - style标签写在body后与body前有什么区别？
 
+  从有html标准以来到目前为止（2017年5月），标准一直是规定style元素不应出现在body元素中。（除非style处于template元素中，因为template中的内容是不直接在dom树中的。另外曾经`<style scoped>`这一特殊用法是可以在body元素中的。）不过网页浏览器一直有容错设计。
+  
+  如果style元素出现在body元素，最终效果和style元素出现在head里是一样的。但是可能引起FOUC、重绘或重新布局。
+
 
 - 什么是CSS 预处理器 / 后处理器？
 
@@ -535,10 +409,14 @@
 
 - rem布局的优缺点
 
+  能够更方面的自适应布局；但是需要计算px，可能会导致计算以后精度不够。
 
-## 清除浮动的3种方法
+
+# 清除浮动的3种方法
+
+清除浮动是为了清除使用浮动元素产生的影响。浮动的元素，高度会塌陷，而高度的塌陷使我们页面后面的布局不能正常显示。
  
-1. 添加新的元素 、应用 clear：both；
+## 添加新的元素 、应用 clear：both；
  
 ```html
 <div class="outer">
@@ -552,7 +430,7 @@
 </style>
 ```
  
-2. 父级div定义 overflow: auto
+## 父级div定义 overflow: auto
  
 ```html
 <div class="outer over-flow">
@@ -565,7 +443,7 @@
 </style>
 ```
  
-3. :after 方法
+## :after 方法
  
 ```html
 <div class="outer">
@@ -579,9 +457,32 @@
 </style>
 ```
 
-## 垂直居中/水平居中
+解析原理：
+1) display:block 使生成的元素以块级元素显示,占满剩余空间;
+2) height:0 避免生成内容破坏原有布局的高度。
+3) visibility:hidden 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;
+4）通过 content:"."生成内容作为最后一个元素，至于content里面是点还是其他都是可以的，例如oocss里面就有经典的 content:".",有些版本可能content 里面内容为空,一丝冰凉是不推荐这样做的,firefox直到7.0 content:”" 仍然会产生额外的空隙；
+5）zoom：1 触发IE hasLayout。
+
+通过分析发现，除了clear：both用来闭合浮动的，其他代码无非都是为了隐藏掉content生成的内容，这也就是其他版本的闭合浮动为什么会有font-size：0，line-height：0。
+
+- zoom:1的清除浮动原理?
+
+清除浮动，触发hasLayout；
+Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。
+譬如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。
+
+来龙去脉大概如下：
+当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变zoom值时其实也会发生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。
+
+Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现在 CSS 3.0 规范草案中。
+
+目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？
+可以通过css3里面的动画属性scale进行缩放。
+
+# 垂直居中/水平居中
  
-### 绝对定位居中
+## 绝对定位居中
  
 ```css
 .Absolute-Center { 
@@ -681,7 +582,7 @@ Chrome,Firefox, Safari, Mobile Safari, IE8-10.
  
 [引申](http://codepen.io/shshaw/details/gEiDt)
  
-### 负边距居中
+## 负边距居中
  
 ```css
 .is-Negative {
@@ -704,7 +605,7 @@ Chrome,Firefox, Safari, Mobile Safari, IE8-10.
 3. 边距大小与padding,和是否定义box-sizing: border-box有关，计算需要根据不同情况
  
  
-### Transforms居中
+## Transforms居中
  
 ```css
 .is-Transformed { 
@@ -747,7 +648,7 @@ Chrome,Firefox, Safari, Mobile Safari, IE8-10.
 * [引申](https://css-tricks.com/centering-percentage-widthheight-elements/)
 * [preserve-3d](http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/)
  
-### Table-Cell居中
+## Table-Cell居中
  
 ```html
 <div class="Center-Container is-Table">
@@ -780,7 +681,7 @@ Chrome,Firefox, Safari, Mobile Safari, IE8-10.
  
 [引申](http://www.456bereastreet.com/archive/201103/flexible_height_vertical_centering_with_css_beyond_ie7/)
  
-### Inline-Block居中
+## Inline-Block居中
  
 ```html
 <div class="Center-Container is-Inline">
@@ -823,7 +724,7 @@ Chrome,Firefox, Safari, Mobile Safari, IE8-10.
 2. 水平居中依赖于margin-left: -0.25em;该尺寸对于不同的字体/字号需要调整。
 3. 内容块宽度不能超过容器的100% - 0.25em。
  
-### Flexbox居中
+## Flexbox居中
  
 ```css
 .Center-Container.is-Flexbox {
@@ -855,9 +756,19 @@ Chrome,Firefox, Safari, Mobile Safari, IE8-10.
 3. [需要许多不同的语法研究现代浏览器供应商的前缀](https://css-tricks.com/using-flexbox/)
 4. [可能存在的性能问题](https://css-tricks.com/does-flexbox-have-a-performance-problem/)
  
+
+# media query
+
+media query作为CSS3标准的一部分，改进了媒体类型的承诺。media query允许我们不仅仅以特定设备类型为目标，还可以真正地检查设备用来渲染我们作品的具体物理特征。例如，随着移动WebKit的崛起，media query成为受欢迎的客户端技术，可以为iPhone、Android手机和他们的亲戚提供裁切讲究的样式表。
+
+这个查询条件包含两部分：
+
+一个媒体类型(screen), 以及
+由圆括号括起来的真正查询条件，包括要检查的特定媒体特征(max-device-width)后跟目标值(480px)。
+
 ## Flex布局 css3
  
- ## css3 mask
+## css3 mask
  
 ## 通过transform进行skew变形，rotate旋转会造成出现锯齿现象
  

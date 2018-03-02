@@ -1,216 +1,151 @@
-# Reflect/Object.defineProperty()
- 
-> Object.defineProperty(obj, prop, descriptor)
- 
-```js
-// 使用 __proto__
-Object.defineProperty(obj, "key", {
-  __proto__: null, // 没有继承的属性
-  value: "static"  // 没有 enumerable
-                   // 没有 configurable
-                   // 没有 writable
-                   // 作为默认值
-});
- 
-// 显式
-Object.defineProperty(obj, "key", {
-  enumerable: false,
-  configurable: false,
-  writable: false,
-  value: "static"
-});
- 
-// 循环使用同一对象
-function withValue(value) {
-  var d = withValue.d || (
-    withValue.d = {
-      enumerable: false,
-      writable: false,
-      configurable: false,
-      value: null
-    }
-  );
-  d.value = value;
-  return d;
-}
-// ... 并且 ...
-Object.defineProperty(obj, "key", withValue("static"));
- 
-// 如果 freeze 可用, 防止代码添加或删除对象原型的属性
-// （value, get, set, enumerable, writable, configurable）
-(Object.freeze||Object)(Object.prototype);
-```
-
-如何取消微信下拉浏览器头部动画
-	1. 用touch事件代替滑动
-	2. 在onscroll中阻止默认事件
-	
-SPA单页面和微信支付的bug
-微信支付需要配置一个支付授权目录，你需要将项目中的支付地址置于该配置之下，支付方能成功
-
-微信对其支付授权目录的配置规则描述如下：
-	1. 所有使用公众号支付方式发起支付请求的链接地址，都必须在支付授权目录之下；
-	2. 最多设置3个支付授权目录，且域名必须通过ICP备案；
-	3. 头部要包含http或https，须细化到二级或三级目录，以左斜杠“/”结尾。
- 
-当单页面History模式使用hash模式时，页面的路径为 xxx.com/index.html#/login
- 
-微信的检查逻辑：取到URL后用最后一个'/'做分隔符，将URL分为两部分，用第一部分和配置的支付授权目录做比对，匹配则验证成功，否则验证失败。很显然，这种验证方式下，URL分隔后的第一部分会包含哈希，于是验证失败。
- 
-解决办法：在#前加个?,因为?后面的字符串会被当做查询参数而忽视。xxx.com/index.html?#/login
-
-
-
-arguments 函数里面的参数
-
-全局作用域或/函数作用域/块级作用域
-
-https://segmentfault.com/q/1010000004468151
-
-
-'use strict';//严格模式
-
-
-
-## <a name='js'>JavaScript</a>
-
-
 -  介绍js的基本数据类型。
 
-		 Undefined、Null、Boolean、Number、String、
-		 ECMAScript 2015 新增:Symbol(创建后独一无二且不可变的数据类型 )
+	Undefined、Null、Boolean、Number、String、
+	ECMAScript 2015 新增:Symbol(创建后独一无二且不可变的数据类型 )
 
 -  介绍js有哪些内置对象？
 
-		Object 是 JavaScript 中所有对象的父对象
+	Object 是 JavaScript 中所有对象的父对象
 
-		数据封装类对象：Object、Array、Boolean、Number 和 String
-		其他对象：Function、Arguments、Math、Date、RegExp、Error
+	数据封装类对象：Object、Array、Boolean、Number 和 String
+	其他对象：Function、Arguments、Math、Date、RegExp、Error
 
-		参考：http://www.ibm.com/developerworks/cn/web/wa-objectsinjs-v1b/index.html
+	参考：http://www.ibm.com/developerworks/cn/web/wa-objectsinjs-v1b/index.html
 
 -  说几条写JavaScript的基本规范？
 
-		1.不要在同一行声明多个变量。
-		2.请使用 ===/!==来比较true/false或者数值
-		3.使用对象字面量替代new Array这种形式
-		4.不要使用全局函数。
-		5.Switch语句必须带有default分支
-		6.函数不应该有时候有返回值，有时候没有返回值。
-		7.For循环必须使用大括号
-		8.If语句必须使用大括号
-		9.for-in循环中的变量 应该使用var关键字明确限定作用域，从而避免作用域污染。
+	1. 不要在同一行声明多个变量。
+	2. 请使用 ===/!==来比较true/false或者数值
+	3. 使用对象字面量替代new Array这种形式
+	4. 不要使用全局函数。
+	5. Switch语句必须带有default分支
+	6. 函数不应该有时候有返回值，有时候没有返回值。
+	7. For循环必须使用大括号
+	8. If语句必须使用大括号
+	9. for-in循环中的变量 应该使用var关键字明确限定作用域，从而避免作用域污染。
 
 -  JavaScript原型，原型链 ? 有什么特点？
 
-		每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，
-		如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，
-		于是就这样一直找下去，也就是我们平时所说的原型链的概念。
-		关系：instance.constructor.prototype = instance.__proto__
+	每个对象都会在其内部初始化一个属性，就是prototype(原型)，当我们访问一个对象的属性时，
+	如果这个对象内部不存在这个属性，那么他就会去prototype里找这个属性，这个prototype又会有自己的prototype，
+	于是就这样一直找下去，也就是我们平时所说的原型链的概念。
+	关系：instance.constructor.prototype = instance.__proto__
 
-		特点：
-		JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。
+	特点：
+	JavaScript对象是通过引用来传递的，我们创建的每个新对象实体中并没有一份属于自己的原型副本。当我们修改原型时，与之相关的对象也会继承这一改变。
 
+	当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话，
+	就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。
 
-		 当我们需要一个属性的时，Javascript引擎会先看当前对象中是否有这个属性， 如果没有的话，
-		 就会查找他的Prototype对象是否有这个属性，如此递推下去，一直检索到 Object 内建对象。
-			function Func(){}
-			Func.prototype.name = "Sean";
-			Func.prototype.getInfo = function() {
-			  return this.name;
-			}
-			var person = new Func();//现在可以参考var person = Object.create(oldObject);
-			console.log(person.getInfo());//它拥有了Func的属性和方法
-			//"Sean"
-			console.log(Func.prototype);
-			// Func { name="Sean", getInfo=function()}
-
-
-
+	```js
+	function Func(){}
+	Func.prototype.name = "Sean";
+	Func.prototype.getInfo = function() {
+		return this.name;
+	}
+	var person = new Func();//现在可以参考var person = Object.create(oldObject);
+	console.log(person.getInfo());//它拥有了Func的属性和方法
+	//"Sean"
+	console.log(Func.prototype);
+	// Func { name="Sean", getInfo=function()}
+	```
 
 -  JavaScript有几种类型的值？，你能画一下他们的内存图吗？
 
-		栈：原始数据类型（Undefined，Null，Boolean，Number、String）
-		堆：引用数据类型（对象、数组和函数）
+	栈：原始数据类型（Undefined，Null，Boolean，Number、String）
+	堆：引用数据类型（对象、数组和函数）
 
-		两种类型的区别是：存储位置不同；
-		原始数据类型直接存储在栈(stack)中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；
-		引用数据类型存储在堆(heap)中的对象,占据空间大、大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体
+	两种类型的区别是：存储位置不同；
+	原始数据类型直接存储在栈(stack)中的简单数据段，占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储；
+	引用数据类型存储在堆(heap)中的对象,占据空间大、大小不固定。如果存储在栈中，将会影响程序运行的性能；引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体
 
-    ![Stated Clearly Image](https://camo.githubusercontent.com/d1947e624a0444d1032a85800013df487adc5550/687474703a2f2f7777772e77337363686f6f6c2e636f6d2e636e2f692f63745f6a735f76616c75652e676966)
+	![Stated Clearly Image](https://camo.githubusercontent.com/d1947e624a0444d1032a85800013df487adc5550/687474703a2f2f7777772e77337363686f6f6c2e636f6d2e636e2f692f63745f6a735f76616c75652e676966)
 	![Stated Clearly Image](http://www.w3school.com.cn/i/ct_js_value.gif)
 
 - 如何将字符串转化为数字，例如'12.3b'?
 
-		* parseFloat('12.3b');
-		* 正则表达式，'12.3b'.match(/(\d)+(\.)?(\d)+/g)[0] * 1, 但是这个不太靠谱，提供一种思路而已。
+	* `parseFloat('12.3b')`;
+	* 正则表达式，`'12.3b'.match(/(\d)+(\.)?(\d)+/g)[0] * 1`, 但是这个不太靠谱，提供一种思路而已。
 
 - 如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』?
 
-		function commafy(num){
-			return num && num
-				.toString()
-				.replace(/(\d)(?=(\d{3})+\.)/g, function($1, $2){
-					return $2 + ',';
-				});
-		}
+	```js
+	function commafy(num){
+		return num && num
+			.toString()
+			.replace(/(\d)(?=(\d{3})+\.)/g, function($1, $2){
+				return $2 + ',';
+			});
+	}
+	```
 
 - 如何实现数组的随机排序？
 		
-		方法一：
-			var arr = [1,2,3,4,5,6,7,8,9,10];
-			function randSort1(arr){
-				for(var i = 0,len = arr.length;i < len; i++ ){
-					var rand = parseInt(Math.random()*len);
-					var temp = arr[rand];
-					arr[rand] = arr[i];
-					arr[i] = temp;
-				}
-				return arr;
-			}
-			console.log(randSort1(arr));
-			
-		方法二：
-			var arr = [1,2,3,4,5,6,7,8,9,10];
-			function randSort2(arr){
-				var mixedArray = [];
-				while(arr.length > 0){
-					var randomIndex = parseInt(Math.random()*arr.length);
-					mixedArray.push(arr[randomIndex]);
-					arr.splice(randomIndex, 1);
-				}
-				return mixedArray;
-			}
-			console.log(randSort2(arr));
+	方法一：
 
-		方法三：
-			var arr = [1,2,3,4,5,6,7,8,9,10];
-			arr.sort(function(){
-				return Math.random() - 0.5;
-			})
-			console.log(arr);
+	```js
+	var arr = [1,2,3,4,5,6,7,8,9,10];
+	function randSort1(arr){
+		for(var i = 0,len = arr.length;i < len; i++ ){
+			var rand = parseInt(Math.random()*len);
+			var temp = arr[rand];
+			arr[rand] = arr[i];
+			arr[i] = temp;
+		}
+		return arr;
+	}
+	console.log(randSort1(arr));
+	```
+
+	方法二：
+
+	```js
+	var arr = [1,2,3,4,5,6,7,8,9,10];
+	function randSort2(arr){
+		var mixedArray = [];
+		while(arr.length > 0){
+			var randomIndex = parseInt(Math.random()*arr.length);
+			mixedArray.push(arr[randomIndex]);
+			arr.splice(randomIndex, 1);
+		}
+		return mixedArray;
+	}
+	console.log(randSort2(arr));
+	```
+
+	方法三：
+
+	```js
+	var arr = [1,2,3,4,5,6,7,8,9,10];
+	arr.sort(function(){
+		return Math.random() - 0.5;
+	})
+	console.log(arr);
+	```
 
 -  Javascript如何实现继承？
 
-		1、构造继承
-		2、原型继承
-		3、实例继承
-		4、拷贝继承
+	1、构造继承
+	2、原型继承
+	3、实例继承
+	4、拷贝继承
 
-		原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
-		
-			function Parent(){
-				this.name = 'wang';
-			}
+	原型prototype机制或apply和call方法去实现较简单，建议使用构造函数与原型混合方式。
 
-			function Child(){
-				this.age = 28;
-			}
-			Child.prototype = new Parent();//继承了Parent，通过原型
+	```js
+	function Parent(){
+		this.name = 'wang';
+	}
 
-			var demo = new Child();
-			alert(demo.age);
-			alert(demo.name);//得到被继承的属性
+	function Child(){
+		this.age = 28;
+	}
+	Child.prototype = new Parent();//继承了Parent，通过原型
+
+	var demo = new Child();
+	alert(demo.age);
+	alert(demo.name);//得到被继承的属性
+	```
 
 - JavaScript继承的几种实现方式？
   - 参考：[构造函数的继承](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance.html)，[非构造函数的继承](http://www.ruanyifeng.com/blog/2010/05/object-oriented_javascript_inheritance_continued.html)；
@@ -219,7 +154,6 @@ https://segmentfault.com/q/1010000004468151
 -  javascript创建对象的几种方式？
 
 		javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。
-
 
 		1、对象字面量的方式
 
@@ -288,9 +222,9 @@ https://segmentfault.com/q/1010000004468151
 
 -  Javascript作用链域?
 
-		全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。
-		当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，
-		直至全局函数，这种组织形式就是作用域链。
+	全局函数无法查看局部函数的内部细节，但局部函数可以查看其上层的函数细节，直至全局细节。
+	当需要从局部函数查找某一属性或方法时，如果当前作用域没有找到，就会上溯到上层作用域查找，
+	直至全局函数，这种组织形式就是作用域链。
 
 -  谈谈this对象的理解。
 
@@ -302,242 +236,240 @@ https://segmentfault.com/q/1010000004468151
 
 -  eval是做什么的？
 
-		它的功能是把对应的字符串解析成JS代码并运行；
-		应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
-		由JSON字符串转换为JSON对象的时候可以用eval，var obj =eval('('+ str +')');
+	它的功能是把对应的字符串解析成JS代码并运行；
+	应该避免使用eval，不安全，非常耗性能（2次，一次解析成js语句，一次执行）。
+	由JSON字符串转换为JSON对象的时候可以用eval，var obj =eval('('+ str +')');
 
 -  什么是window对象? 什么是document对象?
 
-		window对象是指浏览器打开的窗口。
-		document对象是Documentd对象（HTML 文档对象）的一个只读引用，window对象的一个属性。
+	window对象是指浏览器打开的窗口。
+	document对象是Documentd对象（HTML 文档对象）的一个只读引用，window对象的一个属性。
 
 -  null，undefined 的区别？
 
-		null 		表示一个对象是“没有值”的值，也就是值为“空”；
-		undefined 	表示一个变量声明了没有初始化(赋值)；
+	null 		表示一个对象是“没有值”的值，也就是值为“空”；
+	undefined 	表示一个变量声明了没有初始化(赋值)；
 
-		undefined不是一个有效的JSON，而null是；
-		undefined的类型(typeof)是undefined；
-		null的类型(typeof)是object；
+	undefined不是一个有效的JSON，而null是；
+	undefined的类型(typeof)是undefined；
+	null的类型(typeof)是object；
 
 
-		Javascript将未赋值的变量默认值设为undefined；
-		Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。
+	Javascript将未赋值的变量默认值设为undefined；
+	Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。
 
-	    typeof undefined
-			//"undefined"
-			undefined :是一个表示"无"的原始值或者说表示"缺少值"，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；
-			例如变量被声明了，但没有赋值时，就等于undefined
+		typeof undefined
+		//"undefined"
+		undefined :是一个表示"无"的原始值或者说表示"缺少值"，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；
+		例如变量被声明了，但没有赋值时，就等于undefined
 
-		typeof null
-			//"object"
-			null : 是一个对象(空对象, 没有任何属性和方法)；
-			例如作为函数的参数，表示该函数的参数不是对象；
+	typeof null
+		//"object"
+		null : 是一个对象(空对象, 没有任何属性和方法)；
+		例如作为函数的参数，表示该函数的参数不是对象；
 
-		注意：
-			在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined
- 			null == undefined // true
-  			null === undefined // false
+	注意：
+		在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined
+		null == undefined // true
+			null === undefined // false
 
-		再来一个例子：
+	再来一个例子：
 
-			null
-			Q：有张三这个人么？
-			A：有！
-			Q：张三有房子么？
-			A：没有！
+		null
+		Q：有张三这个人么？
+		A：有！
+		Q：张三有房子么？
+		A：没有！
 
-			undefined
-			Q：有张三这个人么？
-			A：有！
-			Q: 张三有多少岁？
-			A: 不知道（没有被告诉）
+		undefined
+		Q：有张三这个人么？
+		A：有！
+		Q: 张三有多少岁？
+		A: 不知道（没有被告诉）
 
 	参考阅读：[undefined与null的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
 
 
 -  写一个通用的事件侦听器函数。
 
-			// event(事件)工具集，来源：github.com/markyun
-			markyun.Event = {
-				// 页面加载完成后
-				readyEvent : function(fn) {
-					if (fn==null) {
-						fn=document;
+	// event(事件)工具集，来源：github.com/markyun
+	markyun.Event = {
+		// 页面加载完成后
+		readyEvent : function(fn) {
+			if (fn==null) {
+				fn=document;
+			}
+			var oldonload = window.onload;
+			if (typeof window.onload != 'function') {
+				window.onload = fn;
+			} else {
+				window.onload = function() {
+					oldonload();
+					fn();
+				};
+			}
+		},
+		// 视能力分别使用dom0||dom2||IE方式 来绑定事件
+		// 参数： 操作的元素,事件名称 ,事件处理程序
+		addEvent : function(element, type, handler) {
+			if (element.addEventListener) {
+				//事件类型、需要执行的函数、是否捕捉
+				element.addEventListener(type, handler, false);
+			} else if (element.attachEvent) {
+				element.attachEvent('on' + type, function() {
+					handler.call(element);
+				});
+			} else {
+				element['on' + type] = handler;
+			}
+		},
+		// 移除事件
+		removeEvent : function(element, type, handler) {
+			if (element.removeEventListener) {
+				element.removeEventListener(type, handler, false);
+			} else if (element.datachEvent) {
+				element.detachEvent('on' + type, handler);
+			} else {
+				element['on' + type] = null;
+			}
+		},
+		// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)
+		stopPropagation : function(ev) {
+			if (ev.stopPropagation) {
+				ev.stopPropagation();
+			} else {
+				ev.cancelBubble = true;
+			}
+		},
+		// 取消事件的默认行为
+		preventDefault : function(event) {
+			if (event.preventDefault) {
+				event.preventDefault();
+			} else {
+				event.returnValue = false;
+			}
+		},
+		// 获取事件目标
+		getTarget : function(event) {
+			return event.target || event.srcElement;
+		},
+		// 获取event对象的引用，取到事件的所有信息，确保随时能使用event；
+		getEvent : function(e) {
+			var ev = e || window.event;
+			if (!ev) {
+				var c = this.getEvent.caller;
+				while (c) {
+					ev = c.arguments[0];
+					if (ev && Event == ev.constructor) {
+						break;
 					}
-					var oldonload = window.onload;
-					if (typeof window.onload != 'function') {
-						window.onload = fn;
-					} else {
-						window.onload = function() {
-							oldonload();
-							fn();
-						};
-					}
-				},
-				// 视能力分别使用dom0||dom2||IE方式 来绑定事件
-				// 参数： 操作的元素,事件名称 ,事件处理程序
-				addEvent : function(element, type, handler) {
-					if (element.addEventListener) {
-						//事件类型、需要执行的函数、是否捕捉
-						element.addEventListener(type, handler, false);
-					} else if (element.attachEvent) {
-						element.attachEvent('on' + type, function() {
-							handler.call(element);
-						});
-					} else {
-						element['on' + type] = handler;
-					}
-				},
-				// 移除事件
-				removeEvent : function(element, type, handler) {
-					if (element.removeEventListener) {
-						element.removeEventListener(type, handler, false);
-					} else if (element.datachEvent) {
-						element.detachEvent('on' + type, handler);
-					} else {
-						element['on' + type] = null;
-					}
-				},
-				// 阻止事件 (主要是事件冒泡，因为IE不支持事件捕获)
-				stopPropagation : function(ev) {
-					if (ev.stopPropagation) {
-						ev.stopPropagation();
-					} else {
-						ev.cancelBubble = true;
-					}
-				},
-				// 取消事件的默认行为
-				preventDefault : function(event) {
-					if (event.preventDefault) {
-						event.preventDefault();
-					} else {
-						event.returnValue = false;
-					}
-				},
-				// 获取事件目标
-				getTarget : function(event) {
-					return event.target || event.srcElement;
-				},
-				// 获取event对象的引用，取到事件的所有信息，确保随时能使用event；
-				getEvent : function(e) {
-					var ev = e || window.event;
-					if (!ev) {
-						var c = this.getEvent.caller;
-						while (c) {
-							ev = c.arguments[0];
-							if (ev && Event == ev.constructor) {
-								break;
-							}
-							c = c.caller;
-						}
-					}
-					return ev;
+					c = c.caller;
 				}
-			};
+			}
+			return ev;
+		}
+	};
 
 -  ["1", "2", "3"].map(parseInt) 答案是多少？
 
-		parseInt() 函数能解析一个字符串，并返回一个整数，需要两个参数 (val, radix)，
-		其中 radix 表示要解析的数字的基数。【该值介于 2 ~ 36 之间，并且字符串中的数字不能大于radix才能正确返回数字结果值】;
-		但此处 map 传了 3 个 (element, index, array),我们重写parseInt函数测试一下是否符合上面的规则。
+	parseInt() 函数能解析一个字符串，并返回一个整数，需要两个参数 (val, radix)，
+	其中 radix 表示要解析的数字的基数。【该值介于 2 ~ 36 之间，并且字符串中的数字不能大于radix才能正确返回数字结果值】;
+	但此处 map 传了 3 个 (element, index, array),我们重写parseInt函数测试一下是否符合上面的规则。
 
-		function parseInt(str, radix) {
-		    return str+'-'+radix;
-		};
-		var a=["1", "2", "3"];
-		a.map(parseInt);  // ["1-0", "2-1", "3-2"] 不能大于radix
+	function parseInt(str, radix) {
+			return str+'-'+radix;
+	};
+	var a=["1", "2", "3"];
+	a.map(parseInt);  // ["1-0", "2-1", "3-2"] 不能大于radix
 
-		因为二进制里面，没有数字3,导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN
-		所以["1", "2", "3"].map(parseInt) 答案也就是：[1, NaN, NaN]
+	因为二进制里面，没有数字3,导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN
+	所以["1", "2", "3"].map(parseInt) 答案也就是：[1, NaN, NaN]
 
-		详细解析：http://blog.csdn.net/justjavac/article/details/19473199
+	详细解析：http://blog.csdn.net/justjavac/article/details/19473199
 
 -  事件是？IE与火狐的事件机制有什么区别？ 如何阻止冒泡？
 
-		 1. 我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。
-		 2. 事件处理机制：IE是事件冒泡、Firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件；
-		 3. ev.stopPropagation();（旧ie的方法 ev.cancelBubble = true;）
+	1. 我们在网页中的某个操作（有的操作对应多个事件）。例如：当我们点击一个按钮就会产生一个事件。是可以被 JavaScript 侦测到的行为。
+	2. 事件处理机制：IE是事件冒泡、Firefox同时支持两种事件模型，也就是：捕获型事件和冒泡型事件；
+	3. ev.stopPropagation();（旧ie的方法 ev.cancelBubble = true;）
 
 
 -  什么是闭包（closure），为什么要用它？
 
-		闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
+	闭包是指有权访问另一个函数作用域中变量的函数，创建闭包的最常见的方式就是在一个函数内创建另一个函数，通过另一个函数访问这个函数的局部变量,利用闭包可以突破作用链域，将函数内部的变量和方法传递到外部。
 
-		闭包的特性：
+	闭包的特性：
 
-		1.函数内再嵌套函数
-		2.内部函数可以引用外层的参数和变量
-		3.参数和变量不会被垃圾回收机制回收
+	1.函数内再嵌套函数
+	2.内部函数可以引用外层的参数和变量
+	3.参数和变量不会被垃圾回收机制回收
 
-		//li节点的onclick事件都能正确的弹出当前被点击的li索引
-		 <ul id="testUL">
-	        <li> index = 0</li>
-	        <li> index = 1</li>
-	        <li> index = 2</li>
-	        <li> index = 3</li>
-	    </ul>
-		<script type="text/javascript">
-		  	var nodes = document.getElementsByTagName("li");
-			for(i = 0;i<nodes.length;i+= 1){
-			    nodes[i].onclick = (function(i){
-			              return function() {
-			                 console.log(i);
-			              } //不用闭包的话，值每次都是4
-			            })(i);
-			}
-		</script>
+	//li节点的onclick事件都能正确的弹出当前被点击的li索引
+		<ul id="testUL">
+				<li> index = 0</li>
+				<li> index = 1</li>
+				<li> index = 2</li>
+				<li> index = 3</li>
+		</ul>
+	<script type="text/javascript">
+			var nodes = document.getElementsByTagName("li");
+		for(i = 0;i<nodes.length;i+= 1){
+				nodes[i].onclick = (function(i){
+									return function() {
+											console.log(i);
+									} //不用闭包的话，值每次都是4
+								})(i);
+		}
+	</script>
 
+	执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在
+	使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源
+	因为say667()的内部函数的执行需要依赖say667()中的变量
+	这是对闭包作用的非常直白的描述
 
-
-		执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在
-		使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源
-		因为say667()的内部函数的执行需要依赖say667()中的变量
-		这是对闭包作用的非常直白的描述
-
-		  function say667() {
-			// Local variable that ends up within closure
-			var num = 666;
-			var sayAlert = function() {
-				alert(num);
-			}
-			num++;
-			return sayAlert;
+		function say667() {
+		// Local variable that ends up within closure
+		var num = 666;
+		var sayAlert = function() {
+			alert(num);
+		}
+		num++;
+		return sayAlert;
 		}
 
-		 var sayAlert = say667();
-		 sayAlert()//执行结果应该弹出的667
+		var sayAlert = say667();
+		sayAlert()//执行结果应该弹出的667
 
 
 -  javascript 代码中的"use strict";是什么意思 ? 使用它区别是什么？
 
-		use strict是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,
+	use strict是一种ECMAscript 5 添加的（严格）运行模式,这种模式使得 Javascript 在更严格的条件下运行,
 
-		使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。
-		默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;
-		全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；
-		消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;
+	使JS编码更加规范化的模式,消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为。
+	默认支持的糟糕特性都会被禁用，比如不能用with，也不能在意外的情况下给全局变量赋值;
+	全局变量的显示声明,函数必须声明在顶层，不允许在非函数代码块内声明函数,arguments.callee也不允许使用；
+	消除代码运行的一些不安全之处，保证代码运行的安全,限制函数中的arguments修改，严格模式下的eval函数的行为和非严格模式的也不相同;
 
-		提高编译器效率，增加运行速度；
-		为未来新版本的Javascript标准化做铺垫。
+	提高编译器效率，增加运行速度；
+	为未来新版本的Javascript标准化做铺垫。
 
 
 -  如何判断一个对象是否属于某个类？
 
- 		  使用instanceof （待完善）
-	       if(a instanceof Person){
-	           alert('yes');
-	       }
+	使用instanceof （待完善）
+	if(a instanceof Person){
+			alert('yes');
+	}
 
 -  new操作符具体干了什么呢?
 
-			 1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
-	  	  	 2、属性和方法被加入到 this 引用的对象中。
-	 		 3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
+			1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
+					2、属性和方法被加入到 this 引用的对象中。
+			3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
 
-		var obj  = {};
-		obj.__proto__ = Base.prototype;
-		Base.call(obj);
+	var obj  = {};
+	obj.__proto__ = Base.prototype;
+	Base.call(obj);
 
 
 -  用原生JavaScript的实现过什么功能吗？
@@ -1365,3 +1297,307 @@ $("body,html").animate({ scrollTop: ... });//动画滚动效果，兼容火狐�
 - 在发布订阅模式中，组件是松散耦合的，正好和观察者模式相反，是紧耦合的。
 - 观察者模式大多数时候是同步的，比如当事件触发，Subject就会去调用观察者的方法。而发布-订阅模式大多数时候是异步的（使用消息队列）。
 - 观察者模式需要在单个应用程序地址空间中实现，而发布-订阅更像交叉应用模式。
+
+
+## ios中对 body绑定click事件不触发
+
+```js
+  document.body.addEventListner('click',function(){
+     // do something
+   }, false);
+
+   // change the onclick
+
+  <body onclick="handleClick(event)"></body>
+   function handleClick(){
+      // do something
+   }
+   // not trigger the  handleClick
+```
+
+# Javascript异步编程
+[](http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html)
+
+Javascript语言的执行环境是"单线程"（single thread）。
+
+就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推，此为同步（Synchronous）。
+
+我们可以通过其他方法来做到异步（Asynchronous）。
+
+
+## 回调函数
+
+setTimeout会将f1推迟执行，f1执行完后调用回调函数callback。
+
+```js
+function f1 (callback){
+	 setTimeout(function () {
+		// f1的任务代码
+		typeof callback == "function" && callback();
+	}, 1000);
+}
+f1(f2);
+```
+
+## 事件监听
+
+采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。
+
+- 优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以"去耦合"（Decoupling），有利于实现模块化。
+- 缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。
+
+```js
+// 为f1绑定一个事件，当f1发生done事件，就执行f2。
+f1.on('done', f2);
+
+function f1(){
+	setTimeout(function () {
+
+		// f1的任务代码
+
+		// 执行完成后，立即触发done事件，从而开始执行f2。
+		f1.trigger('done');
+	}, 1000);
+}
+```
+
+## 发布/订阅
+
+上一节的"事件"，完全可以理解成"信号"。
+
+这种方法的性质与"事件监听"类似，但是明显优于后者。因为我们可以通过查看"消息中心"，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
+
+我们假定，存在一个"信号中心"，某个任务执行完成，就向信号中心"发布"（publish）一个信号，其他任务可以向信号中心"订阅"（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做"发布/订阅模式"（publish-subscribe pattern），又称"观察者模式"（observer pattern）
+
+```js
+// f2向"信号中心"jQuery订阅"done"信号
+jQuery.subscribe("done", f2);
+
+function f1(){
+	setTimeout(function () {
+		// f1的任务代码
+
+		// f1执行完成后，向"信号中心"jQuery发布"done"信号，从而引发f2的执行
+		jQuery.publish("done");
+	}, 1000);
+}
+
+// f2完成执行后，也可以取消订阅（unsubscribe）
+jQuery.unsubscribe("done", f2);
+```
+
+## Promises对象
+
+es6已实现的新规范，是目前异步编程的最优解。
+
+```js
+function f1 () {
+  return new Promise((resolve, reject) => {
+		// f1的任务代码
+
+		resolve() // 成功
+		reject() // 发生错误
+  })
+}
+
+可以指定多个回调函数，并指定发生错误时的回调函数
+f1().then(f2).then(f3).catch(f4);
+```
+
+## 总结
+
+可以看得出前三种方法采用的基本原理都是使用`setTimeout`，将函数推迟执行；而最后一个`Promise`则不同于。它们之前的区别见事件循环。
+
+# 事件循环
+
+要理解如何异步编程就必须理解js的事件循环
+
+## 栈 Stack
+
+当我们调用一个函数，它的地址、参数、局部变量都会压入到一个 stack 中，并且是后进先出。
+
+## 微任务/宏任务 （Microtasks Macrotasks）
+
+- microtasks:
+	- process.nextTick
+	- promise
+	- Object.observe
+- macrotasks:
+	- setTimeout
+	- setInterval
+	- setImmediate
+	- I/O
+
+在一个事件循环的周期(cycle)中一个 (macro)task 应该从 macrotask 队列开始执行。当这个 macrotask 结束后，所有的 microtasks 将在同一个 cycle 中执行。在 microtasks 执行时还可以加入更多的 microtask，然后一个一个的执行，直到 microtask 队列清空。
+
+```js
+console.log('start')
+
+const interval = setInterval(() => {  
+  console.log('setInterval')
+}, 0)
+
+setTimeout(() => {  
+  console.log('setTimeout 1')
+  Promise.resolve()
+      .then(() => {
+        console.log('promise 3')
+      })
+      .then(() => {
+        console.log('promise 4')
+      })
+      .then(() => {
+        setTimeout(() => {
+          console.log('setTimeout 2')
+          Promise.resolve()
+              .then(() => {
+                console.log('promise 5')
+              })
+              .then(() => {
+                console.log('promise 6')
+              })
+              .then(() => {
+                clearInterval(interval)
+              })
+        }, 0)
+      })
+}, 0)
+
+Promise.resolve()
+    .then(() => {  
+        console.log('promise 1')
+    })
+    .then(() => {
+        console.log('promise 2')
+    })
+/*
+输出
+
+start
+promise 1
+promise 2
+setInterval
+setTimeout 1
+promise 3
+promise 4
+setInterval
+setTimeout 2
+promise 5
+promise 6
+
+解读
+
+Cycle 1
+1) setInterval 被列为 task
+
+2) setTimeout 1 被列为 task
+
+3) Promise.resolve 1 中两个 then 被列为 microtask
+
+4) stack 清空 microtasks 执行
+
+任务队列： setInterval setTimeout 1
+
+Cycle 2
+5) microtasks 队列清空 setInteval 的回调可以执行。另一个 setInterval 被列为 task , 位于 setTimeout 1 后面
+
+任务队列： setTimeout 1 setInterval
+
+Cycle 3
+6) microtask 队列清空，setTimeout 1 的回调可以执行，promise 3 和 promise 4 被列为 microtasks
+
+7) promise 3 和 promise 4 执行。 setTimeout 2 被列为 task
+
+任务队列 setInterval setTimeout 2
+
+Cycle 4
+8) microtask 队列清空 setInteval 的回调可以执行。然后另一个 setInterval 被列为 task ，位于 setTimeout 2 后面
+
+任务队列： setTimeout 2 setInterval
+
+9) setTimeout 2 的回调执行， promise 5 和 promise 6 被列为 microtasks
+
+现在 promise 5 和 promise 6 的回调应该执行，并且 clear 掉 interval。 但有的时候不知道为什么 setInterval 还会在执行一遍，变成下面结果
+*/
+```
+
+## 规范
+
+- 一个事件循环(event loop)会有一个或多个任务队列(task queue) task queue 就是 macrotask queue
+- 每一个 event loop 都有一个 microtask queue
+- task queue == macrotask queue != microtask queue
+- 一个任务 task 可以放入 macrotask queue 也可以放入 microtask queue 中
+- 当一个 task 被放入队列 queue(macro或micro) 那这个 task 就可以被立即执行了
+
+## 概念
+
+js 只有一个main thread 主进程和call-stack（一个调用堆栈），所以在对一个调用堆栈中的task处理的时候，其他的都要等着。task等待被加入调用堆栈等待执行的时候，被放在task queue事件队列之中。
+每当主线程完成一个任务的时候，他就会去调用堆栈中获取task执行。
+
+- macrotask：也称为task，包含了script(整体代码),setTimeout, setInterval, setImmediate, I/O, UI rendering
+- microtask：process.nextTick, Promises, Object.observe, MutationObserver
+
+JavaScript引擎首先从macrotask queue中取出第一个任务，执行完毕后，将microtask queue中的所有任务取出，按顺序全部执行；
+然后再从macrotask queue中取下一个，执行完毕后，再次将microtask queue中的全部取出；
+循环往复，直到两个queue中的任务都取完。
+
+# Reflect/Object.defineProperty()
+ 
+> Object.defineProperty(obj, prop, descriptor)
+ 
+```js
+// 使用 __proto__
+Object.defineProperty(obj, "key", {
+  __proto__: null, // 没有继承的属性
+  value: "static"  // 没有 enumerable
+                   // 没有 configurable
+                   // 没有 writable
+                   // 作为默认值
+});
+ 
+// 显式
+Object.defineProperty(obj, "key", {
+  enumerable: false,
+  configurable: false,
+  writable: false,
+  value: "static"
+});
+ 
+// 循环使用同一对象
+function withValue(value) {
+  var d = withValue.d || (
+    withValue.d = {
+      enumerable: false,
+      writable: false,
+      configurable: false,
+      value: null
+    }
+  );
+  d.value = value;
+  return d;
+}
+// ... 并且 ...
+Object.defineProperty(obj, "key", withValue("static"));
+ 
+// 如果 freeze 可用, 防止代码添加或删除对象原型的属性
+// （value, get, set, enumerable, writable, configurable）
+(Object.freeze||Object)(Object.prototype);
+```
+
+如何取消微信下拉浏览器头部动画
+	1. 用touch事件代替滑动
+	2. 在onscroll中阻止默认事件
+	
+SPA单页面和微信支付的bug
+微信支付需要配置一个支付授权目录，你需要将项目中的支付地址置于该配置之下，支付方能成功
+
+微信对其支付授权目录的配置规则描述如下：
+	1. 所有使用公众号支付方式发起支付请求的链接地址，都必须在支付授权目录之下；
+	2. 最多设置3个支付授权目录，且域名必须通过ICP备案；
+	3. 头部要包含http或https，须细化到二级或三级目录，以左斜杠“/”结尾。
+ 
+当单页面History模式使用hash模式时，页面的路径为 xxx.com/index.html#/login
+ 
+微信的检查逻辑：取到URL后用最后一个'/'做分隔符，将URL分为两部分，用第一部分和配置的支付授权目录做比对，匹配则验证成功，否则验证失败。很显然，这种验证方式下，URL分隔后的第一部分会包含哈希，于是验证失败。
+ 
+解决办法：在#前加个?,因为?后面的字符串会被当做查询参数而忽视。xxx.com/index.html?#/login

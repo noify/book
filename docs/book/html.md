@@ -1,28 +1,26 @@
-## <a name='html'>HTML</a>
-
 - Doctype作用？标准模式与兼容模式各有什么区别?
 
-		（1）、<!DOCTYPE>声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+	1. <!DOCTYPE>声明位于位于HTML文档中的第一行，处于 <html> 标签之前。告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
 
-		（2）、标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
+	2. 标准模式的排版 和JS运作模式都是以该浏览器支持的最高标准运行。在兼容模式中，页面以宽松的向后兼容的方式显示,模拟老式浏览器的行为以防止站点无法工作。
 
 - HTML5 为什么只需要写 `<!DOCTYPE HTML>`？
 
-		 HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；
+  HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；
 
-		 而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
+  而HTML4.01基于SGML,所以需要对DTD进行引用，才能告知浏览器文档所使用的文档类型。
 
 - 行内元素有哪些？块级元素有哪些？ 空(void)元素有那些？
 
-		首先：CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
+  首先：CSS规范规定，每个元素都有display属性，确定该元素的类型，每个元素都有默认的display值，如div的display默认值为“block”，则为“块级”元素；span默认display属性值为“inline”，是“行内”元素。
 
-		（1）行内元素有：a b span img input select strong（强调的语气）
-		（2）块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p
+  1. 行内元素有：a b span img input select strong（强调的语气）
+  2. 块级元素有：div ul ol li dl dt dd h1 h2 h3 h4…p
 
-		（3）常见的空元素：
-			<br> <hr> <img> <input> <link> <meta>
-			鲜为人知的是：
-			<area> <base> <col> <command> <embed> <keygen> <param> <source> <track> <wbr>
+  3. 常见的空元素：
+    <br> <hr> <img> <input> <link> <meta>
+    鲜为人知的是：
+    <area> <base> <col> <command> <embed> <keygen> <param> <source> <track> <wbr>
 
 		不同浏览器（版本）、HTML4（5）、CSS2等实际略有差异
 		参考: http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements
@@ -31,62 +29,57 @@
 
 - 页面导入样式时，使用link和@import有什么区别？
 
+  1. link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
 
-		（1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
+  2. 页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
 
-		（2）页面被加载的时，link会同时被加载，而@import引用的CSS会等到页面被加载完再加载;
-
-		（3）import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;
-
+  3. import是CSS2.1 提出的，只在IE5以上才能被识别，而link是XHTML标签，无兼容问题;
 
 - 介绍一下你对浏览器内核的理解？
 
-		主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。
-		渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。
+  主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。
 
-		JS引擎则：解析和执行javascript来实现网页的动态效果。
+  渲染引擎：负责取得网页的内容（HTML、XML、图像等等）、整理讯息（例如加入CSS等），以及计算网页的显示方式，然后会输出至显示器或打印机。浏览器的内核的不同对于网页的语法解释会有不同，所以渲染的效果也不相同。
+  
+  所有网页浏览器、电子邮件客户端以及其它需要编辑、显示网络内容的应用程序都需要内核。
 
-		最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。
+  JS引擎则：解析和执行javascript来实现网页的动态效果。
+
+  最开始渲染引擎和JS引擎并没有区分的很明确，后来JS引擎越来越独立，内核就倾向于只指渲染引擎。
 
 - 常见的浏览器内核有哪些？
 
-        Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
-		Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等
-		Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]
-		Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
+  Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
+  Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等
+  Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]
+  Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
 
-      详细文章：[浏览器内核的解析和对比](http://www.cnblogs.com/fullhouse/archive/2011/12/19/2293455.html)
+  详细文章：[浏览器内核的解析和对比](http://www.cnblogs.com/fullhouse/archive/2011/12/19/2293455.html)
 
 
 
 - html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
 
-
-		* HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
-			  绘画 canvas;
-			  用于媒介回放的 video 和 audio 元素;
-			  本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
-	          sessionStorage 的数据在浏览器关闭后自动删除;
-			  语意化更好的内容元素，比如 article、footer、header、nav、section;
-			  表单控件，calendar、date、time、email、url、search;
-			  新的技术webworker, websocket, Geolocation;
-
-		  移除的元素：
-			  纯表现的元素：basefont，big，center，font, s，strike，tt，u;
-			  对可用性产生负面影响的元素：frame，frameset，noframes；
-
-	    * 支持HTML5新标签：
-			 IE8/IE7/IE6支持通过document.createElement方法产生的标签，
-		  	 可以利用这一特性让这些浏览器支持HTML5新标签，
-          	 浏览器支持新标签后，还需要添加标签默认的样式。
-
-		     当然也可以直接使用成熟的框架、比如html5shim;
-			 <!--[if lt IE 9]>
-				<script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
-			 <![endif]-->
-
-		* 如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素
-
+  * HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+    * 绘画 canvas;
+    * 用于媒介回放的 video 和 audio 元素;
+    * 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失;
+    * 会话临时存储 sessionStorage 的数据在浏览器关闭后自动删除;
+    * 语意化更好的内容元素，比如 article、footer、header、nav、section;
+    * 表单控件，calendar、date、time、email、url、search;
+    * 新的技术webworker, websocket, Geolocation;
+    * 移除的元素：
+      * 纯表现的元素：basefont，big，center，font, s，strike，tt，u;
+      * 对可用性产生负面影响的元素：frame，frameset，noframes；
+    * 支持HTML5新标签：
+      IE8/IE7/IE6支持通过document.createElement方法产生的标签，
+      可以利用这一特性让这些浏览器支持HTML5新标签，
+      浏览器支持新标签后，还需要添加标签默认的样式。
+      当然也可以直接使用成熟的框架、比如html5shim;
+      <!--[if lt IE 9]>
+      <script> src="http://html5shim.googlecode.com/svn/trunk/html5.js"</script>
+      <![endif]-->
+  * 如何区分HTML5： DOCTYPE声明\新增的结构元素\功能元素
 
 - 简述一下你对HTML语义化的理解？
 
@@ -96,13 +89,10 @@
 	    搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
 	    使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
 
-
-
 - HTML5的离线储存怎么使用，工作原理能不能解释一下？
 
 		在用户没有与因特网连接时，可以正常访问站点或应用，在用户与因特网连接时，更新用户机器上的缓存文件。
 		原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，通过这个文件上的解析清单离线存储资源，这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。
-
 
 		如何使用：
 		1、页面头部像下面一样加入一个manifest的属性；
@@ -124,74 +114,111 @@
 
 	[有趣的HTML5：离线存储](http://segmentfault.com/a/1190000000732617)
 
-
-
 - 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？
 
-		在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
-		离线的情况下，浏览器就直接使用离线存储的资源。
+  在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
+  离线的情况下，浏览器就直接使用离线存储的资源。
 	详细请参考：[有趣的HTML5：离线存储](http://segmentfault.com/a/1190000000732617)
 
 - 请描述一下 cookies，sessionStorage 和 localStorage 的区别？
 
-		cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。
-		cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。
-		sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
+  cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。
+  cookie数据始终在同源的http请求中携带（即使不需要），记会在浏览器和服务器间来回传递。
+  sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
 
-		存储大小：
-			cookie数据大小不能超过4k。
-			sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
+  存储大小：
+    cookie数据大小不能超过4k。
+    sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
 
-		有期时间：
-	    	localStorage    存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；
-        	sessionStorage  数据在当前浏览器窗口关闭后自动删除。
-			cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭
+  有期时间：
+    localStorage    存储持久数据，浏览器关闭后数据不丢失除非主动删除数据；
+    sessionStorage  数据在当前浏览器窗口关闭后自动删除。
+    cookie          设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭
+  sessionStorage 和 localStorage 是HTML5 Web Storage API 提供的，可以方便的在web请求之间保存数据。有了本地数据，就可以避免数据在浏览器和服务器间不必要地来回传递。
+
+  sessionStorage、localStorage、cookie都是在浏览器端存储的数据，其中sessionStorage 的概念很特别，引入了一个“浏览器窗口”的概念。sessionStorage 是在同源的同窗口（或tab）中，始终存在的数据。也就是说只要这个浏览器窗口没有关闭，即使刷新页面或进入同源另一页面，数据仍然存在。关闭窗口后，sessionStorage 即被销毁。同时“独立”打开的不同窗口，即使是同一页面，sessionStorage 对象也是不同的
+
+  cookies会发送到服务器端。其余两个不会。
+
+  Microsoft 指出 Internet Explorer 8 增加cookie 限制为每个域名50个，但IE7 似乎也允许每个域名50个cookie。Firefox 每个域名cookie 限制为50个。Opera每个域名cookie 限制为30个。Firefox 和Safari 允许cookie 多达4097个字节，包括名（name）、值（value）和等号。Opera 许cookie 多达4096个字节，包括：名（name）、值（value）和等号。Internet Explorer 允许cookie 多达4095个字节，包括：名（name）、值（value）和等号。
+
+  - Cookie
+    - 每个域名存储量比较小（各浏览器不同，大致4K）
+    - 所有域名的存储量有限制（各浏览器不同，大致4K）
+    - 有个数限制（各浏览器不同）
+    - 会随请求发送到服务器
+  - LocalStorage
+    - 永久存储
+    - 单个域名存储量比较大（推荐5MB，各浏览器不同）
+    - 总体数量无限制
+  - SessionStorage
+    - 只在 Session 内有效
+    - 存储量更大（推荐没有限制，但是实际上各浏览器也不同）
+
+- 请描述一下 GET 和 POST 的区别?
+
+  区别如下：
+
+  get 向指定的资源请求数据,请求的数据会附在URL 之后,就是把数据放置在请求行（request line）中），以?分割URL和传输数据，多个参数用&连接；
+
+  post 向指定的资源提交要被处理的数据。get 方法，查询请求是在url中显示的，有长度限制，get 方法是安全幂等的。而post 方法请求是封装在http 消息包体中
+
+  &|get|post
+  ---|---|----
+  后退/刷新|无害|请求重新提交
+  书签|可做书签|不可做 缓存|可被缓存|不能被缓存
+  历史|保留在浏览器记录里|不保留
+  对数据长度限制|限制（2048字符）|不限制
+  安全性|url中暴露数据|相对安全
+  可见性|url中可见|不可见
+
+  总结：
+
+  对于get 来说，是向服务器端请求数据，其请求在url 中可见，其长度有限制（2048字符）个体方法是安全幂等，这里的安全是指用于获取信息而非修改信息，幂等是指每次请求得到的结果都一样。
+
+  对于post 来说，是向服务器端提交数据，每次刷新或者后退都会重新提交，post 请求的数据封装在http 请求的首部里。
 
 - iframe有那些缺点？
 
-		*iframe会阻塞主页面的Onload事件；
-		*搜索引擎的检索程序无法解读这种页面，不利于SEO;
-
-		*iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
-
-        使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript
-        动态给iframe添加src属性值，这样可以绕开以上两个问题。
+  * 搜索引擎的检索程序无法解读这种页面，不利于SEO;
+  * iframe会阻塞主页面的Onload事件；
+  * iframe和主页面共享连接池，而浏览器对相同域的连接有限制，所以会影响页面的并行加载。
+    使用iframe之前需要考虑这两个缺点。如果需要使用iframe，最好是通过javascript
+    动态给iframe添加src属性值，这样可以绕开以上两个问题。
 
 - Label的作用是什么？是怎么用的？
 
 		label标签来定义表单控制间的关系,当用户选择该标签时，浏览器会自动将焦点转到和标签相关的表单控件上。
 
+    ```html
 		<label for="Name">Number:</label>
 		<input type=“text“name="Name" id="Name"/>
-
 		<label>Date:<input type="text" name="B"/></label>
-
+    ```
 - HTML5的form如何关闭自动完成功能？
 
 		给不想要提示的 form 或某个 input 设置为 autocomplete=off。
 
+- 如何实现浏览器内多个标签页之间的通信?
 
-- 如何实现浏览器内多个标签页之间的通信? (阿里)
+  WebSocket、SharedWorker；
+  也可以调用localstorge、cookies等本地存储方式；
 
-		WebSocket、SharedWorker；
-		也可以调用localstorge、cookies等本地存储方式；
+  localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，
+  我们通过监听事件，控制它的值来进行页面信息通信；
+  注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；
 
-		localstorge另一个浏览上下文里被添加、修改或删除时，它都会触发一个事件，
-		我们通过监听事件，控制它的值来进行页面信息通信；
-		注意quirks：Safari 在无痕模式下设置localstorge值时会抛出 QuotaExceededError 的异常；
+- webSocket如何兼容低浏览器？
 
-- webSocket如何兼容低浏览器？(阿里)
-
-		Adobe Flash Socket 、
-		ActiveX HTMLFile (IE) 、
-		基于 multipart 编码发送 XHR 、
-		基于长轮询的 XHR
+  Adobe Flash Socket 、
+  ActiveX HTMLFile (IE) 、
+  基于 multipart 编码发送 XHR 、
+  基于长轮询的 XHR
 
 - 页面可见性（Page Visibility API） 可以有哪些用途？
 
 		通过 visibilityState 的值检测页面当前是否可见，以及打开网页的时间等;
 		在页面被切换到其他后台进程的时候，自动暂停音乐或视频的播放；
-
 
 - 如何在页面上实现一个圆形的可点击区域？
 
@@ -201,8 +228,7 @@
 
 - 实现不使用 border 画出1px高的线，在不同浏览器的标准模式与怪异模式下都能保持一致的效果。
 
-		<div style="height:1px;overflow:hidden;background:red"></div>
-
+	`<div style="height:1px;overflow:hidden;background:red"></div>`
 
 - 网页验证码是干嘛的，是为了解决什么安全问题。
 
