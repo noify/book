@@ -153,72 +153,81 @@
 
 -  javascript创建对象的几种方式？
 
-		javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。
+	javascript创建对象简单的说,无非就是使用内置对象或各种自定义对象，当然还可以用JSON；但写法有很多种，也能混合使用。
 
-		1、对象字面量的方式
+	1. 对象字面量的方式
 
-			person={firstname:"Mark",lastname:"Yun",age:25,eyecolor:"black"};
+		```js
+		person={firstname:"Mark",lastname:"Yun",age:25,eyecolor:"black"};
+		```
 
-		2、用function来模拟无参的构造函数
+	2. 用function来模拟无参的构造函数
 
-			function Person(){}
-			var person=new Person();//定义一个function，如果使用new"实例化",该function可以看作是一个Class
-			person.name="Mark";
-			person.age="25";
-			person.work=function(){
+		```js
+		function Person(){}
+		var person=new Person(); // 定义一个function，如果使用new"实例化",该function可以看作是一个Class
+		person.name="Mark";
+		person.age="25";
+		person.work=function(){
 			alert(person.name+" hello...");
+		}
+		person.work();
+		```
+
+	3. 用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）
+		
+		```js
+		function Pet(name,age,hobby){
+			this.name=name;//this作用域：当前对象
+			this.age=age;
+			this.hobby=hobby;
+			this.eat=function(){
+				alert("我叫"+this.name+",我喜欢"+this.hobby+",是个程序员");
 			}
-			person.work();
-
-		3、用function来模拟参构造函数来实现（用this关键字定义构造的上下文属性）
-
-			function Pet(name,age,hobby){
-			   this.name=name;//this作用域：当前对象
-			   this.age=age;
-			   this.hobby=hobby;
-			   this.eat=function(){
-			      alert("我叫"+this.name+",我喜欢"+this.hobby+",是个程序员");
-			   }
-			}
-			var maidou =new Pet("麦兜",25,"coding");//实例化、创建对象
-			maidou.eat();//调用eat方法
+		}
+		var maidou =new Pet("麦兜",25,"coding");//实例化、创建对象
+		maidou.eat();//调用eat方法
+		```
 
 
-		4、用工厂方式来创建（内置对象）
+	4. 用工厂方式来创建（内置对象）
 
-			 var wcDog =new Object();
-			 wcDog.name="旺财";
-			 wcDog.age=3;
-			 wcDog.work=function(){
-			   alert("我是"+wcDog.name+",汪汪汪......");
-			 }
-			 wcDog.work();
-
-
-		5、用原型方式来创建
-
-			function Dog(){
-
-			 }
-			 Dog.prototype.name="旺财";
-			 Dog.prototype.eat=function(){
-			 alert(this.name+"是个吃货");
-			 }
-			 var wangcai =new Dog();
-			 wangcai.eat();
+		```js
+		var wcDog =new Object();
+		wcDog.name="旺财";
+		wcDog.age=3;
+		wcDog.work=function(){
+			alert("我是"+wcDog.name+",汪汪汪......");
+		}
+		wcDog.work();
+		```
 
 
-		5、用混合方式来创建
+	5. 用原型方式来创建
 
-			function Car(name,price){
-			  this.name=name;
-			  this.price=price;
-			}
-			 Car.prototype.sell=function(){
-			   alert("我是"+this.name+"，我现在卖"+this.price+"万元");
-			  }
-			var camry =new Car("凯美瑞",27);
-			camry.sell();
+		```js
+		function Dog(){}
+		Dog.prototype.name="旺财";
+		Dog.prototype.eat=function(){
+			alert(this.name+"是个吃货");
+		}
+		var wangcai =new Dog();
+		wangcai.eat();
+		```
+
+
+	6. 用混合方式来创建
+		```js
+		function Car (name, price) {
+			this.name=name;
+			this.price=price;
+		}
+		Car.prototype.sell = function () {
+			alert("我是"+this.name+"，我现在卖"+this.price+"万元");
+		}
+		var camry = new Car("凯美瑞", 27);
+		camry.sell();
+		```
 
 -  Javascript作用链域?
 
@@ -229,7 +238,7 @@
 -  谈谈this对象的理解。
 
 	```
-  	this总是指向函数的直接调用者（而非间接调用者）；
+  this总是指向函数的直接调用者（而非间接调用者）；
 	如果有new关键字，this指向new出来的那个对象；
 	在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；
 	```
@@ -253,7 +262,6 @@
 	undefined不是一个有效的JSON，而null是；
 	undefined的类型(typeof)是undefined；
 	null的类型(typeof)是object；
-
 
 	Javascript将未赋值的变量默认值设为undefined；
 	Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。
@@ -288,7 +296,6 @@
 		A: 不知道（没有被告诉）
 
 	参考阅读：[undefined与null的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
-
 
 -  写一个通用的事件侦听器函数。
 
@@ -405,6 +412,7 @@
 	3.参数和变量不会被垃圾回收机制回收
 
 	//li节点的onclick事件都能正确的弹出当前被点击的li索引
+	```html
 		<ul id="testUL">
 				<li> index = 0</li>
 				<li> index = 1</li>
@@ -417,10 +425,11 @@
 				nodes[i].onclick = (function(i){
 									return function() {
 											console.log(i);
-									} //不用闭包的话，值每次都是4
+									} // 不用闭包的话，值每次都是4
 								})(i);
 		}
 	</script>
+	```
 
 	执行say667()后,say667()闭包内部变量会存在,而闭包内部函数的内部变量不会存在
 	使得Javascript的垃圾回收机制GC不会收回say667()所占用的资源
