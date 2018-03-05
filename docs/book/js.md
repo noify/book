@@ -1,6 +1,6 @@
 -  介绍js的基本数据类型。
 
-	Undefined、Null、Boolean、Number、String、
+	undefined、null、Boolean、Number、String、
 	ECMAScript 2015 新增:Symbol(创建后独一无二且不可变的数据类型 )
 
 -  介绍js有哪些内置对象？
@@ -43,16 +43,16 @@
 	Func.prototype.getInfo = function() {
 		return this.name;
 	}
-	var person = new Func();//现在可以参考var person = Object.create(oldObject);
+	var person = new Func(); // 现在可以参考 var person = Object.create(oldObject);
 	console.log(person.getInfo());//它拥有了Func的属性和方法
-	//"Sean"
+	// "Sean"
 	console.log(Func.prototype);
 	// Func { name="Sean", getInfo=function()}
 	```
 
 -  JavaScript有几种类型的值？，你能画一下他们的内存图吗？
 
-	栈：原始数据类型（Undefined，Null，Boolean，Number、String）
+	栈：原始数据类型（undefined，null，Boolean，Number、String）
 	堆：引用数据类型（对象、数组和函数）
 
 	两种类型的区别是：存储位置不同；
@@ -140,11 +140,12 @@
 	function Child(){
 		this.age = 28;
 	}
-	Child.prototype = new Parent();//继承了Parent，通过原型
+
+	Child.prototype = new Parent(); // 继承了Parent，通过原型
 
 	var demo = new Child();
 	alert(demo.age);
-	alert(demo.name);//得到被继承的属性
+	alert(demo.name); // 得到被继承的属性
 	```
 
 - JavaScript继承的几种实现方式？
@@ -165,10 +166,10 @@
 
 		```js
 		function Person(){}
-		var person=new Person(); // 定义一个function，如果使用new"实例化",该function可以看作是一个Class
-		person.name="Mark";
-		person.age="25";
-		person.work=function(){
+		var person = new Person(); // 定义一个function，如果使用new"实例化",该function可以看作是一个Class
+		person.name = "Mark";
+		person.age = "25";
+		person.work = function(){
 			alert(person.name+" hello...");
 		}
 		person.work();
@@ -193,10 +194,10 @@
 	4. 用工厂方式来创建（内置对象）
 
 		```js
-		var wcDog =new Object();
-		wcDog.name="旺财";
-		wcDog.age=3;
-		wcDog.work=function(){
+		var wcDog = new Object();
+		wcDog.name = "旺财";
+		wcDog.age = 3;
+		wcDog.work = function(){
 			alert("我是"+wcDog.name+",汪汪汪......");
 		}
 		wcDog.work();
@@ -207,11 +208,11 @@
 
 		```js
 		function Dog(){}
-		Dog.prototype.name="旺财";
-		Dog.prototype.eat=function(){
+		Dog.prototype.name = "旺财";
+		Dog.prototype.eat = function(){
 			alert(this.name+"是个吃货");
 		}
-		var wangcai =new Dog();
+		var wangcai = new Dog();
 		wangcai.eat();
 		```
 
@@ -237,11 +238,9 @@
 
 -  谈谈this对象的理解。
 
-	```
   this总是指向函数的直接调用者（而非间接调用者）；
 	如果有new关键字，this指向new出来的那个对象；
 	在事件中，this指向触发这个事件的对象，特殊的是，IE中的attachEvent中的this总是指向全局对象Window；
-	```
 
 -  eval是做什么的？
 
@@ -266,43 +265,44 @@
 	Javascript将未赋值的变量默认值设为undefined；
 	Javascript从来不会将变量设为null。它是用来让程序员表明某个用var声明的变量时没有值的。
 
-		typeof undefined
-		//"undefined"
-		undefined :是一个表示"无"的原始值或者说表示"缺少值"，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；
-		例如变量被声明了，但没有赋值时，就等于undefined
+	typeof undefined
+	//"undefined"
+	undefined :是一个表示"无"的原始值或者说表示"缺少值"，就是此处应该有一个值，但是还没有定义。当尝试读取时会返回 undefined；
+	例如变量被声明了，但没有赋值时，就等于undefined
 
 	typeof null
-		//"object"
-		null : 是一个对象(空对象, 没有任何属性和方法)；
-		例如作为函数的参数，表示该函数的参数不是对象；
+	//"object"
+	null : 是一个对象(空对象, 没有任何属性和方法)；
+	例如作为函数的参数，表示该函数的参数不是对象；
 
 	注意：
-		在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined
-		null == undefined // true
-			null === undefined // false
+	在验证null时，一定要使用　=== ，因为 == 无法分别 null 和　undefined
+	null == undefined // true
+	null === undefined // false
 
 	再来一个例子：
 
-		null
-		Q：有张三这个人么？
-		A：有！
-		Q：张三有房子么？
-		A：没有！
+	null
+	Q：有张三这个人么？
+	A：有！
+	Q：张三有房子么？
+	A：没有！
 
-		undefined
-		Q：有张三这个人么？
-		A：有！
-		Q: 张三有多少岁？
-		A: 不知道（没有被告诉）
+	undefined
+	Q：有张三这个人么？
+	A：有！
+	Q: 张三有多少岁？
+	A: 不知道（没有被告诉）
 
 	参考阅读：[undefined与null的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
 
 -  写一个通用的事件侦听器函数。
 
-	// event(事件)工具集，来源：github.com/markyun
+	// event(事件)工具集
+	```js
 	markyun.Event = {
 		// 页面加载完成后
-		readyEvent : function(fn) {
+		readyEvent: function(fn) {
 			if (fn==null) {
 				fn=document;
 			}
@@ -376,23 +376,7 @@
 			return ev;
 		}
 	};
-
--  ["1", "2", "3"].map(parseInt) 答案是多少？
-
-	parseInt() 函数能解析一个字符串，并返回一个整数，需要两个参数 (val, radix)，
-	其中 radix 表示要解析的数字的基数。【该值介于 2 ~ 36 之间，并且字符串中的数字不能大于radix才能正确返回数字结果值】;
-	但此处 map 传了 3 个 (element, index, array),我们重写parseInt函数测试一下是否符合上面的规则。
-
-	function parseInt(str, radix) {
-			return str+'-'+radix;
-	};
-	var a=["1", "2", "3"];
-	a.map(parseInt);  // ["1-0", "2-1", "3-2"] 不能大于radix
-
-	因为二进制里面，没有数字3,导致出现超范围的radix赋值和不合法的进制解析，才会返回NaN
-	所以["1", "2", "3"].map(parseInt) 答案也就是：[1, NaN, NaN]
-
-	详细解析：http://blog.csdn.net/justjavac/article/details/19473199
+	```
 
 -  事件是？IE与火狐的事件机制有什么区别？ 如何阻止冒泡？
 
@@ -407,11 +391,12 @@
 
 	闭包的特性：
 
-	1.函数内再嵌套函数
-	2.内部函数可以引用外层的参数和变量
-	3.参数和变量不会被垃圾回收机制回收
+	1. 函数内再嵌套函数
+	2. 内部函数可以引用外层的参数和变量
+	3. 参数和变量不会被垃圾回收机制回收
 
-	//li节点的onclick事件都能正确的弹出当前被点击的li索引
+	li节点的onclick事件都能正确的弹出当前被点击的li索引
+
 	```html
 		<ul id="testUL">
 				<li> index = 0</li>
@@ -420,13 +405,13 @@
 				<li> index = 3</li>
 		</ul>
 	<script type="text/javascript">
-			var nodes = document.getElementsByTagName("li");
-		for(i = 0;i<nodes.length;i+= 1){
-				nodes[i].onclick = (function(i){
-									return function() {
-											console.log(i);
-									} // 不用闭包的话，值每次都是4
-								})(i);
+		var nodes = document.getElementsByTagName("li");
+		for(i = 0; i< nodes.length; i+= 1){
+			nodes[i].onclick = (function(i){
+				return function() {
+					console.log(i);
+				} // 不用闭包的话，值每次都是4
+			})(i);
 		}
 	</script>
 	```
@@ -436,18 +421,20 @@
 	因为say667()的内部函数的执行需要依赖say667()中的变量
 	这是对闭包作用的非常直白的描述
 
-		function say667() {
-		// Local variable that ends up within closure
-		var num = 666;
-		var sayAlert = function() {
-			alert(num);
-		}
-		num++;
-		return sayAlert;
-		}
+	```js
+	function say667() {
+	// Local variable that ends up within closure
+	var num = 666;
+	var sayAlert = function() {
+		alert(num);
+	}
+	num++;
+	return sayAlert;
+	}
 
-		var sayAlert = say667();
-		sayAlert()//执行结果应该弹出的667
+	var sayAlert = say667();
+	sayAlert()//执行结果应该弹出的667
+	```
 
 
 -  javascript 代码中的"use strict";是什么意思 ? 使用它区别是什么？
@@ -462,27 +449,31 @@
 	提高编译器效率，增加运行速度；
 	为未来新版本的Javascript标准化做铺垫。
 
-
 -  如何判断一个对象是否属于某个类？
 
 	使用instanceof （待完善）
+
+	```js
 	if(a instanceof Person){
 			alert('yes');
 	}
+	```
 
 -  new操作符具体干了什么呢?
 
-			1、创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
-					2、属性和方法被加入到 this 引用的对象中。
-			3、新创建的对象由 this 所引用，并且最后隐式的返回 this 。
+	1. 创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型。
+	2. 属性和方法被加入到 this 引用的对象中。
+	3. 新创建的对象由 this 所引用，并且最后隐式的返回 this 。
 
+	```js
 	var obj  = {};
 	obj.__proto__ = Base.prototype;
 	Base.call(obj);
-
+	```
 
 -  用原生JavaScript的实现过什么功能吗？
 
+	swipe、tplify、requireify、vueify
 
 -  Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？
 
