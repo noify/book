@@ -477,30 +477,30 @@
 
 -  Javascript中，有一个函数，执行时对象查找时，永远不会去查找原型，这个函数是？
 
-		hasOwnProperty
+	hasOwnProperty
 
-		javaScript中hasOwnProperty函数方法是返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。
-		使用方法：
-		object.hasOwnProperty(proName)
-		其中参数object是必选项。一个对象的实例。
-		proName是必选项。一个属性名称的字符串值。
+	javaScript中hasOwnProperty函数方法是返回一个布尔值，指出一个对象是否具有指定名称的属性。此方法无法检查该对象的原型链中是否具有该属性；该属性必须是对象本身的一个成员。
+	使用方法：
+	object.hasOwnProperty(proName)
+	其中参数object是必选项。一个对象的实例。
+	proName是必选项。一个属性名称的字符串值。
 
-		如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。
+	如果 object 具有指定名称的属性，那么JavaScript中hasOwnProperty函数方法返回 true，反之则返回 false。
 
 -  JSON 的了解？
 
-		JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。
-		它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小
-        如：{"age":"12", "name":"back"}
+	JSON(JavaScript Object Notation) 是一种轻量级的数据交换格式。
+	它是基于JavaScript的一个子集。数据格式简单, 易于读写, 占用带宽小
+	如：{"age":"12", "name":"back"}
 
-        JSON字符串转换为JSON对象:
-		var obj =eval('('+ str +')');
-		var obj = str.parseJSON();
-		var obj = JSON.parse(str);
+	JSON字符串转换为JSON对象:
+	var obj =eval('('+ str +')');
+	var obj = str.parseJSON();
+	var obj = JSON.parse(str);
 
-		JSON对象转换为JSON字符串：
-		var last=obj.toJSONString();
-		var last=JSON.stringify(obj);
+	JSON对象转换为JSON字符串：
+	var last=obj.toJSONString();
+	var last=JSON.stringify(obj);
 
 -  `[].forEach.call($$("*"),function(a){a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)})` 能解释一下这段代码的意思吗？
 
@@ -509,74 +509,67 @@
 
 		defer和async、动态创建DOM方式（用得最多）、按需异步载入js
 
-
 -  Ajax 是什么? 如何创建一个Ajax？
 
-		ajax的全称：Asynchronous Javascript And XML。
-		异步传输+js+xml。
-		所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。
+	ajax的全称：Asynchronous Javascript And XML。
+	异步传输+js+xml。
+	所谓异步，在这里简单地解释就是：向服务器发送请求的时候，我们不必等待结果，而是可以同时做其他的事情，等到有了结果它自己会根据设定进行后续操作，与此同时，页面是不会发生整页刷新的，提高了用户体验。
 
-		(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象
-		(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息
-		(3)设置响应HTTP请求状态变化的函数
-		(4)发送HTTP请求
-		(5)获取异步调用返回的数据
-		(6)使用JavaScript和DOM实现局部刷新
+	(1)创建XMLHttpRequest对象,也就是创建一个异步调用对象
+	(2)创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息
+	(3)设置响应HTTP请求状态变化的函数
+	(4)发送HTTP请求
+	(5)获取异步调用返回的数据
+	(6)使用JavaScript和DOM实现局部刷新
 
 - Ajax 解决浏览器缓存问题？
 
-		1、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
-
-        2、在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
-
-        3、在URL后面加上一个随机数： "fresh=" + Math.random();。
-
-        4、在URL后面加上时间戳："nowtime=" + new Date().getTime();。
-
-        5、如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。
+	1. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("If-Modified-Since","0")。
+	2. 在ajax发送请求前加上 anyAjaxObj.setRequestHeader("Cache-Control","no-cache")。
+	3. 在URL后面加上一个随机数： "fresh=" + Math.random();。
+	4. 在URL后面加上时间戳："nowtime=" + new Date().getTime();。
+	5. 如果是使用jQuery，直接这样就可以了 $.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。
 
 -  同步和异步的区别?
 
 	同步的概念应该是来自于OS中关于同步的概念:不同进程为协同完成某项工作而在先后次序上调整(通过阻塞,唤醒等方式).同步强调的是顺序性.谁先谁后.异步则不存在这种顺序性.
 
-
-
 	同步：浏览器访问服务器请求，用户看得到页面刷新，重新发请求,等请求完，页面刷新，新内容出现，用户看到新内容,进行下一步操作。
 
 	异步：浏览器访问服务器请求，用户正常操作，浏览器后端进行请求。等请求完，页面不刷新，新内容也会出现，用户看到新内容。
-
-
 
 	（待完善）
 
 -  如何解决跨域问题?
 
-		jsonp、 iframe、window.name、window.postMessage、服务器上设置代理页面
+	jsonp、 iframe、window.name、window.postMessage、服务器上设置代理页面
 
 -  页面编码和被请求的资源编码如果不一致如何处理？
 
 -  服务器代理转发时，该如何处理cookie？
 
-		nginx
+	nginx
 	
 
 -  模块化开发怎么做？
 
-	 [ 立即执行函数](http://benalman.com/news/2010/11/immediately-invoked-function-expression/),不暴露私有成员
+	[ 立即执行函数](http://benalman.com/news/2010/11/immediately-invoked-function-expression/),不暴露私有成员
 
-		    var module1 = (function(){
-		    　　　　var _count = 0;
-		    　　　　var m1 = function(){
-		    　　　　　　//...
-		    　　　　};
-		    　　　　var m2 = function(){
-		    　　　　　　//...
-		    　　　　};
-		    　　　　return {
-		    　　　　　　m1 : m1,
-		    　　　　　　m2 : m2
-		    　　　　};
-		    　　})();
+	```js
+	var module1 = (function(){
+		var _count = 0;
+		var m1 = function(){
+			//...
+		};
+		var m2 = function(){
+			//...
+		};
+		return {
+			m1 : m1,
+			m2 : m2
+		};
+	})();
+	```
 
 	（待完善）
 
@@ -586,103 +579,285 @@
 
 	> CMD 规范在这里：https://github.com/seajs/seajs/issues/242
 
-		Asynchronous Module Definition，异步模块定义，所有的模块将被异步加载，模块加载不影响后面语句运行。所有依赖某些模块的语句均放置在回调函数中。
+	Asynchronous Module Definition，异步模块定义，所有的模块将被异步加载，模块加载不影响后面语句运行。所有依赖某些模块的语句均放置在回调函数中。
 
-		 区别：
+	区别：
 
-		    1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.
-		    2. CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：
+	1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.
+	2. CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：
+	```js
+	// CMD
+	define(function(require, exports, module) {
+			var a = require('./a')
+			a.doSomething()
+			// 此处略去 100 行
+			var b = require('./b') // 依赖可以就近书写
+			b.doSomething()
+			// ...
+	})
 
-		// CMD
-		define(function(require, exports, module) {
-		    var a = require('./a')
-		    a.doSomething()
-		    // 此处略去 100 行
-		    var b = require('./b') // 依赖可以就近书写
-		    b.doSomething()
-		    // ...
-		})
-
-		// AMD 默认推荐
-		define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
-		    a.doSomething()
-		    // 此处略去 100 行
-		    b.doSomething()
-		    // ...
-		})
-
+	// AMD 默认推荐
+	define(['./a', './b'], function(a, b) { // 依赖必须一开始就写好
+			a.doSomething()
+			// 此处略去 100 行
+			b.doSomething()
+			// ...
+	})
+	```
 
 -  requireJS的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何
 缓存的？）
 
-		参考：http://annn.me/how-to-realize-cmd-loader/
+	参考：http://annn.me/how-to-realize-cmd-loader/
 
 -  JS模块加载器的轮子怎么造，也就是如何实现一个模块加载器？
 
+	1. id即路径 原则
+
+		通常我们的入口是这样的： require( [ 'a', 'b' ], callback ) 。这里的 'a'、'b' 都是 ModuleId。通过 id 和路径的对应原则，加载器才能知道需要加载的 js 的路径。在这个例子里，就是 baseUrl + 'a.js' 和 baseUrl + 'b.js'。
+		
+		但 id 和 path 的对应关系并不是永远那么简单，比如在 AMD 规范里就可以通过配置 Paths  来给特定的 id 指配 path。
+
+	2. createElement('script') & appendChild
+
+		知道路径之后，就需要去请求。一般是通过 createElement('script') & appendChild 去请求。这个大家都知道，不多说。有时候有的加载器也会通过 AJAX 去请求脚本内容。
+		
+		一般来说，需要给 <script> 设置一个属性用来标识模块 id, 作用后面会提到。
+
+	3. document.currentScript/script.onload
+
+		a.js 里可能是 define( id, factory ) 或者是 define( factory )，后者被称为匿名模块。那么当 define(factory) 被执行的时候，我们怎么知道当前被定义的是哪个模块呢，具体地说，这个匿名模块的实际模块 id 是什么？ 答案是通过 document.currentScript 获取当前执行的<script>，然后通过上面给 script 设置的属性来得到模块 id。
+		
+		需要注意的是，低级浏览器是不支持 currentScript 的，这里需要进行浏览器兼容。在高级浏览器里面，还可以通过 script.onload 来处理这个事情。
+
+	4. 依赖分析
+
+		在继续讲之前，需要先简单介绍下模块的生命周期。模块在被 Define 之后并不是马上可以用了，在你执行它的 factory 方法来生产出最终的 export 之前，你需要保证它的依赖是可用的。那么首先就要先把依赖分析出来。
+
+		简单来说，就是通过 toString 这个方法得到 factory 的内容，然后用正则去匹配其中的 require( 'moduleId' )。当然也可以不用正则。
+
+		这就是为什么 require( var );  这种带变量的语句是不被推荐的，因为它会影响依赖分析。如果一定要用变量，可以用 require( [ var ] ) 这种异步加载的方式。
+
+	5. 递归加载
+		在分析出模块的依赖之后，我们需要递归去加载依赖模块。用伪代码来表达大概是这样的：
+		```js
+		Module.prototype.load = function () {
+			var deps = this.getDeps();
+			for (var i = 0; i < deps.length; i++) {
+				var m = deps[i];
+				if (m.state < STATUS.LOADED) {
+					m.load();
+				}
+			}
+			this.state = STATUS.LOADED;
+		}
+		```
+
+		上面的代码只是表达一个意思，实际上 load 方法很可能是异步的，所以递归的返回要特殊处理下。
+
+	实现一个可用的加载器并没有那么简单，比如你要处理循环依赖，还有各种各样的牵一发动全身的细节。但要说原理，大概就是这么几条。个人觉得，比起照着规范实现一个加载器，更加吸引人的是 AMD 或者 CommonJS 这些规范的完善和背后的设计思路。
+
 -  谈一谈你对ECMAScript6的了解？
+
+	即ECMAScript 2015，ECMAScript是JavaScript语言的国际标准，JavaScript是ECMAScript的实现。
 
 -  ECMAScript6 怎么写class么，为什么会出现class这种东西?
 
+  ```js
+	//定义类
+	class Point {
+		constructor(x, y) {
+			this.x = x;
+			this.y = y;
+		}
+
+		toString() {
+			return '(' + this.x + ', ' + this.y + ')';
+		}
+	}
+
+	// 继承类
+	class ColorPoint extends Point {
+		constructor(x, y, color) {
+			super(x, y); // 调用父类的constructor(x, y)
+			this.color = color;
+		}
+
+		toString() {
+			return this.color + ' ' + super.toString(); // 调用父类的toString()
+		}
+	}
+	```
+	只是语法糖
+
 -  异步加载JS的方式有哪些？
 
-	      (1) defer，只支持IE
-
-	      (2) async：
-
-	      (3) 创建script，插入到DOM中，加载完毕后callBack
+	1. defer，只支持IE
+	1. async
+	1. 创建script，插入到DOM中，加载完毕后callBack
 
 - document.write和 innerHTML的区别
 
-		document.write只能重绘整个页面
+	document.write只能重绘整个页面
 
-		innerHTML可以重绘页面的一部分
+	innerHTML可以重绘页面的一部分
 
 - DOM操作——怎样添加、移除、移动、复制、创建和查找节点?
 
-		（1）创建新节点
-		  createDocumentFragment()    //创建一个DOM片段
-		  createElement()   //创建一个具体的元素
-		  createTextNode()   //创建一个文本节点
-		（2）添加、移除、替换、插入
-		  appendChild()
-		  removeChild()
-		  replaceChild()
-		  insertBefore() //在已有的子节点前插入一个新的子节点
-		（3）查找
-		  getElementsByTagName()    //通过标签名称
-		  getElementsByName()    //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
-		  getElementById()    //通过元素Id，唯一性
-
--  .call() 和 .apply() 的区别？
-
-
-		  例子中用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4);
-
-		  注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。
-
-			function add(a,b)
-			{
-			    alert(a+b);
-			}
-
-			function sub(a,b)
-			{
-			    alert(a-b);
-			}
-
-			add.call(sub,3,1);
-
-
+	1. 创建新节点
+		createDocumentFragment()    //创建一个DOM片段
+		createElement()   //创建一个具体的元素
+		createTextNode()   //创建一个文本节点
+	1. 添加、移除、替换、插入
+		appendChild()
+		removeChild()
+		replaceChild()
+		insertBefore() //在已有的子节点前插入一个新的子节点
+	1. 查找
+		getElementsByTagName()    //通过标签名称
+		getElementsByName()    //通过元素的Name属性的值(IE容错能力较强，会得到一个数组，其中包括id等于name值的)
+		getElementById()    //通过元素Id，唯一性
 
 -  数组和对象有哪些原生方法，列举一下？
-
--  JS 怎么实现一个类。怎么实例化这个类
+	- 数组
+		concat(arrayX,arrayX,......,arrayX) 用于连接两个或多个数组
+		constructor 构造器
+			arguments
+			caller
+			from
+			isArray
+			length
+			name
+			of
+			prototype
+			Symbol(Symbol.species)
+			get Symbol(Symbol.species)
+			__proto__
+			[[Scopes]]
+		copyWithin(target, start, end) 从数组的指定位置拷贝元素到数组的另一个指定位置中
+		entries() 返回一个迭代器，它返回数组的键/值对
+		every(function(currentValue,index,arr), thisValue) 检测数组所有元素是否都符合指定条件（通过函数提供）
+		fill(value, start, end) 将一个固定值替换数组的元素。
+		filter(function(currentValue,index,arr), thisValue) 创建一个新的数组，新数组中的元素是通过检查指定数组中符合条件的所有元素。
+		find(callback[, thisArg])  返回传入一个测试条件（函数）符合条件的数组第一个元素。
+		findIndex(function(currentValue, index, arr), thisValue) 返回传入一个测试条件（函数）符合条件的数组第一个元素位置。
+		forEach(function(currentValue, index, arr), thisValue) 调用数组的每个元素，并将元素传递给回调函数。
+		includes(searchElement, fromIndex) 判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回false。
+		indexOf(item,start) 返回某个指定的字符串值在字符串中首次出现的位置
+		join(separator) 把数组中的所有元素转换一个字符串。
+		keys() 返回一个新Array Iterator对象，其中包含数组中每个索引的键。
+		lastIndexOf(item,start) 返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索
+		length 返回数组长度
+		map(function(currentValue,index,arr), thisValue) 返回一个新数组，数组中的元素为原始数组元素调用函数处理后的值。
+		pop() 删除并返回数组的最后一个元素。
+		push(item1, item2, ..., itemX) 向数组的末尾添加一个或多个元素，并返回新的长度
+		reduce(function(total, currentValue, currentIndex, arr), initialValue) 接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值
+		reduceRight(function(total, currentValue, currentIndex, arr), initialValue)  接收一个函数作为累加器，数组中的每个值（从右到左）开始缩减，最终计算为一个值
+		reverse() 颠倒数组中元素的顺序
+		shift() 把数组的第一个元素从其中删除，并返回第一个元素的值
+		slice(start, end) 从已有的数组中返回选定的元素
+		some(function(currentValue,index,arr),thisValue) 检测数组中的元素是否满足指定条件（函数提供）。
+		sort(compareFunction) 对数组的元素进行排序,并返回数组
+		splice(index,howmany,item1,.....,itemX) 插入、删除或替换数组的元素
+		toLocaleString() 把数组转换为本地数组，并返回结果
+		toString() 把数组转换为字符串，并返回结果，每一项以逗号分割。
+		unshift(item1,item2, ..., itemX) 向数组的开头添加一个或更多元素，并返回新的长度
+		valueOf() 返回数组本身
+		Symbol(Symbol.iterator)
+		Symbol(Symbol.unscopables)
+		__proto__
+	- 对象
+		hasOwnProperty(key) 判断某个对象在排除原型链的情况下是否含有指定的自身属性
+		isPrototypeOf(obj) 检查一个对像是否存在另一个对象的原型链上
+		propertyIsEnumerable(key) 检测属性是否可用 for...in 枚举
+		toLocaleString() 把对象转换为本地字符串，并返回结果。
+		toString() 把对象转换为字符串，并返回结果。
+		valueOf() 返回最适合该对象类型的原始值
+		__defineGetter__
+		__defineSetter__
+		__lookupGetter__
+		__lookupSetter__
+		get __proto__
+		set __proto__
 
 -  JavaScript中的作用域与变量声明提升？
+	- JS只有两类作用域：全局作用域、函数作用域。
+		- 全局作用域：全局对象的作用域，在代码的任何地方都可访问，但有时会被函数作用域覆盖
+		- 函数作用域：作用于整个函数范围内，不管到底是在函数中的何处进行声明
+	```js
+	// 全局变量
+	var i = 100;
+	// 函数声明，outer是一个外部函数
+	function outer(){
+			// 访问全局变量
+			console.log(i);  // 100
+			// 函数声明，inner是一个内部函数
+			function inner(){
+					// 内部函数的内部进行了变量提升，也就是第二部分叙述的内容
+					console.log(i);  // undefined
+					// 这里的i是局部变量，作用域仅在函数内
+					var i = 1;
+					// 局部变量覆盖全局变量，或者说是函数作用域覆盖全局作用域
+					console.log(i);  // 1
+			}
+			inner();
+			// 这里的i是全局变量
+			console.log(i);  // 100
+	}
+	outer();
+	```
+
+	- 变量提升
+		```js
+		var date = new Date();
+		function fn(){
+				console.log(date);
+				if(true){
+						var date = 'hello';
+				}
+		}
+		fn();
+		```
+
+		结果并不是date的toString方法返回的结果，而是undefined，因为以上代码等价于：
+
+		```js
+		// 变量声明提升
+		var date;
+		date = new Date();
+		function fn(){
+				// 变量声明提升，但是此时未定义变量的值
+				var date;
+				console.log(date);
+				if(true){
+						date = "hello";
+				}
+		}
+		fn();
+		```
+
+		[拓展](https://www.jianshu.com/p/d4bde266e06d)
 
 -  如何编写高性能的Javascript？
 
+	- 使用局部变量
+	- 避免增长作用域链
+	- 字符串链接优化
+	- 条件判断
+	- 快速循环
+	- 展开循环
+	- 高效存取数据
+	-	事件委托
+	
+	[拓展](https://www.cnblogs.com/MarcoHan/p/5315361.html)
+
 -  那些操作会造成内存泄漏？
+
+	- 全局变量引起的内存泄漏
+	- 闭包引起的内存泄漏
+	- dom清空或删除时，事件未清除导致的内存泄漏
+
+	[拓展](http://www.ruanyifeng.com/blog/2017/04/memory-leak.html)
 
 -  JQuery的源码看过吗？能不能简单概况一下它的实现原理？
 
@@ -694,12 +869,11 @@
 
 -  jquery.extend 与 jquery.fn.extend的区别？
 
-		* jquery.extend 为jquery类添加类方法，可以理解为添加静态方法
-		* jquery.fn.extend:
-			源码中jquery.fn = jquery.prototype，所以对jquery.fn的扩展，就是为jquery类添加成员函数
-		使用：
-		jquery.extend扩展，需要通过jquery类来调用，而jquery.fn.extend扩展，所有jquery实例都可以直接调用。
-
+	* jquery.extend 为jquery类添加类方法，可以理解为添加静态方法
+	* jquery.fn.extend:
+	源码中jquery.fn = jquery.prototype，所以对jquery.fn的扩展，就是为jquery类添加成员函数
+	使用：
+	jquery.extend扩展，需要通过jquery类来调用，而jquery.fn.extend扩展，所有jquery实例都可以直接调用。
 
 -  jQuery 的队列是如何实现的？队列可以用在哪些地方？
 
@@ -715,11 +889,10 @@
 
 -  Jquery与jQuery UI 有啥区别？
 
+	* jQuery是一个js库，主要提供的功能是选择器，属性修改和事件绑定等等。
 
-		*jQuery是一个js库，主要提供的功能是选择器，属性修改和事件绑定等等。
-
-		*jQuery UI则是在jQuery的基础上，利用jQuery的扩展性，设计的插件。
-         提供了一些常用的界面元素，诸如对话框、拖动行为、改变大小行为等等
+	* jQuery UI则是在jQuery的基础上，利用jQuery的扩展性，设计的插件。
+			提供了一些常用的界面元素，诸如对话框、拖动行为、改变大小行为等等
 
 
 -  JQuery的源码看过吗？能不能简单说一下它的实现原理？
@@ -743,16 +916,14 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 -  针对 jQuery 的优化方法？
 
-		*基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。
+	* 基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。
 
-		*频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。
-         比如：var str=$("a").attr("href");
+	* 频繁操作的DOM，先缓存起来再操作。用Jquery的链式调用更好。
+		比如：var str=$("a").attr("href");
 
-		*for (var i = size; i < arr.length; i++) {}
-         for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：
-         for (var i = size, length = arr.length; i < length; i++) {}
-
-
+	* for (var i = size; i < arr.length; i++) {}
+		for 循环每一次循环都查找了数组 (arr) 的.length 属性，在开始循环的时候设置一个变量来存储这个数字，可以让循环跑得更快：
+		for (var i = size, length = arr.length; i < length; i++) {}
 
 -  Zepto的点透问题如何解决？
 
@@ -760,11 +931,11 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 -  需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确响应。给出你的技术实现方案？
 
-- 如何判断当前脚本运行在浏览器还是node环境中？（阿里）
+- 如何判断当前脚本运行在浏览器还是node环境中？
 
-		this === window ? 'browser' : 'node';
+	this === window ? 'browser' : 'node';
 
-		通过判断Global对象是否为window，如果不为window，当前脚本没有运行在浏览器中
+	通过判断Global对象是否为window，如果不为window，当前脚本没有运行在浏览器中
 
 -  移动端最小触控区域是多大？
 
