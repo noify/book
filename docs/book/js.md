@@ -67,7 +67,7 @@
 	* `parseFloat('12.3b')`;
 	* 正则表达式，`'12.3b'.match(/(\d)+(\.)?(\d)+/g)[0] * 1`, 但是这个不太靠谱，提供一种思路而已。
 
-- 如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』?
+- 如何将浮点数点左边的数每三位添加一个逗号，如12000000.11转化为『12,000,000.11』(用js实现千位分隔符)?
 
 	```js
 	function commafy(num){
@@ -754,7 +754,7 @@
 		reduce(function(total, currentValue, currentIndex, arr), initialValue) 接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值
 		reduceRight(function(total, currentValue, currentIndex, arr), initialValue)  接收一个函数作为累加器，数组中的每个值（从右到左）开始缩减，最终计算为一个值
 		reverse() 颠倒数组中元素的顺序
-		shift() 把数组的第一个元素从其中删除，并返回第一个元素的值
+			() 把数组的第一个元素从其中删除，并返回第一个元素的值
 		slice(start, end) 从已有的数组中返回选定的元素
 		some(function(currentValue,index,arr),thisValue) 检测数组中的元素是否满足指定条件（函数提供）。
 		sort(compareFunction) 对数组的元素进行排序,并返回数组
@@ -853,6 +853,12 @@
 
 -  那些操作会造成内存泄漏？
 
+	内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。
+	垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。
+
+	setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。
+	闭包、控制台日志、循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）
+
 	- 全局变量引起的内存泄漏
 	- 闭包引起的内存泄漏
 	- dom清空或删除时，事件未清除导致的内存泄漏
@@ -863,10 +869,110 @@
 
 -  jQuery.fn的init方法返回的this指的是什么对象？为什么要返回this？
 
--  jquery中如何将数组转化为json字符串，然后再转化回来？
+	* init这里是jQuery类的成员方法，jQuery类被实例化后this指向被拥有的jQuery实例,jQuery对象本身就是个类数组对象
+	* 为了完成jQuery链式操作，都需要返回this
 
 -  jQuery 的属性拷贝(extend)的实现原理是什么，如何实现深拷贝？
 
+```js
+	function extend() {
+		// 重载 (目标对象，源对象)/extend(boolean，目标对象，源对象)
+		var options, name, src, copy, copyIsArray, clone,
+			target = arguments[0] || {},
+			i = 1,
+			length = arguments.length,
+			deep = false,
+			isPlainObject =  function isPlainObject( obj ) {
+				var proto, Ctor,
+				hasOwn = {}.hasOwnProperty,
+				fnToString = hasOwn.toString,
+				getProto = Object.getPrototypeOf,
+				toString = {}.toString,
+				ObjectFunctionString = fnToString.call( Object );
+
+				// Detect obvious negatives
+				// Use toString instead of jQuery.type to catch host objects
+				if ( !obj || toString.call( obj ) !== "[object Object]" ) {
+					return false;
+				}
+
+				proto = getProto( obj );
+
+				// Objects with no prototype (e.g., `Object.create( null )`) are plain
+				if ( !proto ) {
+					return true;
+				}
+
+				// Objects with prototype are plain iff they were constructed by a global Object function
+				Ctor = hasOwn.call( proto, "constructor" ) && proto.constructor;
+				return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
+			},
+			isFunction = function isFunction(obj) {
+				return typeof obj === "function" && typeof obj.nodeType !== "number";
+			};
+
+		// 处理深拷贝情况
+		if ( typeof target === "boolean" ) {
+			deep = target;
+
+			// 跳过布尔值和目标
+			target = arguments[i] || {};
+			i++;
+		}
+
+		// 当目标是字符串或其他时（可能是深拷贝）
+		if ( typeof target !== "object" && !isFunction(target) ) {
+			target = {};
+		}
+
+		// 如果只传递一个参数，则扩展jQuery本身。
+		if ( i === length ) {
+			target = this;
+			i--;
+		}
+
+		for ( ; i < length; i++ ) {
+
+			// 只处理非空/未定义的值。
+			if ( ( options = arguments[ i ] ) != null ) {
+
+				// 扩展基对象
+				for ( name in options ) {
+					src = target[ name ];
+					copy = options[ name ];
+
+					// 防止无限循环
+					if ( target === copy ) {
+						continue;
+					}
+
+					// 如果我们合并普通对象或数组则递归
+					if ( deep && copy && ( isPlainObject( copy ) ||
+						( copyIsArray = Array.isArray( copy ) ) ) ) {
+
+						if ( copyIsArray ) {
+							copyIsArray = false;
+							clone = src && Array.isArray( src ) ? src : [];
+
+						} else {
+							clone = src && isPlainObject( src ) ? src : {};
+						}
+
+						// 不要移动原始对象，克隆它们
+						target[ name ] = extend( deep, clone, copy );
+
+					// 不要引入未定义的值。
+					} else if ( copy !== undefined ) {
+						target[ name ] = copy;
+					}
+				}
+			}
+		}
+
+		// 返回修改对象
+		return target;
+	};
+```
 -  jquery.extend 与 jquery.fn.extend的区别？
 
 	* jquery.extend 为jquery类添加类方法，可以理解为添加静态方法
@@ -894,9 +1000,6 @@
 	* jQuery UI则是在jQuery的基础上，利用jQuery的扩展性，设计的插件。
 			提供了一些常用的界面元素，诸如对话框、拖动行为、改变大小行为等等
 
-
--  JQuery的源码看过吗？能不能简单说一下它的实现原理？
-
 -  jquery 中如何将数组转化为json字符串，然后再转化回来？
 
 jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩展：
@@ -914,6 +1017,16 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 -  jQuery和Zepto的区别？各自的使用场景？
 
+	jQuery 由于强大的生命力基本上是一个事实标准，所以大部分工具 lib 在 DOM 操作、动画等功能上或多或少都会是 jQuery-like 的。
+	
+	Zepto 的 API 就是完全兼容 jQuery 的，功能上 Zepto 是 jQuery 的子集，定位上 jQuery 桌面为主，Zepto 则从一开始就定位移动设备，所以体积方面有一定优势。
+	
+	也就是说如果你只用了 jQuery 很少且都是核心的功能，比如选择器等，那么可以在不改动任何业务代码的情况下把 lib 切换到 Zepto——其实就是把 $ 对象换掉了。
+
+ * Zepto更轻量级
+ * Zepto是jQuery的精简，针对移动端去除了大量jQuery的兼容代码
+ * 部分API的实现方式不同
+
 -  针对 jQuery 的优化方法？
 
 	* 基于Class的选择性的性能相对于Id选择器开销很大，因为需遍历所有DOM元素。
@@ -927,9 +1040,29 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 -  Zepto的点透问题如何解决？
 
--  jQueryUI如何自定义组件?
+	引入fastclick.js
+
+	点透的出现场景可以总结如下：
+
+	1. A/B两个层上下z轴重叠。
+
+	2. 上层的A点击后消失或移开。（这一点很重要）
+
+	3. B元素本身有默认click事件（如a标签） 或 B绑定了click事件。
+
+	在以上情况下，点击A/B重叠的部分，就会出现点透的现象。
+
+	为什么会出现点透
+	
+	click延迟，延迟，还是延迟。
+
+	在移动端不使用click而用touch事件代替触摸是因为click事件有着明显的延迟
+
+	touchstart 早于 touchend 早于 click。亦即click的触发是有延迟的，这个时间大概在300ms左右。
 
 -  需求：实现一个页面操作不会整页刷新的网站，并且能在浏览器前进、后退时正确响应。给出你的技术实现方案？
+
+	单页面SPA方案
 
 - 如何判断当前脚本运行在浏览器还是node环境中？
 
@@ -939,11 +1072,64 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 -  移动端最小触控区域是多大？
 
+	Android的最小点击区域尺寸是48x48dp，苹果的标准是44pt x 44pt 
+
 -  jQuery 的 slideUp动画 ，如果目标元素是被外部事件驱动, 当鼠标快速地连续触发外部元素事件, 动画会滞后的反复执行，该如何处理呢?
 
 		jquery stop(): 如：$("#div").stop().animate({width:"100px"},100);
 
 -  把 Script 标签 放在页面的最底部的body封闭之前 和封闭之后有什么区别？浏览器会如何解析它们？
+
+	浏览器加载一个有 <script> 标签的网站发生的事情:
+
+	1. 拉取 HTML 页面 (e.g. index.html)
+	2. 开始解析 HTML
+	3. 解析到 <script> 标签之后准备获取 script 文件.
+	4. 浏览器获取script文件。同时，html 解析中断并且阻断页面上其他html的解析。
+	5. 一段时间后，script下载完成并且执行。
+	6. 继续解析HTML文档的其他部分（解析script之后的html代码）
+
+	第4步导致了不好的用户体验，直到script文件全部下载完成之前HTML都不能得到解析。
+
+	- 为什么会发生阻断事件?
+
+		任何script代码都能改变HTML的结构，通过document.write() 这种方式或者其他方式。 
+		
+		这就导致了HTML解析必须等待script全部被下载和执行完，HTML才能解析script标签之后余下的部分。
+		
+		然而，大部分的Javascript开发者在加载文档过程中，不会通过script操作HTML的DOM结构。
+		
+		然而，他们必须等到script全部加载结束，才能看到页面。
+	
+	- 解决方案
+
+		之前推荐的方法（已过时）：
+		
+		之前解决这个问题的方法是把<script> 标签放到<body>标签之后 ，这确保了解析到</body>之前都不会被script终端。
+		
+		这个方法是有问题的: 浏览器在整个文档解析完成之前都不能下载script文件，如果文档很大的话，解析完HTML，用户依然要等待script文件下载并执行完成之后，才能操作这个网站。（主要是串行，先解析HTML完，再下载并执行script，速度肯定没有并行块，那么怎么并行呢？我们假设能在解析HTML一开始，就开始下载script，并且不阻断HTML的解析，是不是就并行了呢）如果你的网站在2秒之内没有响应，用户就会跑掉；
+
+		现在推荐的解决方案：现在浏览器script标签支持 async 和 defer 属性. 应用这些属性当script被下载时，浏览器更安全而且可以并行下载（下载script并不阻断HTML解析）。
+
+		```html
+		<script type="text/javascript" src="path/to/script1.js" async></script>
+		<script type="text/javascript" src="path/to/script2.js" async></script>
+		```
+
+		async标记的Script异步执行下载，并执行。这意味着script下载时并不阻塞HTML的解析，并且下载结束script马上执行。
+		
+		异步意味着，上述代码script2可能比script1先下载完并执行完。
+
+		```html
+		<script type="text/javascript" src="path/to/script1.js" defer></script>
+		<script type="text/javascript" src="path/to/script2.js" defer></script>
+		```
+
+		defer标签的script顺序执行。这种方式也不会阻断浏览器解析HTML。
+		
+		跟 async不同, defer scripts在整个文档里的script都被下载完才顺序执行。
+
+		[拓展](https://zhuanlan.zhihu.com/p/30558018)
 
 -  移动端的点击事件的有延迟，时间是多久，为什么会有？ 怎么解决这个延时？（click 有 300ms 延迟,为了实现safari的双击事件的设计，浏览器要知道你是不是要双击操作。）
 
@@ -960,16 +1146,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 -  知道各种JS框架(Angular, Backbone, Ember, React, Meteor, Knockout...)么? 能讲出他们各自的优点和缺点么?
 
 -  Underscore 对哪些 JS 原生对象进行了扩展以及提供了哪些好用的函数方法？
-
--  解释JavaScript中的作用域与变量声明提升？
-
--  那些操作会造成内存泄漏？
-
-	    内存泄漏指任何对象在您不再拥有或需要它之后仍然存在。
-        垃圾回收器定期扫描对象，并计算引用了每个对象的其他对象的数量。如果一个对象的引用数量为 0（没有其他对象引用过该对象），或对该对象的惟一引用是循环的，那么该对象的内存即可回收。
-
-        setTimeout 的第一个参数使用字符串而非函数的话，会引发内存泄漏。
-		闭包、控制台日志、循环（在两个对象彼此引用且彼此保留时，就会产生一个循环）
 
 -  JQuery一个对象可以同时绑定多个事件，这是如何实现的？
 
@@ -1001,21 +1177,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 - 简述一下 Handlerbars 的对模板的基本处理流程， 如何编译的？如何缓存的？
 
-- 用js实现千位分隔符?(来源：[前端农民工](http://div.io/topic/744)，提示：正则+replace)
-
-
-		参考：http://www.tuicool.com/articles/ArQZfui
-		function commafy(num) {
-		    return num && num
-		        .toString()
-		        .replace(/(\d)(?=(\d{3})+\.)/g, function($0, $1) {
-		            return $1 + ",";
-		        });
-		}
-		console.log(commafy(1234567.90)); //1,234,567.90
-
-
-
 - 检测浏览器版本版本有哪些方式？
 
 		功能检测、userAgent特征检测
@@ -1024,30 +1185,28 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 		//"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36
 		  (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36"
 
-
 - What is a Polyfill?
 
-		polyfill 是“在旧版浏览器上复制标准 API 的 JavaScript 补充”,可以动态地加载 JavaScript 代码或库，在不支持这些标准 API 的浏览器中模拟它们。
-		例如，geolocation（地理位置）polyfill 可以在 navigator 对象上添加全局的 geolocation 对象，还能添加 getCurrentPosition 函数以及“坐标”回调对象，
-		所有这些都是 W3C 地理位置 API 定义的对象和函数。因为 polyfill 模拟标准 API，所以能够以一种面向所有浏览器未来的方式针对这些 API 进行开发，
-		一旦对这些 API 的支持变成绝对大多数，则可以方便地去掉 polyfill，无需做任何额外工作。
+	polyfill 是“在旧版浏览器上复制标准 API 的 JavaScript 补充”,可以动态地加载 JavaScript 代码或库，在不支持这些标准 API 的浏览器中模拟它们。
+	例如，geolocation（地理位置）polyfill 可以在 navigator 对象上添加全局的 geolocation 对象，还能添加 getCurrentPosition 函数以及“坐标”回调对象，
+	所有这些都是 W3C 地理位置 API 定义的对象和函数。因为 polyfill 模拟标准 API，所以能够以一种面向所有浏览器未来的方式针对这些 API 进行开发，
+	一旦对这些 API 的支持变成绝对大多数，则可以方便地去掉 polyfill，无需做任何额外工作。
 
 - 做的项目中，有没有用过或自己实现一些 polyfill 方案（兼容性处理方案）？
 
-		比如： html5shiv、Geolocation、Placeholder
+	比如： html5shiv、Geolocation、Placeholder
 
 - 我们给一个dom同时绑定两个点击事件，一个用捕获，一个用冒泡。会执行几次事件，会先执行冒泡还是捕获？
 
-
 - 使用JS实现获取文件扩展名？
 
-		function getFileExtension(filename) {
-		  return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
-		}
+	function getFileExtension(filename) {
+		return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+	}
 
-		String.lastIndexOf() 方法返回指定值（本例中的'.'）在调用该方法的字符串中最后出现的位置，如果没找到则返回 -1。
-		对于'filename'和'.hiddenfile'，lastIndexOf的返回值分别为0和-1无符号右移操作符(»>) 将-1转换为4294967295，将-2转换为4294967294，这个方法可以保证边缘情况时文件名不变。
-		String.prototype.slice() 从上面计算的索引处提取文件的扩展名。如果索引比文件名的长度大，结果为""。
+	String.lastIndexOf() 方法返回指定值（本例中的'.'）在调用该方法的字符串中最后出现的位置，如果没找到则返回 -1。
+	对于'filename'和'.hiddenfile'，lastIndexOf的返回值分别为0和-1无符号右移操作符(»>) 将-1转换为4294967295，将-2转换为4294967294，这个方法可以保证边缘情况时文件名不变。
+	String.prototype.slice() 从上面计算的索引处提取文件的扩展名。如果索引比文件名的长度大，结果为""。
 
 - Webpack热更新实现原理?
 
@@ -1062,7 +1221,7 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 
 - 什么是JS的函数防抖？
 
-#### <a name='other'>ECMAScript6 相关</a>
+# ECMAScript6 相关
 
 - Object.is() 与原来的比较操作符“ ===”、“ ==”的区别？
 
@@ -1077,8 +1236,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 - ES6是如何实现编译成ES5的？
 
 - css-loader的原理？
-
-
  
 ## IOS中input键盘事件keyup、keydown、keypress支持不是很好
  
@@ -1090,8 +1247,6 @@ jQuery中没有提供这个功能，所以你需要先编写两个jQuery的扩�
 document.getElementById('id').addEventListener('input', function(e){ })
 ```
 
- 
- 
 ## 移动端 HTML5 audio autoplay 失效问题
  
 这个不是 BUG，由于自动播放网页中的音频或视频，会给用户带来一些困扰或者不必要的流量消耗，所以苹果系统和安卓系统通常都会禁止自动播放和使用 JS 的触发播放，必须由用户来触发才可以播放。
@@ -1103,7 +1258,7 @@ document.addEventListener('touchstart', function () {
     document.getElementsByTagName('audio')[0].pause() 
 })
 ```
- 
+
 ## 唤起select的option展开
  
 ```js
