@@ -754,7 +754,7 @@
 		reduce(function(total, currentValue, currentIndex, arr), initialValue) 接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值
 		reduceRight(function(total, currentValue, currentIndex, arr), initialValue)  接收一个函数作为累加器，数组中的每个值（从右到左）开始缩减，最终计算为一个值
 		reverse() 颠倒数组中元素的顺序
-			() 把数组的第一个元素从其中删除，并返回第一个元素的值
+		shift() 把数组的第一个元素从其中删除，并返回第一个元素的值
 		slice(start, end) 从已有的数组中返回选定的元素
 		some(function(currentValue,index,arr),thisValue) 检测数组中的元素是否满足指定条件（函数提供）。
 		sort(compareFunction) 对数组的元素进行排序,并返回数组
