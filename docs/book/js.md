@@ -763,7 +763,7 @@
 		toString() 把数组转换为字符串，并返回结果，每一项以逗号分割。
 		unshift(item1,item2, ..., itemX) 向数组的开头添加一个或更多元素，并返回新的长度
 		valueOf() 返回数组本身
-		Symbol(Symbol.iterator)
+		Symbol(Symbol.iterator) 
 		Symbol(Symbol.unscopables)
 		__proto__
 	- 对象

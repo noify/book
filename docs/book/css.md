@@ -122,14 +122,14 @@
 		  首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。
 		  接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。
 
-          css
-	          .bb{
-		          background-color:red;/*所有识别*/
-			      background-color:#00deff\9; /*IE6、7、8识别*/
-			      +background-color:#a200ff;/*IE6、7识别*/
-			      _background-color:#1e0bd1;/*IE6识别*/
-	          }
-
+      ```css
+      .bb{
+        background-color:red;/*所有识别*/
+        background-color:#00deff\9; /*IE6、7、8识别*/
+        +background-color:#a200ff;/*IE6、7识别*/
+        _background-color:#1e0bd1;/*IE6识别*/
+      }
+      ```
 
 		*  IE下,可以使用获取常规属性的方法来获取自定义属性,
 		   也可以使用getAttribute()获取自定义属性;
@@ -314,7 +314,7 @@
 
 - 让页面里的字体变清晰，变细用CSS怎么做？
 
-		-webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
 
 - font-style属性可以让它赋值为“oblique” oblique是什么意思？
 
