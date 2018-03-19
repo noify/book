@@ -1927,3 +1927,35 @@ SPA单页面和微信支付的bug
 微信的检查逻辑：取到URL后用最后一个'/'做分隔符，将URL分为两部分，用第一部分和配置的支付授权目录做比对，匹配则验证成功，否则验证失败。很显然，这种验证方式下，URL分隔后的第一部分会包含哈希，于是验证失败。
  
 解决办法：在#前加个?,因为?后面的字符串会被当做查询参数而忽视。xxx.com/index.html?#/login
+
+## 奇奇怪怪的用法
+
+```js
+//取整
+parseInt(a,10); //Before
+Math.floor(a); //Before
+a>>0; //Before
+~~a; //After
+a|0; //After
+
+//四舍五入
+Math.round(a); //Before
+a+.5|0; //After
+
+//内置值
+undefined; //Before
+void 0; //After, 快
+0[0]; //After, 略慢
+
+//内置值
+Infinity;
+1/0;
+
+//布尔值短写法
+true; //Before
+!0; //After
+
+//布尔值短写法
+false; //Before
+!1; //After
+```

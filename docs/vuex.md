@@ -230,6 +230,10 @@ const store = new Vuex.Store({
       // 变更状态
       state.count++
     }
+    connect_stomp (state, flag) {
+      // 变更状态
+      state.count++
+    }
   }
 })
 ```
@@ -315,6 +319,7 @@ const store = new Vuex.Store({
   },
   actions: {
     increment (context) {
+      //...code....
       context.commit('increment')
     }
   }
