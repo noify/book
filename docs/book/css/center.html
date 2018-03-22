@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    .main{
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .Container{
+      height: 100px;
+      background: #409EFF;
+      width: 100%;
+    }
+    /* 绝对居中 */
+    .Absolute-Container{
+      position: relative;
+    }
+    .Absolute-Center {
+      width: 50%;
+      height: 50%;
+      margin: auto;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: #DCDFE6;
+    }
+
+    /* transforms */
+    .Transformed-Center{
+      width: 50%;
+      position: relative;
+      top: 50%; left: 50%;
+      -webkit-transform: translate(-50%,-50%);
+          -ms-transform: translate(-50%,-50%);
+              transform: translate(-50%,-50%);
+      background: #DCDFE6;
+    }
+
+    /* Table-Cell */
+    .Table-Container { display: table; }
+    .Table-Cell {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .Center-Block {
+      width: 50%;
+      margin: 0 auto;
+      background: #DCDFE6;
+    }
+    /* Inline-Block */
+    .Inline-Block-Container{
+      text-align: center;
+      overflow: auto;
+    }
+    .Inline-Block-Container:after {
+      content: '';
+      height: 100%;
+      margin-left: -0.25em; /* To offset spacing. May vary by font */
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .Inline-Block-Center{
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    /* Flexbox */
+    .Flexbox-Container{
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-box-pack: center;
+        -moz-box-pack: center;
+        -ms-flex-pack: center;
+      -webkit-justify-content: center;
+              justify-content: center;
+    }
+  </style>
+  <title>CSS</title>
+</head>
+<body>
+  <div class="main">
+    <h3>absolute</h3>
+    <div class="Container Absolute-Container">
+      <div class="Absolute-Center"></div>
+    </div>
+    <h3>transforms</h3>
+    <div class="Container">
+      <div class="Transformed-Center">any</div>
+    </div>
+    <h3>Table-Cell</h3>
+    <div class="Container Table-Container">
+        <div class="Table-Cell">
+          <div class="Center-Block">any</div>
+        </div>
+    </div>
+    <h3>Inline-Block</h3>
+    <div class="Container Inline-Block-Container">
+      <div class="Inline-Block-Center">any</div>
+    </div>
+    <h3>Flexbox</h3>
+    <div class="Container Flexbox-Container">
+      <div>any</div>
+    </div>
+  </div>
+</body>
+</html>
