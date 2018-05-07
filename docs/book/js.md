@@ -16,7 +16,7 @@
 
 	1. 不要在同一行声明多个变量。
 	2. 请使用 ===/!==来比较true/false或者数值
-	3. 使用对象字面量替代new Array这种形式
+	3. 使用对象字面量替代new Array这种形式。
 	4. 不要使用全局函数。
 	5. Switch语句必须带有default分支
 	6. 函数不应该有时候有返回值，有时候没有返回值。
@@ -1337,7 +1337,7 @@ btn.attachEvent('onclick', function() {
 ```
  
 对应的事件移除
- 
+
 ```js
 detachEvent(event, function)
 ```
@@ -1517,12 +1517,12 @@ document.getElementById("test").onclick = function () {
 * `unshift()` 将参数插入队首
  
 ## 闭包
- 
+
 闭包就是
 能够读取其他函数内部变量的函数
 定义在一个函数内部的函数
 将函数内部和函数外部连接起来的一座桥梁
- 
+
 广义上的闭包就是指一个变量在他自身作用域外被使用了，就叫发生了闭包
  
 函数中的this指向执行该函数的对象，如果没有对象，则指向全局对象。
