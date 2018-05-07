@@ -7,158 +7,60 @@
   <title>Document</title>
   <style>
     .wrap{
-      border: 1px dashed #ff6c60;
-      box-sizing: border-box;
-      padding: 8px;
-      margin-bottom: 8px;
+      border-bottom: 1px dashed #d1d5da;
     }
-    .left{
+    .left, .right, .center{
       color: #fff;
       box-sizing: border-box;
       padding: 8px;
-      height: 100px;
+    }
+    .left::before, .right::before, .center::before{
+      content: attr(style);
+    }
+    .left, .right{
       width: 300px;
       background-color: #409EFF; 
     }
-    .right{
-      color: #fff;
-      box-sizing: border-box;
-      padding: 8px;
+    .center{
       background-color: rebeccapurple;
-      height: 112px;
     }
-
-    .demo1 .left{
-      float: left;
-    }
-    .demo1 .right{
-      margin-left: 308px;
-    }
-
-    .demo2 .left{
-      position: absolute;
-    }
-    .demo2 .right{
-      margin-left: 308px;
-    }
-
-    .demo3 {
-      overflow: auto;
-    }
-    .demo3 .left, .demo3 .right{
-      float: left;
-    }
-    .demo3 .right{
-      margin-left: 8px;
-      width: calc(100% - 308px);
-    }
-
-    .demo4{
-      display:table;
-      width: 100%;
-    }
-    .demo4 .left{
-      display:table-cell;
-    }
-    .demo4 .right{
-      display:table-cell;
-    }
-
-    .demo5{
-      font-size: 0; /* 消除空格的影响 */
-    }
-    .demo5 .left, .demo5 .right{
-      display: inline-block;
-      vertical-align: top;
-      font-size: initial;
-      box-sizing: border-box;
-    }
-    .demo5 .right{
-      margin-left: 8px;
-      width: calc(100% - 308px);
-    }
-    
-    /* .demo6 {
-      overflow: auto;
-    } */
-    .demo6 .left {
-      float: left;
-      margin-right: 8px;
-    }
-    .demo6 .right {
-      /* margin-left: 0; */
-      overflow: auto;
-    }
-
-    .demo7 {
-      display: flex;
-      /* align-items: flex-start; */
-    }
-    /* .demo7 .left {
-      flex: 0 0 auto;
-    } */
-    .demo7 .right {
-      margin-left: 8px;
-      flex: 1 1 auto;
-    }
-
-    .demo8 {
-      display: grid;
-      grid-template-columns: 308px 1fr;
-      /* align-items: start; */
-    }
-    /* .demo8 .left {
-      grid-column: 1;
-    }
-    .demo8 .right {
-      grid-column: 2;
-    } */
   </style>
 </head>
 <body>
-  <div class="wrap demo1">
-    <div class="left">float: left;</div>
-    <div class="right">margin-left: width;</div>
+  <div class="wrap">
+    <div class="left" style="float: left;"></div>
+    <div class="right" style="float: right;"></div>
+    <div class="center" style="margin-left: 300px; margin-right: 300px;"></div>
   </div>
-  <div class="wrap demo2">
-    <div class="left">position: absolute;</div>
-    <div class="right">margin-left: width;</div>
+  <div class="wrap">
+    <div class="left" style="float: left;"></div>
+    <div class="right" style="float: right;"></div>
+    <div class="center" style="overflow: auto;"></div>
   </div>
-  <div class="wrap demo3">
-    <div>overflow: auto;</div>
-    <div class="left">float: left;</div>
-    <div class="right">float: left; margin-left: width; width: calc(100% - width);</div>
+  <div class="wrap" style="overflow: auto;">
+    <div class="left" style="float: left;"></div>
+    <div class="center" style="float: left; width: calc(100% - 600px);"></div>
+    <div class="right" style="float: left;"></div>
   </div>
-  <div class="wrap demo4">
-    <div class="left">display: table-cell;</div>
-    <div class="right">display: table-cell;</div>
+  <div class="wrap clearfix" style="position: relative;">
+    <div class="left" style="position: absolute;"></div>
+    <div class="right" style="position: absolute; right: 0px;"></div>
+    <div class="center" style="margin-left: 300px; margin-right: 300px;"></div>
   </div>
-  <div class="wrap demo5">
-    <div style="font-size: initial;">font-size: 0;</div>
-    <div class="left">display: inline-block;
-        vertical-align: top;
-        font-size: initial;
-        box-sizing: border-box;</div>
-    <div class="right">    display: inline-block;
-        vertical-align: top;
-        font-size: initial;
-        box-sizing: border-box;margin-left: 8px;
-        width: calc(100% - 308px);</div>
+  <div class="wrap" style="font-size: 0;">
+    <div class="left" style="display: inline-block; vertical-align: top; font-size: initial;"></div>
+    <div class="center" style="display: inline-block; vertical-align: top; font-size: initial; width: calc(100% - 600px);"></div>
+    <div class="right" style="display: inline-block; vertical-align: top; font-size: initial;"></div>
   </div>
-  <div class="wrap demo6">
-    <div class="left">    float: left;
-        margin-right: 8px;</div>
-    <div class="right">overflow: auto;</div>
+  <div class="wrap" style="display: flex; align-items: flex-start;">
+    <div class="left" style="flex: 0 0 auto;"></div>
+    <div class="center" style="flex: 1 1 auto;"></div>
+    <div class="right" style="flex: 0 0 auto;"></div>
   </div>
-  <div class="wrap demo7">
-    <div class="left">wrap: display: flex;</div>
-    <div class="right">margin-left: 8px;
-        flex: 1 1 auto;</div>
-  </div>
-  <div class="wrap demo8">
-    <div class="left">wrap:     display: grid;
-        grid-template-columns: 308px 1fr;</div>
-    <div class="right"></div>
+  <div class="wrap" style="display:table; width: 100%;">
+    <div class="left" style="display: table-cell;"></div>
+    <div class="center" style="display: table-cell;"></div>
+    <div class="right" style="display: table-cell;"></div>
   </div>
 </body>
 </html>
