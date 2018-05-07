@@ -7,23 +7,164 @@
   <title>Document</title>
   <style>
     .wrap{
-      height: 100px;
+      border: 1px dashed #ff6c60;
+      box-sizing: border-box;
+      padding: 8px;
+      margin-bottom: 8px;
+    }
+    .left, .right {
+      color: #fff;
+      box-sizing: border-box;
+      padding: 8px;
     }
     .left{
       height: 100px;
-      background-color: #409EFF; 
-      float: left;
       width: 300px;
+      background-color: #409EFF; 
     }
     .right{
       background-color: rebeccapurple;
-      height: 100px;
-      margin-left: 310px;
+      height: 112px;
+    }
+
+    .demo1 .left{
+      float: left;
+    }
+    .demo1 .right{
+      margin-left: 308px;
+    }
+
+    .demo2 .left{
+      position: absolute;
+    }
+    .demo2 .right{
+      margin-left: 308px;
+    }
+
+    .demo3{
+      overflow: auto;
+    }
+    .demo3 .left{
+      float: left;
+    }
+    .demo3 .rightWrap{
+      margin-left: -300px;
+      float: left;
+      width: 100%;
+    }
+    .demo3 .right{
+      margin-left: 308px;
+    }
+
+    .demo4{
+      display:table;
+      width: 100%;
+    }
+    .demo4 .left{
+      display:table-cell;
+    }
+    .demo4 .right{
+      display:table-cell;
+    }
+
+    .demo5{
+      font-size: 0;
+    }
+    .demo5 .left, .demo5 .right{
+      display: inline-block;
+      vertical-align: top;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .demo5 .right{
+      margin-left: 8px;
+      width: calc(100% - 308px);
+    }
+
+    .demo6 {
+      overflow: auto;
+    }
+    .demo6 .left, .demo6 .right{
+      float: left;
+    }
+    .demo6 .right{
+      margin-left: 8px;
+      width: calc(100% - 308px);
+    }
+
+    .demo7 {
+      overflow: auto;
+    }
+    .demo7 .left {
+      float: left;
+      margin-right: 8px;
+    }
+    .demo7 .right {
+      margin-left: 0;
+      overflow: auto;
+    }
+
+    .demo8 {
+      display: flex;
+      align-items: flex-start;
+    }
+    .demo8 .left {
+      flex: 0 0 auto;
+    }
+    .demo8 .right {
+      margin-left: 8px;
+      flex: 1 1 auto;
+    }
+
+    .demo9 {
+      display: grid;
+      grid-template-columns: 308px 1fr;
+      align-items: start;
+    }
+    .demo9 .left {
+      grid-column: 1;
+    }
+    .demo9 .right {
+      grid-column: 2;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap demo1">
+    <div class="left">float: left;</div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo2">
+    <div class="left">position: absolute;</div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo3">
+    <div class="left"></div>
+    <div class="rightWrap">
+      <div class="right"></div>
+    </div>
+  </div>
+  <div class="wrap demo4">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo5">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo6">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo7">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo8">
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+  <div class="wrap demo9">
     <div class="left"></div>
     <div class="right"></div>
   </div>
