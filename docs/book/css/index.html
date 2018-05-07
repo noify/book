@@ -12,17 +12,18 @@
       padding: 8px;
       margin-bottom: 8px;
     }
-    .left, .right {
+    .left{
       color: #fff;
       box-sizing: border-box;
       padding: 8px;
-    }
-    .left{
       height: 100px;
       width: 300px;
       background-color: #409EFF; 
     }
     .right{
+      color: #fff;
+      box-sizing: border-box;
+      padding: 8px;
       background-color: rebeccapurple;
       height: 112px;
     }
@@ -41,19 +42,15 @@
       margin-left: 308px;
     }
 
-    .demo3{
+    .demo3 {
       overflow: auto;
     }
-    .demo3 .left{
+    .demo3 .left, .demo3 .right{
       float: left;
-    }
-    .demo3 .rightWrap{
-      margin-left: -300px;
-      float: left;
-      width: 100%;
     }
     .demo3 .right{
-      margin-left: 308px;
+      margin-left: 8px;
+      width: calc(100% - 308px);
     }
 
     .demo4{
@@ -68,104 +65,99 @@
     }
 
     .demo5{
-      font-size: 0;
+      font-size: 0; /* 消除空格的影响 */
     }
     .demo5 .left, .demo5 .right{
       display: inline-block;
       vertical-align: top;
-      font-size: 14px;
+      font-size: initial;
       box-sizing: border-box;
     }
     .demo5 .right{
       margin-left: 8px;
       width: calc(100% - 308px);
     }
-
-    .demo6 {
+    
+    /* .demo6 {
       overflow: auto;
-    }
-    .demo6 .left, .demo6 .right{
-      float: left;
-    }
-    .demo6 .right{
-      margin-left: 8px;
-      width: calc(100% - 308px);
-    }
-
-    .demo7 {
-      overflow: auto;
-    }
-    .demo7 .left {
+    } */
+    .demo6 .left {
       float: left;
       margin-right: 8px;
     }
-    .demo7 .right {
-      margin-left: 0;
+    .demo6 .right {
+      /* margin-left: 0; */
       overflow: auto;
     }
 
-    .demo8 {
+    .demo7 {
       display: flex;
-      align-items: flex-start;
+      /* align-items: flex-start; */
     }
-    .demo8 .left {
+    /* .demo7 .left {
       flex: 0 0 auto;
-    }
-    .demo8 .right {
+    } */
+    .demo7 .right {
       margin-left: 8px;
       flex: 1 1 auto;
     }
 
-    .demo9 {
+    .demo8 {
       display: grid;
       grid-template-columns: 308px 1fr;
-      align-items: start;
+      /* align-items: start; */
     }
-    .demo9 .left {
+    /* .demo8 .left {
       grid-column: 1;
     }
-    .demo9 .right {
+    .demo8 .right {
       grid-column: 2;
-    }
+    } */
   </style>
 </head>
 <body>
   <div class="wrap demo1">
     <div class="left">float: left;</div>
-    <div class="right"></div>
+    <div class="right">margin-left: width;</div>
   </div>
   <div class="wrap demo2">
     <div class="left">position: absolute;</div>
-    <div class="right"></div>
+    <div class="right">margin-left: width;</div>
   </div>
   <div class="wrap demo3">
-    <div class="left"></div>
-    <div class="rightWrap">
-      <div class="right"></div>
-    </div>
+    <div>overflow: auto;</div>
+    <div class="left">float: left;</div>
+    <div class="right">float: left; margin-left: width; width: calc(100% - width);</div>
   </div>
   <div class="wrap demo4">
-    <div class="left"></div>
-    <div class="right"></div>
+    <div class="left">display: table-cell;</div>
+    <div class="right">display: table-cell;</div>
   </div>
   <div class="wrap demo5">
-    <div class="left"></div>
-    <div class="right"></div>
+    <div style="font-size: initial;">font-size: 0;</div>
+    <div class="left">display: inline-block;
+        vertical-align: top;
+        font-size: initial;
+        box-sizing: border-box;</div>
+    <div class="right">    display: inline-block;
+        vertical-align: top;
+        font-size: initial;
+        box-sizing: border-box;margin-left: 8px;
+        width: calc(100% - 308px);</div>
   </div>
   <div class="wrap demo6">
-    <div class="left"></div>
-    <div class="right"></div>
+    <div class="left">    float: left;
+        margin-right: 8px;</div>
+    <div class="right">overflow: auto;</div>
   </div>
   <div class="wrap demo7">
-    <div class="left"></div>
-    <div class="right"></div>
+    <div class="left">wrap: display: flex;</div>
+    <div class="right">margin-left: 8px;
+        flex: 1 1 auto;</div>
   </div>
   <div class="wrap demo8">
-    <div class="left"></div>
-    <div class="right"></div>
-  </div>
-  <div class="wrap demo9">
-    <div class="left"></div>
+    <div class="left">wrap:     display: grid;
+        grid-template-columns: 308px 1fr;</div>
     <div class="right"></div>
   </div>
 </body>
