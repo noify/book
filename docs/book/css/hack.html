@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="utf-8">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8"/>
+<style type="text/css">
+/***************************************** 各游览器兼容CSS **********************************************/
+.bb{height:32px;background-color:#f1ee18;/*所有识别*/ background-color:#00deff\9; /*IE6、7、8识别*/ +background-color:#a200ff;/*IE6、7识别*/ _background-color:#1e0bd1/*IE6识别*/} 
+
+@media screen and (-webkit-min-device-pixel-ratio:0){.bb{background-color:#f1ee18}}{} /* Safari(Chrome) 有效 */
+@media all and (min-width: 0px){ .bb{background-color:#f1ee18;/*opera and Safari(Chrome) and firefox*/ background-color:#4cac70\0;}/* 仅 Opera 有效 */ }{} 
+
+.bb, x:-moz-any-link, x:default{background-color:#4eff00;/*IE7、Firefox3.5及以下 识别 */} 
+@-moz-document url-prefix(){.bb{background-color:#4eff00;/*仅 Firefox 识别 */}} 
+* +html .bb{background-color:#a200ff;}/* 仅IE7 识别 */
+
+/* 一般情况下 我们区分IE7 只用 +background-color 配合 _background-color 就行了 如果必须写 .bb, x:-moz-any-link, x:default 这样的代码区分 Firefox3.5及以下 则谨记此写法对IE7也有效，故在其中要再重写一次 +background-color 或者使用 * +html .bb{background-color:blue;} 方法仅对 IE7 有效。可使用 @-moz-document url-prefix(){} 方法独立区分所有 firefox */
+
+.browsers td{width:8%;text-align:center;padding:8px;}} 
+.browsercolor{color:#333;font-size:18px;font-weight:bold;} 
+.ie6{background-color:#1e0bd1} 
+.ie7{background-color:#a200ff} 
+.ie8{background-color:#00deff} 
+.firefox{background-color:#4eff00} 
+.opera{background-color:#4cac70} 
+.other{background-color:#f1ee18;} 
+
+#tipTable td,#tipTable th{border:1px solid black;width:56px;height:16px;text-align:center;} 
+#wordTable td{margin-left:8px;} 
+#firefoxTip{display:none;} 
+#firefoxTip, x:-moz-any-link, x:default{display:block;/*IE7 firefox3.5及以下 识别 */+display:none/*再区分一次IE7*/} 
+@-moz-document url-prefix(){#firefoxTip{display:block;/*仅 firefox 识别 */}} 
+#ChromeTip{display:none;} 
+@media screen and (-webkit-min-device-pixel-ratio:0){#ChromeTip{display:block;}}{} /* safari(Chrome) 有效 */ 
+@media all and (min-width: 0px){#ChromeTip{display:none\0;} /* 仅 Opera 有效 */ }{}
+
+</style>
+</head>
+<body>
+<table class="browsers" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td>IE6</td>
+<td></td>
+<td>IE7</td>
+<td></td>
+<td>IE8</td>
+<td></td>
+<td>Firefox</td>
+<td></td>
+<td>Opera</td>
+<td></td>
+<td>Safari(Chrome)</td>
+<td></td>
+</tr>
+<tr class="browsercolor">
+<td class="ie6">IE6</td>
+<td></td>
+<td class="ie7">IE7</td>
+<td></td>
+<td class="ie8">IE8</td>
+<td></td>
+<td class="firefox">Firefox</td>
+<td></td>
+<td class="opera">Opera</td>
+<td></td>
+<td class="other">Safari(Chrome)</td>
+<td></td>
+</tr>
+</table>
+<div class="bb">
+<span style="display:none;display:block\0;display:none\9;">Opera的辨别色是深绿色，Opera游览器很时髦么。</span >
+<span id="firefoxTip">Firefox的辨别色是浅绿色，Firefox是很强大的游览器。</span >
+<span id="ChromeTip">Safari和Chrome的辨别色是金黄色，Safari和Chrome使用的都是Webkit内核</span >
+<!--[if IE 8]>IE8的辨别色是蓝色，新版IE8的功能可是不少呢。<![endif]-->
+
+<!--[if IE 7]>IE7的辨别色是紫色，IE7还可以凑合着用！<![endif]-->
+
+<!--[if IE 6]>IE6的辨别色是红色，不过，IE6可是有点落后了！<![endif]-->
+
+</div>
+</body>
+</html>

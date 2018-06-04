@@ -562,3 +562,32 @@ html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
         -webkit-text-size-adjust:100%; 
 }
 ```
+
+CSS hack技巧
+	只在IE下生效
+	<!--[if IE]>
+	这段文字只在IE浏览器显示
+	<![endif]-->
+	
+	只在IE6下生效
+	<!--[if IE 6]>
+	这段文字只在IE6浏览器显示
+	<![endif]-->
+	
+	只在IE6以上版本生效
+	<!--[if gte IE 6]>
+	这段文字只在IE6以上(包括)版本IE浏览器显示
+	<![endif]-->
+	
+	只在IE8上不生效
+	<!--[if ! IE 8]>
+	这段文字在非IE8浏览器显示
+	<![endif]-->
+	
+	非IE浏览器生效
+	<!--[if !IE]>
+	这段文字只在非IE浏览器显示
+	<![endif]-->
+  https://blog.csdn.net/freshlover/article/details/12132801
+  https://www.duitang.com/static/csshack.html
+  https://blog.csdn.net/liu_rong_fei/article/details/51555438

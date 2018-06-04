@@ -16,7 +16,7 @@
       padding: 8px;
     }
     .center{
-      background: rebeccapurple;
+      background: #663399;
     }
     .wrap::before, .center::before{
       content: attr(style);
@@ -83,6 +83,16 @@
           justify-content: center;
   ">
     <div class="center"></div>
+  </div>
+  <h1>水平居中</h1> 
+  <div class="wrap">
+    <div class="center" style="width: 300px; margin-left: auto; margin-right: auto;"></div>
+  </div>
+  <div class="wrap" style="display: flex; justify-content: center;">
+    <div class="center" style="width: 300px;"></div>
+  </div>
+  <div class="wrap" style="text-align: center;">
+    <div class="center" style="width: 300px; display:inline-block;"></div>
   </div>
 </body>
 </html>
