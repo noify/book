@@ -145,12 +145,10 @@
             el.removeEventListener(ev, handler);
         });
     }
-    document.addEventListener("click", function (e){
-      alert(e.target.className)
+    document.body.addEventListener("click", function (e){
       if(!!~e.target.className.indexOf('click-')){
         Array.prototype.forEach.call(e.target.classList, function(e){
           if(!!~e.indexOf('click-')){
-            console.log()
             switch (e.split('-')[1]) {
               case 'to2': 
                 enterView(view2)
