@@ -146,7 +146,7 @@
         });
     }
     document.addEventListener("click", function (e){
-      console.log(e.target.className)
+      alert(e.target.className)
       if(!!~e.target.className.indexOf('click-')){
         Array.prototype.forEach.call(e.target.classList, function(e){
           if(!!~e.indexOf('click-')){
