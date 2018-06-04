@@ -93,18 +93,20 @@
   </style>
 </head>
 <body>
-  <div class="view view1 currentView">
-    1
-    <a class="click-to2">下一页</a>
-  </div>
-  <div class="view view2">
-    2
-    <a class="click-tologin">下一页</a>
-    <a class="click-toback">返回</a>
-  </div>
-  <div class="view login">
-      login
-    <a class="click-toback">返回</a>
+  <div id="app">
+    <div class="view view1 currentView">
+      1
+      <a class="click-to2">下一页</a>
+    </div>
+    <div class="view view2">
+      2
+      <a class="click-tologin">下一页</a>
+      <a class="click-toback">返回</a>
+    </div>
+    <div class="view login">
+        login
+      <a class="click-toback">返回</a>
+    </div>
   </div>
   <script>
     var zIndex = 100;
@@ -145,7 +147,8 @@
             el.removeEventListener(ev, handler);
         });
     }
-    document.body.addEventListener("click", function (e){
+    document.getElementById("app").addEventListener("click", function (e){
+      console.log(e)
       if(!!~e.target.className.indexOf('click-')){
         Array.prototype.forEach.call(e.target.classList, function(e){
           if(!!~e.indexOf('click-')){
