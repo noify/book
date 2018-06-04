@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>pwa</title>
+  <style>
+    body{
+      margin: 0px;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background-color: #666;
+    }
+    .view{
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      background-color: #fff;
+    }
+    .view2{
+      background-color: rgb(224, 13, 13);
+    }
+    .login{
+      background-color: deepskyblue;
+    }
+    .animated {
+      -webkit-animation-duration: .3s;
+      animation-duration: .3s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+    .slideInRight {
+      -webkit-animation-name: slideInRight;
+      animation-name: slideInRight;
+    }
+    @-webkit-keyframes slideInRight {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    .slideInLeft {
+      -webkit-animation-name: slideInLeft;
+      animation-name: slideInLeft;
+    }
+    @-webkit-keyframes slideInLeft {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        visibility: visible;
+      }
+
+      to {
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="view view1 currentView">
+    1
+    <a class="click-to2">下一页</a>
+  </div>
+  <div class="view view2">
+    2
+    <a class="click-tologin">下一页</a>
+    <a class="click-toback">返回</a>
+  </div>
+  <div class="view login">
+      login
+    <a class="click-toback">返回</a>
+  </div>
+  <script>
+    var zIndex = 100;
+    var viewList = []
+    var view1 = document.getElementsByClassName('view1')[0]
+    var view2 = document.getElementsByClassName('view2')[0]
+    var login = document.getElementsByClassName('login')[0]
+    view1.style.zIndex = zIndex
+    viewList.push({
+      name: view1,
+      zIndex: zIndex
+    })
+    function enterView (view) {
+      zIndex = zIndex + 100
+      view.style.zIndex = zIndex
+      viewList.push({
+        name: view,
+        zIndex: zIndex
+      })
+      view.classList.add('animated', 'slideInRight')
+      once(view, "animationend", function () {
+        view.classList.remove('animated', 'slideInRight')
+        view.removeEventListener
+      })
+    }
+    function exitView () {
+      var view = viewList.pop().name;
+      zIndex -= 100;
+      view.classList.add('animated', 'slideInLeft')
+      once(view, "animationend", function () {
+        view.classList.remove('animated', 'slideInLeft')
+        view.style.zIndex = 0
+      })
+    }
+    function once(el, ev, fn) {
+        el.addEventListener(ev, function handler() {
+            fn.apply(this, arguments);
+            el.removeEventListener(ev, handler);
+        });
+    }
+    document.addEventListener("click", function (e){
+      console.log(e.target.className)
+      if(!!~e.target.className.indexOf('click-')){
+        Array.prototype.forEach.call(e.target.classList, function(e){
+          if(!!~e.indexOf('click-')){
+            console.log()
+            switch (e.split('-')[1]) {
+              case 'to2': 
+                enterView(view2)
+                break;
+              case 'toback': 
+                exitView()
+                break;
+              case 'tologin':
+                enterView(login)
+                break;
+              default:;
+            }
+          }
+        })
+      }
+    });
+  </script>
+</body>
+</html>
