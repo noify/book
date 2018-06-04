@@ -22,6 +22,7 @@
       width: 100vw;
       height: 100vh;
       background-color: #fff;
+      z-index: 0;
     }
     .view2{
       background-color: rgb(224, 13, 13);
@@ -100,14 +101,17 @@
     <div class="view animated view1">
       1
       <a class="click-to2">下一页</a>
+      <a class="click-tologin">登录</a>
     </div>
     <div class="view animated view2">
       2
-      <a class="click-tologin">下一页</a>
+      <a class="click-tologin">登录</a>
       <a class="click-toback">返回</a>
     </div>
     <div class="view animated login">
         login
+        
+      <a class="click-to2">下一页</a>
       <a class="click-toback">返回</a>
     </div>
   </div>
@@ -132,7 +136,6 @@
       view.classList.add('slideInRight')
       once(view, "animationend", function () {
         view.classList.remove('slideInRight')
-        view.removeEventListener
       })
     }
     function exitView () {
@@ -145,10 +148,10 @@
       })
     }
     function once(el, ev, fn) {
-        el.addEventListener(ev, function handler() {
-            fn.apply(this, arguments);
-            el.removeEventListener(ev, handler);
-        });
+      el.addEventListener(ev, function handler() {
+        fn.apply(this, arguments);
+        el.removeEventListener(ev, handler);
+      });
     }
     document.getElementById("app").addEventListener("click", function (e){
       if(!!~e.target.className.indexOf('click-')){
