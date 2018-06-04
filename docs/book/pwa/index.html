@@ -14,6 +14,9 @@
       position: relative;
       background-color: #666;
     }
+    *{
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
     .view{
       position: absolute;
       width: 100vw;
@@ -94,16 +97,16 @@
 </head>
 <body>
   <div id="app">
-    <div class="view view1 currentView">
+    <div class="view animated view1">
       1
       <a class="click-to2">下一页</a>
     </div>
-    <div class="view view2">
+    <div class="view animated view2">
       2
       <a class="click-tologin">下一页</a>
       <a class="click-toback">返回</a>
     </div>
-    <div class="view login">
+    <div class="view animated login">
         login
       <a class="click-toback">返回</a>
     </div>
@@ -126,18 +129,18 @@
         name: view,
         zIndex: zIndex
       })
-      view.classList.add('animated', 'slideInRight')
+      view.classList.add('slideInRight')
       once(view, "animationend", function () {
-        view.classList.remove('animated', 'slideInRight')
+        view.classList.remove('slideInRight')
         view.removeEventListener
       })
     }
     function exitView () {
       var view = viewList.pop().name;
       zIndex -= 100;
-      view.classList.add('animated', 'slideInLeft')
+      view.classList.add('slideInLeft')
       once(view, "animationend", function () {
-        view.classList.remove('animated', 'slideInLeft')
+        view.classList.remove('slideInLeft')
         view.style.zIndex = 0
       })
     }
@@ -148,7 +151,6 @@
         });
     }
     document.getElementById("app").addEventListener("click", function (e){
-      console.log(e)
       if(!!~e.target.className.indexOf('click-')){
         Array.prototype.forEach.call(e.target.classList, function(e){
           if(!!~e.indexOf('click-')){
