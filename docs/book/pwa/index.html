@@ -116,37 +116,78 @@
     </div>
   </div>
   <script>
-    var zIndex = 100;
-    var viewList = []
+    var app = {
+      history: {
+        _current: 0,
+        _list: [],
+        _enter: function (view) {
+          var curView = this._list[this._current]
+          if (typeof curView !== 'undefined' && curView.name === view) {
+            return
+          }
+          if (typeof curView !== 'undefined'){
+            curView.name.style.zIndex = 0
+          }
+          this._current = this._list.length
+          this._list.push({
+            name: view,
+            index: this._current
+          })
+          var preView = this._list[this._current - 1]
+          if (typeof preView !== 'undefined'){
+            preView.name.style.zIndex = 100
+          }
+          view.style.zIndex = 200
+          view.classList.add('slideInRight')
+          once(view, "animationend", function () {
+            view.classList.remove('slideInRight')
+            if (typeof preView !== 'undefined'){
+              preView.name.style.zIndex = 0
+            }
+          })
+        },
+        _exit: function (index) {
+          var curIndex = this._current + index
+          if ( curIndex < 0){
+            return
+          }
+          var curView = this._list[this._current].name
+          var view = this._list[curIndex].name
+          view.style.zIndex = 100
+          curView.classList.add('slideInLeft')
+          this._current = curIndex
+          this._list.pop(index)
+          once(curView, "animationend", function () {
+            curView.classList.remove('slideInLeft')
+            view.style.zIndex = 200
+            curView.style.zIndex = 0
+          })
+        },
+        go: function (view) {
+          if (isNaN(view)) {
+            this._enter(view)
+          } else {
+            if (view < 0) {
+              this._exit(view)
+              return
+            }
+            var view = this._list[this._current + view]
+            if (typeof view !== 'undefined') {
+              this._enter(view.name)
+              this._current = view.index
+            }
+          }
+        },
+        back: function () {
+          this._exit(-1)
+        },
+        forward: function () {}
+      }
+    };
     var view1 = document.getElementsByClassName('view1')[0]
     var view2 = document.getElementsByClassName('view2')[0]
     var login = document.getElementsByClassName('login')[0]
-    view1.style.zIndex = zIndex
-    viewList.push({
-      name: view1,
-      zIndex: zIndex
-    })
-    function enterView (view) {
-      zIndex = zIndex + 100
-      view.style.zIndex = zIndex
-      viewList.push({
-        name: view,
-        zIndex: zIndex
-      })
-      view.classList.add('slideInRight')
-      once(view, "animationend", function () {
-        view.classList.remove('slideInRight')
-      })
-    }
-    function exitView () {
-      var view = viewList.pop().name;
-      zIndex -= 100;
-      view.classList.add('slideInLeft')
-      once(view, "animationend", function () {
-        view.classList.remove('slideInLeft')
-        view.style.zIndex = 0
-      })
-    }
+    app.history.go(view1)
     function once(el, ev, fn) {
       el.addEventListener(ev, function handler() {
         fn.apply(this, arguments);
@@ -159,13 +200,13 @@
           if(!!~e.indexOf('click-')){
             switch (e.split('-')[1]) {
               case 'to2': 
-                enterView(view2)
+                app.history.go(view2)
                 break;
               case 'toback': 
-                exitView()
+                app.history.back()
                 break;
               case 'tologin':
-                enterView(login)
+                app.history.go(login)
                 break;
               default:;
             }
