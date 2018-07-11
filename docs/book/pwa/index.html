@@ -181,7 +181,9 @@
         back: function () {
           this._exit(-1)
         },
-        forward: function () {}
+        forward: function () {
+          this._enter(1)
+        }
       }
     };
     var view1 = document.getElementsByClassName('view1')[0]
