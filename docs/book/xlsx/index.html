@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<input id="file" type="file" value="上传" multiple/>
+<script lang="javascript" src="./xlsx.full.min.js"></script>
+<script>
+var addEvent = (function (){
+    if(window.attachEvent){
+      return function (ele, event, func) {
+        ele.attachEvent('on' + event, func)
+      }
+    }
+    else{
+      return function (ele, event, func, options) {
+        ele.addEventListener(event, func, typeof options === 'undefined' ? false : options)
+      }
+    }
+})()
+var _file  = document.getElementById('file')
+
+addEvent(_file , 'change', function (e) {
+  var files = e.target.files
+  for (var i = 0; i < files.length; i++) {
+      let file = files[i];
+      let reader = new FileReader()
+      reader.readAsArrayBuffer(file)
+      reader.onload = function (e) {
+        var workbook = XLSX.read(this.result, {type:"array"})
+        var Sheets = workbook.Sheets
+        console.log(workbook)
+        for (var sheet in Sheets) {
+          var sheetJson = XLSX.utils.sheet_to_json(Sheets[sheet])
+          for (var i in sheetJson) {
+            sheetJson[i].分公司代码 = 62
+            sheetJson[i].出生日期 = sheetJson[i]['年龄/出生日期']
+            delete sheetJson[i]['年龄/出生日期']
+            if (sheetJson[i].性别 === '男') {
+              sheetJson[i].性别 = 1
+            } else if  (sheetJson[i].性别 === '女') {
+              sheetJson[i].性别 = 2
+            }
+          }
+          Sheets[sheet] = XLSX.utils.json_to_sheet(sheetJson)
+        }
+        workbook.Sheets = Sheets
+        XLSX.writeFile(workbook, '_' + file.name, { bookType: 'xlml'})
+      }
+  }
+})
+</script>
+</body>
+</html>
