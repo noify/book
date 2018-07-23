@@ -19,6 +19,7 @@
   worker.postMessage('Hello World');
   worker.postMessage({method: 'echo', args: ['Work']});
   worker.onmessage = function (event) {
+    console.log(event)
     console.log('Received message ' + event.data);
     doSomething();
   }
