@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- http://javascript.ruanyifeng.com/htmlapi/webworker.html -->
+<script id="worker" type="app/worker">
+  addEventListener('message', function () {
+    postMessage('some message');
+  }, false);
+</script>
+<script>
+
+  var worker = new Worker('work.js');
+  worker.postMessage('Hello World');
+  worker.postMessage({method: 'echo', args: ['Work']});
+  worker.onmessage = function (event) {
+    console.log('Received message ' + event.data);
+    doSomething();
+  }
+
+  function doSomething() {
+    // 执行任务
+    worker.postMessage('Work done!');
+    worker.terminate();
+  }
+  worker.onerror(function (event) {
+    console.log([
+      'ERROR: Line ', e.lineno, ' in ', e.filename, ': ', e.message
+    ].join(''));
+  });
+
+  // 或者
+  worker.addEventListener('error', function (event) {
+    // ...
+  });
+  // 主线程
+  var uInt8Array = new Uint8Array(new ArrayBuffer(10));
+  for (var i = 0; i < uInt8Array.length; ++i) {
+    uInt8Array[i] = i * 2; // [0, 2, 4, 6, 8,...]
+  }
+  worker.postMessage(uInt8Array);
+  // Transferable Objects 格式
+  worker.postMessage(arrayBuffer, [arrayBuffer]);
+
+  // 例子
+  var ab = new ArrayBuffer(1);
+  worker.postMessage(ab, [ab]);
+
+  var blob = new Blob([document.querySelector('#worker').textContent]);
+  var url = window.URL.createObjectURL(blob);
+  var worker = new Worker(url);
+
+  worker.onmessage = function (e) {
+    // e.data === 'some message'
+  };
+
+  function createWorker(f) {
+    var blob = new Blob([f.toString()]);
+    var url = window.URL.createObjectURL(blob);
+    var worker = new Worker(url);
+    return worker;
+  }
+
+  var pollingWorker = createWorker(function (e) {
+    var cache;
+
+    function compare (New, old) { 
+      //... 
+    };
+
+    setInterval(function () {
+      fetch('/my-api-endpoint').then(function (res) {
+        var data = res.json();
+
+        if (!compare(data, cache)) {
+          cache = data;
+          self.postMessage(data);
+        }
+      })
+    }, 1000)
+  });
+
+  pollingWorker.onmessage = function () {
+    // render data
+  }
+
+  pollingWorker.postMessage('init');
+</script>
+</body>
+</html>

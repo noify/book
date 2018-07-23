@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  颠倒顺序：<button id='rDOM'>操作DOM</button>
+  <button id='vDOM'>虚拟DOM</button>
+  <br/> <br/>
+  筛选奇数：<button id='rDOM2'>操作DOM</button>
+  <button id='vDOM2'>虚拟DOM</button>
+  <button id='cDOM'>还原</button>
+  <ul id='ul'></ul>
+  <script>
+  var ul = document.getElementById('ul')
+  var rDOM = document.getElementById('rDOM')
+  var vDOM = document.getElementById('vDOM')
+  var rDOM2 = document.getElementById('rDOM2')
+  var cDOM = document.getElementById('cDOM')
+  var children = ul.childNodes
+  var ulStr = ''
+
+  for (var i = 1; i <= 10000; i++) {
+    ulStr += '<li>' + i + '</li>'
+  }
+  ul.innerHTML = ulStr
+  
+  var addEvent = (function (){
+    if (window.attachEvent) {
+      return function (ele, event, func) {
+        ele.attachEvent('on' + event, func)
+      }
+    } else {
+      return function (ele, event, func, options) {
+        ele.addEventListener(event, func, typeof options === 'undefined' ? false : options)
+      }
+    }
+  })()
+  function recordDate (fn) {
+    return function () {
+      var odate = new Date()
+      fn()
+      console.log(new Date() - odate)
+    }
+  }
+
+  // 排序颠倒
+  addEvent(rDOM, 'click', recordDate(function () {
+    for(var i = children.length-1; i > -1; i--){
+      ul.appendChild(children[i])
+    }
+  }))
+  addEvent(vDOM, 'click', recordDate(function () {
+    var df = document.createDocumentFragment()
+    for(var i = children.length-1; i > -1; i--){
+      df.appendChild(children[i].cloneNode(true))
+    }
+    ul.textContent = ''
+    ul.appendChild(df)
+  }))
+  // 奇数筛选
+  addEvent(rDOM2, 'click', recordDate(function () {
+    Array.prototype.forEach.call(children, function (item) {
+      if (item.innerHTML%2 === 0) {
+        ul.removeChild(item)
+      }
+    })
+  }))
+  addEvent(vDOM2, 'click', recordDate(function () {
+    var df = document.createDocumentFragment()
+    Array.prototype.forEach.call(children, function (item) {
+      if (item.innerHTML%2 !== 0) {
+        df.appendChild(item.cloneNode(true))
+      }
+    })
+    ul.textContent = ''
+    ul.appendChild(df)
+  }))
+  // 还原
+  addEvent(cDOM, 'click', function () {
+    ul.innerHTML = ulStr
+  })
+  addEvent(ul, 'click', function (e) {
+    var target = e.target
+    if (target.tagName.toLowerCase() === 'li') {
+      alert(target.innerHTML)
+    }
+  })
+  </script>
+</body>
+</html>

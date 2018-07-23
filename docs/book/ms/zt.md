@@ -71,12 +71,14 @@
 
   ```js
   var ul = document.getElementById('ul')
-  var tempul = document.createDocumentFragment()
-  Array.prototype.forEach.call(ul.children, function (item, i, arr) {
-    if (item.innerHTML%2 === 0) {
-      tempul.append(item)
+  var df = document.createDocumentFragment()
+  Array.prototype.forEach.call(ul.childNodes, function (item) {
+    if (item.innerHTML%2 !== 0) {
+      df.appendChild(item.cloneNode(true))
     }
   })
+  ul.textContent = ''
+  ul.appendChild(df)
   ```
 
 9.为什么要使用ajax？如何解决ajax跨域问题？
