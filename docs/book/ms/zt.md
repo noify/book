@@ -30,7 +30,6 @@
 
   ../css
 
-
 4.如何实现左边固定右边自适应布局？
 
   ../css
@@ -63,7 +62,7 @@
   var ul = document.getElementById('ul')
   addEvent(ul, 'click', function (e) {
     var target = e.target
-    if (target.tagName === 'li') {
+    if (target.tagName.toLowerCase() === 'li') {
       alert(target.innerHTML)
     }
   })
@@ -71,16 +70,13 @@
 8.<ul><li>1</li><li>2</li><li>3</li>...</ul>有100个li，将奇数个li渲染到ul
 
   ```js
-    var ul = document.getElementById('ul')
-    var lilist = ul.childNodes
-    var fakelist = document.createDocumentFragment()
-    Array.prototype.forEach.call(lilist, function (item, i, arr) {
-      if (i%2 !== 0) {
-        fakelist.append(item)
-      }
-    })
-    ul.innerHTML = ''
-    ul.appendChild(fakelist)
+  var ul = document.getElementById('ul')
+  var tempul = document.createDocumentFragment()
+  Array.prototype.forEach.call(ul.children, function (item, i, arr) {
+    if (item.innerHTML%2 === 0) {
+      tempul.append(item)
+    }
+  })
   ```
 
 9.为什么要使用ajax？如何解决ajax跨域问题？
