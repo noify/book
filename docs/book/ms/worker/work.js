@@ -1,4 +1,4 @@
-importScripts('script1.js', 'script2.js');
+// importScripts('script1.js', 'script2.js');
 // 写法一
 // this.addEventListener('message', function (e) {
 //   this.postMessage('You said: ' + e.data);
