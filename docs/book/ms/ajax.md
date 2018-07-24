@@ -25,6 +25,98 @@ xhr.onerror = function() {
 };
 ```
 
+# 为什么使用 AJAX
+
+  ## 优点
+
+  1. 通过异步模式，可以实现动态不刷新（局部刷新）无刷新更新页面，减少用户的实际和心理的等待时间，更好的提升了用户体验。
+  2. 优化了浏览器和服务器之间的传输，按需要获得数据，减少不必要的数据往返，减少了带宽占用。
+  3. Ajax引擎在客户端运行，承担了一部分本来由服务器承担的工作，从而减少了大用户量下的服务器负载，减轻了服务器负担。
+  4. 主流浏览器都支持。
+
+  ## 缺点
+
+  1. AJAX的程序必须测试针对各个浏览器的兼容性。
+  2. AJAX更新页面内容的时候并没有刷新整个页面，因此，网页的后退功能是失效的；需提醒用户。
+  3. 希望首屏立即出来或SEO相关的内容，不要用AJAX，对搜索引擎支持不好。
+
+# AJAX 跨域
+
+  因为浏览器的同源策略，即不允许访问非同源的页面，想要跨域必须使用 跨域资源共享 CORS 或 JSONP 等。
+
+  ## JSONP
+
+  ajax请求受同源策略影响，不允许进行跨域请求，而script标签(或者img标签，只要有src属性的即可)src属性中的链接却可以访问跨域的js脚本。
+
+  利用这个特性，服务端不再返回JSON格式的数据，而是返回一段调用某个函数的js代码，在src中进行了调用，这样实现了跨域。
+
+  CORS与JSONP的使用目的相同，但是比JSONP更强  大。
+
+  JSONP只支持GET请求，CORS支持所有类型的HTTP请求。JSONP的优势在于支持老式浏览器，以及可以向不支持CORS的网站请求数据。
+
+  ## CORS 简介
+
+  http://www.ruanyifeng.com/blog/2016/04/cors.html
+  https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS
+
+  CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）。
+
+  它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。
+
+  CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。
+
+  整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。
+
+  因此，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信。
+
+  ## CORS 两种请求
+
+  浏览器将CORS请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。
+
+  只要同时满足以下两大条件，就属于简单请求。
+
+  1. 请求方法是以下三种方法之一：
+  * HEAD
+  * GET
+  * POST
+  2. HTTP的头信息不超出以下几种字段：
+  * Accept
+  * Accept-Language
+  * Content-Language
+  * Last-Event-ID
+  * Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+
+  凡是不同时满足上面两个条件，就属于非简单请求。
+
+  浏览器对这两种请求的处理，是不一样的。
+
+  ## CORS 简单请求
+
+  对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。
+
+  下面是一个例子，浏览器发现这次跨源AJAX请求是简单请求，就自动在头信息之中，添加一个Origin字段。
+
+  ```
+  GET /cors HTTP/1.1
+  Origin: http://api.bob.com
+  Host: api.alice.com
+  Accept-Language: en-US
+  Connection: keep-alive
+  User-Agent: Mozilla/5.0...
+  ```
+
+  ## CORS 非简单请求
+
+  ### OPTIONS 预检请求
+
+  非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。
+
+  非简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。"预检"请求用的请求方法是OPTIONS，表示这个请求是用来询问的。
+
+  浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
+
+
+
 不推荐用外部变量锁定或修改按钮状态的方式，因为那样比较难：要考虑并理解 success, complete, error, timeout 这些事件的区别，并注册正确的事件，一旦失误，功能将不再可用；不可避免地比普通流程要要多注册一个 complete 事件；恢复状态的代码很容易和不相干的代码混合在一起；我推荐用主动查询状态的方式（A、B，jQuery 为例）或工具函数的方式（C、D）来去除重复操作，并提供一些例子作为参考：A. 独占型提交只允许同时存在一次提交操作，并且直到本次提交完成才能进行下一次提交。module.submit = function() {
   if (this.promise_.state() === 'pending') {
     return
