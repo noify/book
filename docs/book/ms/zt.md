@@ -65,8 +65,33 @@
   第二阶段：找到事件目标并触发相应的事件，
   第三阶段：从目标逐层向上返回到根节点，
 
+  在JS中，绑定的事件默认的执行时间是在冒泡阶段执行，而非在捕获阶段（重要），这也是为什么当父类和子类都绑定了某个事件，会先调用子类绑定的事件，后调用父类的事件。
 
+  不过我们可以通过绑定事件时，指定事件执行时间是在冒泡阶段还是捕获阶段。
 
+  obj.addEventListener(event,function(){},bool)
+
+  bool:false，代表冒泡阶段执行
+
+  bool:true，代表捕获阶段执行
+
+  JS在默认情况下获取事件后，就开始从根元素开始捕获所有该事件的监听对象，然后在冒泡阶段逐一执行。捕获阶段是在冒泡阶段前面
+
+  
+
+  阻止冒泡
+
+  w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true；
+
+  阻止默认行为
+
+  w3c的方法是e.preventDefault()，IE则是使用e.returnValue = false;
+
+  onclick,click,on()的优先关系：onclick>click>on()；
+
+  onclick和click绑定的事件，彼此之间遵守事件冒泡规则，从内到外触发；
+
+  on()绑定的事件，总是晚于onclick和click绑定的事件触发；
 
 
 
