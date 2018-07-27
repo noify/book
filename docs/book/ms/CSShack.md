@@ -24,6 +24,27 @@ CSS hack书写顺序，一般是将适用范围广、被识别能力强的CSS定
 
 * CSS3选择器结合JavaScript的Hack
   https://blog.csdn.net/dayu9216/article/details/70225261
+
+  我们用IE10进行举例：
+
+  由于IE10用户代理字符串（UserAgent）为：Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)，所以我们可以使用JavaScript将此属性添加到文档标签中，再运用CSS3基本选择器匹配。
+
+  JavaScript代码:
+
+  ```js
+  var htmlObj = document.documentElement;
+  htmlObj.setAttribute('data-useragent',navigator.userAgent);
+  htmlObj.setAttribute('data-platform', navigator.platform );
+  ```
+
+  CSS3匹配代码：
+
+  ```css
+  html[data-useragent*='MSIE 10.0'] #id {
+    color: #F00;
+  }
+  ```
+
 # CSS hack 利弊
 
 
