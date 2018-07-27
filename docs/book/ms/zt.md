@@ -81,7 +81,7 @@
 
   阻止冒泡
 
-  w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true；
+  w3c的方法是e.stopPropagation()，IE则是使用e.cancelBubble = true;
 
   阻止默认行为
 

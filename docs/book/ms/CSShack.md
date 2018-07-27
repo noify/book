@@ -25,3 +25,31 @@ CSS hack书写顺序，一般是将适用范围广、被识别能力强的CSS定
 * CSS3选择器结合JavaScript的Hack
 
 # CSS hack 利弊
+
+
+|标记|IE6|IE7|IE8|FF|Opera|Sarari|
+|-|-|-|-|-|-|-|
+|[*+><]	|√|	√	|X|	X|	X|	X|
+|_|	√|	X|	X|	X|	X|	X|
+|\9|	√|	√|	√|	X|	X|	X|
+|\0	|X	|X	|√	|X	|√	|X|
+|@media screen and (-webkit-min-device-pixel-ratio:0){.bb {}}|	X|	X|	X|	X|	X|	√|
+|.bb , x:-moz-any-link, x:default	|X	|√	|X	|√(ff3.5及以下)	|X	|X|
+|@-moz-document url-prefix(){.bb{}}|	X|	X|	X|	√|	X|	X|
+|@media all and (min-width: 0px){.bb {}}	|X	|X	|X	|√	|√	|√|
+|* +html .bb {}|	X|	√|	X|	X|	X|	X|
+|游览器内核|	Trident|	Trident	|Trident|	Gecko|	Presto|	WebKit|
+
+```css
+.bb{
+height:32px;
+background-color:#f1ee18;/*所有识别*/
+background-color:#00deff\9; /*IE6、7、8识别*/
++background-color:#a200ff;/*IE6、7识别*/
+_background-color:#1e0bd1;/*IE6识别*/
+}
+@media screen and (-webkit-min-device-pixel-ratio:0){.bb{background-color:#f1ee18}}{} /*safari(Chrome) 有效 */
+.bb, x:-moz-any-link, x:default{background-color:#00ff00;}/*IE7 firefox3.5及以下 识别 */ 
+@-moz-document url-prefix(){.bb{background-color:#00ff00;}}/*仅firefox 识别*/ 
+* +html .bb{background-color:#a200ff;}/* 仅IE7 识别 */
+```
