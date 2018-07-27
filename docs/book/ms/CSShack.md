@@ -23,7 +23,7 @@ CSS hack书写顺序，一般是将适用范围广、被识别能力强的CSS定
 * 选择器前缀法
 
 * CSS3选择器结合JavaScript的Hack
-
+  https://blog.csdn.net/dayu9216/article/details/70225261
 # CSS hack 利弊
 
 
@@ -53,3 +53,65 @@ _background-color:#1e0bd1;/*IE6识别*/
 @-moz-document url-prefix(){.bb{background-color:#00ff00;}}/*仅firefox 识别*/ 
 * +html .bb{background-color:#a200ff;}/* 仅IE7 识别 */
 ```
+
+# 条件 hack
+
+  ```html
+  <!--[if <keywords>? IE <version>?]>
+    HTML代码块
+  <![endif]-->
+  <!--
+    <keywords>
+    if条件共包含6种选择方式：是否、大于、大于或等于、小于、小于或等于、非指定版本
+
+    是否：
+    指定是否IE或IE某个版本。关键字：空
+    大于：
+    选择大于指定版本的IE版本。关键字：gt（greater than）
+    大于或等于：
+    选择大于或等于指定版本的IE版本。关键字：gte（greater than or equal）
+    小于：
+    选择小于指定版本的IE版本。关键字：lt（less than）
+    小于或等于：
+    选择小于或等于指定版本的IE版本。关键字：lte（less than or equal）
+    非指定版本：
+    选择除指定版本外的所有IE版本。关键字：!
+    <version>
+    目前的常用IE版本为6.0及以上，推荐酌情忽略低版本，把精力花在为使用高级浏览器的用户提供更好的体验上
+
+    IE10及以上版本已将条件注释特性移除，使用时需注意。
+  -->
+  ```
+
+# 属性级hack
+
+  ```css
+  selector{<hack>?property:value<hack>?;}
+  /*
+    _：选择IE6及以下。连接线（中划线）（-）亦可使用，为了避免与某些带中划线的属性混淆，所以使用下划线（_）更为合适。
+    *：选择IE7及以下。诸如：（+）与（#）之类的均可使用，不过业界对（*）的认知度更高
+    \9：选择IE6+
+    \0：选择IE8+和Opera15以下的浏览器
+    在标准模式中
+    “-″减号是IE6专有的hack
+    “\9″ IE6/IE7/IE8/IE9/IE10都生效
+    “\0″ IE8/IE9/IE10都生效，是IE8/9/10的hack
+    “\9\0″ 只对IE9/IE10生效，是IE9/10的hack
+  */
+  ```
+
+# 选择符级hack
+
+  ```css
+  <hack> selector{ sRules }
+  /*
+  选择不同的浏览器及版本
+  尽可能减少对CSS Hack的使用。Hack有风险，使用需谨慎
+  通常如未作特别说明，本文档所有的代码和示例的默认运行环境都为标准模式。
+  一些CSS Hack由于浏览器存在交叉认识，所以需要通过层层覆盖的方式来实现对不同浏览器进行Hack的。
+  */
+  * html .test { color: #090; }       /* For IE6 and earlier */
+  * + html .test { color: #ff0; }     /* For IE7 */
+  .test:lang(zh-cmn-Hans) { color: #f00; }  /* For IE8+ and not IE */
+  .test:nth-child(1) { color: #0ff; } /* For IE9+ and not IE */
+  ```

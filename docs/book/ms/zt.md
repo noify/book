@@ -36,7 +36,7 @@
 
 5. 有哪些css hack技巧？用途是？
 
-  https://blog.csdn.net/dayu9216/article/details/70225261
+  [CSShack](./CSShack.html)
 
 6. x=1;y=1;add(8);alert(x+y);function add(y){x+=3;y+=3;alert(x+y)}
 
