@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="utf-8">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8"/>
+<style type="text/css">
+.bb{text-align:center;line-height:20px;height:240px;color:#f00;font-size:16px;font-weight:bold}
+.bb{background-color:#f1ee18;/*所有识别*/background-color:#00deff\9;/*ie678识别*/+background-color:#a200ff;/*ie67识别*/_background-color:#1e0bd1/*ie6识别*/} 
+
+@media screen and (-webkit-min-device-pixel-ratio:0){.bb{background-color:#f1ee18}}{} /* safari(Chrome) 有效 */
+@media all and (min-width: 0px){ .bb{background-color:#f1ee18; /*opera and safari and firefox*/ background-color:#4cac70\0;} /* 仅 opera 有效 */ .bb .opera div{height:0\0;overflow:hidden;}}{}
+
+/* 以上两种方法，均不能区分 safari 和 opera ，但可以配合使用区分 firefox 因为后者支持firefox */
+
+.bb-old, x:-moz-any-link, x:default{background-color:#4eff00;/*ie7 firefox 识别 */+background-color:#a200ff/*再区分一次ie7*/} 
+@-moz-document url-prefix(){.bb{background-color:#4eff00;}}/*新增仅对firefox 识别的方法*/
+
+* +html .bb{background-color:#a200ff;}/* 仅ie7 识别 */
+
+/* 一般情况下 我们区分ie7 只用 +background-color 配合 _background-color 就行了 
+如果必须写 .bb, x:-moz-any-link, x:default 这样的代码区分 firefox  则谨记此写法对ie7也有效，故在其中要再重写一次 +background-color
+或者使用 * +html .bb{background-color:blue;} 方法仅对 ie7 有效
+新增说明：@-moz-document url-prefix(){} 此写法仅对firefox 有效
+*/
+
+.browsers{background-color:#eee;}
+.browsers td{width:8%;text-align:center;padding:8px 8px 0;vertical-align:top;font-size:14px;}
+
+.browsercolor{font-size:18px;font-weight:bold;}
+.browsercolor div{height:80px;padding-top:10px}
+.ie6 div{background-color:#1e0bd1;}
+.ie7 div{background-color:#a200ff;}
+.ie8 div{background-color:#00deff;}
+.firefox div{background-color:#4eff00;}
+.opera div{background-color:#4cac70;}
+.other div{background-color:#f1ee18;}
+#tipTable td,#tipTable th{border:1px solid black;width:120px;height:16px;text-align:center;}
+#wordTable td{margin-left:8px;}
+
+#firefoxTip{display:none;}
+#firefoxTip-old, x:-moz-any-link, x:default{display:block;/*ie7 firefox 识别 */+display:none;/*再区分一次ie7*/} 
+@-moz-document url-prefix(){#firefoxTip{display:block;}}/*新增仅对firefox 识别的方法*/
+
+#ChromeTip{display:none;}
+
+@media screen and (-webkit-min-device-pixel-ratio:0){#ChromeTip{display:block;}}{} /* safari(Chrome) 有效 */
+@media all and (min-width: 0px){#ChromeTip{display:none\0;} /* 仅 opera 有效 */ }{}
+
+
+.browsercolor p{height:20px;background-color:#eee;}
+
+.bb .ie6 p{_display:block;_background-color:#1e0bd1;}
+* +html .bb .ie7 p{background-color:#a200ff}/* 仅ie7 识别 */
+.bb .ie8 p{background-color:#00deff\9;+background-color:#eee}
+
+@media screen and (-webkit-min-device-pixel-ratio:0){.bb .other p{background-color:#f1ee18;}}{} /* safari(Chrome) 有效 */
+
+@media all and (min-width: 0px){ .bb .opera p{background-color:#4cac70\0}}{} /* opera 有效 */
+
+.bb-old .firefox p, x:-moz-any-link, x:default{background-color:#4eff00;/*ie7 firefox 识别 */,+background-color:#eee;/*再区分一次ie7*/} 
+@-moz-document url-prefix(){.bb .firefox p{background-color:#4eff00;}}/*新增仅对firefox 识别的方法*/
+
+</style>
+</head>
+<body>
+  <div class="bb">
+    <table class="browsers" width="100%" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>IE6</td><td>&nbsp;</td><td>IE7</td><td>&nbsp;</td><td>IE8</td><td>&nbsp;</td><td>Firefox</td><td>&nbsp;</td><td>Opera</td><td>&nbsp;</td><td>Safari <br /> (Chrome)</td><td>&nbsp;</td>
+    </tr>
+    <tr class="browsercolor" >
+      <td class="ie6" ><div>IE6</div><p></p></td><td>&nbsp;</td><td class="ie7" ><div>IE7</div><p></p></td><td>&nbsp;</td><td class="ie8" ><div>IE8</div><p></p></td><td>&nbsp;</td><td class="firefox" ><div>Firefox</div><p></p></td><td>&nbsp;</td><td class="opera"><div>Opera</div><p></p></td><td>&nbsp;</td><td class="other"><div >Safari <br />(Chrome)</div><p></p></td><td>&nbsp;</td>
+    </tr>
+    </table>
+    <br />
+    <span style="display:none;display:block\0;display:none\9;">您现在使用的浏览器是Opera。Opera游览器很时髦么。</span>
+    <span id="firefoxTip">您现在使用的浏览器是Firefox。Firefox是很强大的游览器。</span>
+    <span id="ChromeTip">您现在使用的浏览器是Safari(Chrome)。Safari和Chrome使用的都是Webkit内核。</span>
+    <!--[if IE 8]>您现在使用的浏览器是IE8。新版IE8的功能可是不少呢。<![endif]--> 
+    <!--[if IE 7]>您现在使用的浏览器是IE7。IE7还可以凑合着用！<![endif]--> 
+    <!--[if IE 6]>您现在使用的浏览器是IE6。IE6可是有点落后了！<![endif]--> 
+  </div>    
+</body>
+</html>
