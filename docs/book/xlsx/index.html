@@ -38,6 +38,7 @@ addEvent(_file , 'change', function (e) {
           var sheetJson = XLSX.utils.sheet_to_json(Sheets[sheet])
           for (var i in sheetJson) {
             sheetJson[i].分公司代码 = 62
+            sheetJson[i].年龄 = Math.round((new Date()-new Date(sheetJson[i]['年龄/出生日期']))/1000/60/60/24/365)
             sheetJson[i].出生日期 = sheetJson[i]['年龄/出生日期']
             delete sheetJson[i]['年龄/出生日期']
             if (sheetJson[i].性别 === '男') {
