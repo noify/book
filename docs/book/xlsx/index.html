@@ -9,7 +9,18 @@
 <body>
 <input id="file" type="file" value="上传" multiple/>
 <script lang="javascript" src="./xlsx.full.min.js"></script>
+<script type="text/javascript" src="https://js.live.net/v7.2/OneDrive.js"></script>
 <script>
+  var odOptions = {
+  clientId: "5f77f08e-1cb3-453e-b0ec-bc8b094b2ffb",
+  action: "query",
+  multiSelect: true,
+  advanced: {},
+  success: function(files) { /* success handler */ },
+  cancel: function() { /* cancel handler */ },
+  error: function(e) { /* error handler */ }
+}
+OneDrive.open(odOptions);
 var addEvent = (function (){
     if(window.attachEvent){
       return function (ele, event, func) {

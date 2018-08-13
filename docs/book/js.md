@@ -1320,7 +1320,7 @@ Javascript中的继承一直是个比较麻烦的问题，prototype、constructo
 ES5中这种最简单的继承，实质上就是将子类的原型设置为父类的实例。
  
 ```js
-function Super() {} 
+function Super() {}
 function Sub() {}
 Sub.prototype = new Super();
 Sub.prototype.constructor = Sub;
@@ -1335,7 +1335,7 @@ Sub.prototype.__proto__ == Super.prototype; // ⑦ true
 ```
  
 ### es6 中的继承
- 
+
 ![es6 中的继承](../../images/前端/02.png)
  
 ES6和ES5的继承是一模一样的，只是多了class 和extends ，ES6的子类和父类，子类原型和父类原型，通过__proto__ 连接。
@@ -1361,9 +1361,9 @@ Sub.prototype.__proto__ === Super.prototype; // ⑦ true
 * changedTouches: 触发事件时改变的触摸点的集合
  
 举例来说，比如div1, div2只有div2绑定了touchstart事件，第一次放下一个手指在div2上，触发了touchstart事件，这个时候，三个集合的内容是一样的，都包含这个手指的touch，然后，再放下两个手指一个在div1上，一个在div2上，这个时候又会触发事件，但changedTouches里面只包含第二个第三个手指的信息，因为第一个没有发生变化，而targetTouches包含的是在第一个手指和第三个在div2上的手指集合，touches包含屏幕上所有手指的信息，也就是三个手指
- 
+
 ## 页面元素的坐标获取
- 
+
 ![](../../images/前端/05.png)
  
 ![](../../images/前端/06.png)

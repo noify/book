@@ -390,13 +390,11 @@
 		同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，
 		提高了webserver的http请求的解析速度。
 
-
 - style标签写在body后与body前有什么区别？
 
   从有html标准以来到目前为止（2017年5月），标准一直是规定style元素不应出现在body元素中。（除非style处于template元素中，因为template中的内容是不直接在dom树中的。另外曾经`<style scoped>`这一特殊用法是可以在body元素中的。）不过网页浏览器一直有容错设计。
   
   如果style元素出现在body元素，最终效果和style元素出现在head里是一样的。但是可能引起FOUC、重绘或重新布局。
-
 
 - 什么是CSS 预处理器 / 后处理器？
 
