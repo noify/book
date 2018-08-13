@@ -1,9 +1,9 @@
 <template>
   <div class="sms">
-    <!-- <div class="mode">
-      <div class="left" :class="{ 'active': mode === 'once' }" @click="mode = 'once'">单次发送</div>
-      <div class="right" :class="{ 'active': mode !== 'once' }" @click="mode = ''">批量发送</div>
-    </div> -->
+    <!-- 
+      https://www.w3cplus.com/css/vw-for-layout.html
+      https://www.w3cplus.com/mobile/vw-layout-in-vue.html
+    -->
     <div class="mode">
       <div class="left" :class="{ 'active': sendMode === 'all' }" @click="sendMode = 'all'">全部</div>
       <div class="center" :class="{ 'active': sendMode === 'unsent' }" @click="sendMode = 'unsent'">未发送</div>
@@ -15,6 +15,7 @@
       <span id="fakeInput" :class="{ 'ccc': search === '' }">{{search === '' ? '输入手机号/姓名' : search}}</span>
       <input id="search" @keydown.8="keydownDel($event)" ref="search" v-model="search">
     </div>
+    <div aspectratio w-188-246> <div aspectratio-content></div> </div>
     <div class="searchList">
       <div class="suser" v-for="i in searchList" v-bind:key="i.id" v-show="sendMode === 'all' || (sendMode === 'unsent' && i.nums === 0) ||  (sendMode === 'sent' && i.nums > 0) " @click="chooseUser(i)">
         {{i.username}}(<span class="blue">{{i.mobile}}</span>)
@@ -145,6 +146,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<!--
+  容器适配，可以使用vw
+  文本的适配，可以使用vw
+  大于1px的边框、圆角、阴影都可以使用vw
+  内距和外距，可以使用vw
+-->
 <style lang="postcss">
 h3 {
   margin: 40px 0 0;
@@ -277,4 +284,20 @@ a {
   background: dodgerblue;
   border: 1px solid dodgerblue;
 }
+[aspectratio] {
+  position: relative;
+}
+[aspectratio]::before {
+  content: ''; display: block; width: 1px; margin-left: -1px; height: 0;
+}
+[aspectratio-content] {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;
+}
+[w-188-246] {
+  width: 188px;
+  background-color: red;
+}
+[w-188-246] {
+  aspect-ratio: '188:246';
+} 
 </style>
