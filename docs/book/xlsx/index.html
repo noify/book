@@ -51,12 +51,12 @@ addEvent(_file , 'change', function (e) {
             sheetJson[i].分公司代码 = 62
             sheetJson[i].年龄 = Math.round((new Date()-new Date(sheetJson[i]['年龄/出生日期']))/1000/60/60/24/365)
             sheetJson[i].生日 = sheetJson[i]['年龄/出生日期']
-            sheetJson[i].下单日期 = sheetJson[i]['登录日期']
+            sheetJson[i].下单日期 = sheetJson[i]['登录时间']
             sheetJson[i].手机号码 = sheetJson[i]['手机号']
             sheetJson[i].省 = sheetJson[i]['省份']
             sheetJson[i].市 = sheetJson[i]['城市']
             delete sheetJson[i]['年龄/出生日期']
-            delete sheetJson[i]['登录日期']
+            delete sheetJson[i]['登录时间']
             delete sheetJson[i]['手机号']
             delete sheetJson[i]['省份']
             delete sheetJson[i]['城市']

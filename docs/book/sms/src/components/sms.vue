@@ -31,8 +31,9 @@
 <script>
 import axios from 'axios'
 import { debounce } from 'lodash'
-
+import { top250 } from '../lib/api'
 axios.defaults.baseURL = '/'
+top250({ start: 10 }).then(r => console.log(r))
 let token = ''
 let vm = {};
 export default {
