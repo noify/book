@@ -33,7 +33,7 @@ import axios from 'axios'
 import { debounce } from 'lodash'
 import { top250 } from '../lib/api'
 axios.defaults.baseURL = '/'
-top250({ start: 10 }).then(r => console.log(r))
+// top250({ start: 10 }).then(r => console.log(r))
 let token = ''
 let vm = {};
 export default {
@@ -135,6 +135,7 @@ export default {
   },
   data () {
     vm = this
+    console.log(this.$style)
     return {
       mode: '',
       sendMode: 'unsent',
@@ -201,6 +202,7 @@ a {
 }
 .mode .center{
   border-radius: 0;
+  background-image: url(../assets/del.png);
 }
 .mode .right{
   border-left: none;
@@ -244,6 +246,9 @@ a {
   top:-150px;
   left:-2000px;
   height:0;
+  &::placeholder {
+    color: gray;
+  }
 }
 #fakeInput{
   padding: 8px;
@@ -285,20 +290,35 @@ a {
   background: dodgerblue;
   border: 1px solid dodgerblue;
 }
-[aspectratio] {
-  position: relative;
-}
-[aspectratio]::before {
-  content: ''; display: block; width: 1px; margin-left: -1px; height: 0;
-}
-[aspectratio-content] {
-  position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%;
-}
 [w-188-246] {
   width: 188px;
   background-color: red;
 }
 [w-188-246] {
   aspect-ratio: '188:246';
-} 
+}
+/* border-image */
+@svg 1px-border {
+  height: 2px;
+  @rect {
+    fill: var(--color, black);
+    width: 100%;
+    height: 50%;
+  }
+}
+.top {
+  border-bottom: 1px solid transparent;
+  border-image: svg(1px-border param(--color #ccc)) 2 2 stretch;
+}
+/* background */
+@svg square {
+  @rect {
+    fill: var(--color, black);
+    width: 100%;
+    height: 100%;
+  }
+}
+.mode {
+  background: white svg(square param(--color #aaa));
+}
 </style>
