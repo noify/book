@@ -9,6 +9,18 @@
   表单：
   离线Web应用：Manifest 
 
+  1. 拖拽释放(Drag and drop) API 
+  2. 语义化更好的内容标签（header,nav,footer,aside,article,section）
+  3. 音频、视频API(audio,video)
+  4. 画布(Canvas) API
+  5. 地理(Geolocation) API
+  6. 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
+  7. sessionStorage 的数据在浏览器关闭后自动删除
+  8. 表单控件，calendar、date、time、email、url、search  
+  9. 新的技术webworker, websocket, Geolocation
+  参考资料：http://www.jb51.net/html5/45220.html
+  https://www.jianshu.com/p/a4f38d6c4035
+
   CSS3
   选择器：
   边框、背景、渐变、文本效果、字体：

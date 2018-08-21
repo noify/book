@@ -44,7 +44,6 @@ addEvent(_file , 'change', function (e) {
       reader.onload = function (e) {
         var workbook = XLSX.read(this.result, {type:"array"})
         var Sheets = workbook.Sheets
-        console.log(workbook)
         for (var sheet in Sheets) {
           var sheetJson = XLSX.utils.sheet_to_json(Sheets[sheet])
           for (var i in sheetJson) {
