@@ -6,7 +6,7 @@
   "icons": [{
       "src": "./images/logo.jpg",
       "sizes": "606x606",
-      "type": "image/jpg"
+      "type": "image/jpeg"
     }],
   "start_url": "./index.html",
   "scope": "./",
