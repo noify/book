@@ -1,221 +1,30 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>pwa</title>
-  <style>
-    body{
-      margin: 0px;
-      overflow: hidden;
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      background-color: #666;
-    }
-    *{
-      -webkit-tap-highlight-color:rgba(0,0,0,0);
-    }
-    .view{
-      position: absolute;
-      width: 100vw;
-      height: 100vh;
-      background-color: #fff;
-      z-index: 0;
-    }
-    .view2{
-      background-color: rgb(224, 13, 13);
-    }
-    .login{
-      background-color: deepskyblue;
-    }
-    .animated {
-      -webkit-animation-duration: .3s;
-      animation-duration: .3s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
-    }
-    .slideInRight {
-      -webkit-animation-name: slideInRight;
-      animation-name: slideInRight;
-    }
-    @-webkit-keyframes slideInRight {
-      from {
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-      }
-
-      to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-      }
-    }
-
-    @keyframes slideInRight {
-      from {
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-      }
-
-      to {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-      }
-    }
-    .slideInLeft {
-      -webkit-animation-name: slideInLeft;
-      animation-name: slideInLeft;
-    }
-    @-webkit-keyframes slideInLeft {
-      from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        visibility: visible;
-      }
-
-      to {
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-      }
-    }
-
-    @keyframes slideInLeft {
-      from {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        visibility: visible;
-      }
-
-      to {
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-      }
-    }
-  </style>
+  <title>Hello PWA</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <div id="app">
-    <div class="view animated view1">
-      1
-      <a class="click-to2">下一页</a>
-      <a class="click-tologin">登录</a>
-    </div>
-    <div class="view animated view2">
-      2
-      <a class="click-tologin">登录</a>
-      <a class="click-toback">返回</a>
-    </div>
-    <div class="view animated login">
-        login
-        
-      <a class="click-to2">下一页</a>
-      <a class="click-toback">返回</a>
-    </div>
-  </div>
-  <script>
-    var app = {
-      history: {
-        _current: 0,
-        _list: [],
-        _enter: function (view) {
-          var curView = this._list[this._current]
-          if (typeof curView !== 'undefined' && curView.name === view) {
-            return
-          }
-          if (typeof curView !== 'undefined'){
-            curView.name.style.zIndex = 0
-          }
-          this._current = this._list.length
-          this._list.push({
-            name: view,
-            index: this._current
-          })
-          var preView = this._list[this._current - 1]
-          if (typeof preView !== 'undefined'){
-            preView.name.style.zIndex = 100
-          }
-          view.style.zIndex = 200
-          view.classList.add('slideInRight')
-          once(view, "animationend", function () {
-            view.classList.remove('slideInRight')
-            if (typeof preView !== 'undefined'){
-              preView.name.style.zIndex = 0
-            }
-          })
-        },
-        _exit: function (index) {
-          var curIndex = this._current + index
-          if ( curIndex < 0){
-            return
-          }
-          var curView = this._list[this._current].name
-          var view = this._list[curIndex].name
-          view.style.zIndex = 100
-          curView.classList.add('slideInLeft')
-          this._current = curIndex
-          this._list.pop(index)
-          once(curView, "animationend", function () {
-            curView.classList.remove('slideInLeft')
-            view.style.zIndex = 200
-            curView.style.zIndex = 0
-          })
-        },
-        go: function (view) {
-          if (isNaN(view)) {
-            this._enter(view)
-          } else {
-            if (view < 0) {
-              this._exit(view)
-              return
-            }
-            var view = this._list[this._current + view]
-            if (typeof view !== 'undefined') {
-              this._enter(view.name)
-              this._current = view.index
-            }
-          }
-        },
-        back: function () {
-          this._exit(-1)
-        },
-        forward: function () {
-          this._enter(1)
-        }
-      }
-    };
-    var view1 = document.getElementsByClassName('view1')[0]
-    var view2 = document.getElementsByClassName('view2')[0]
-    var login = document.getElementsByClassName('login')[0]
-    app.history.go(view1)
-    function once(el, ev, fn) {
-      el.addEventListener(ev, function handler() {
-        fn.apply(this, arguments);
-        el.removeEventListener(ev, handler);
-      });
-    }
-    document.getElementById("app").addEventListener("click", function (e){
-      if(!!~e.target.className.indexOf('click-')){
-        Array.prototype.forEach.call(e.target.classList, function(e){
-          if(!!~e.indexOf('click-')){
-            switch (e.split('-')[1]) {
-              case 'to2': 
-                app.history.go(view2)
-                break;
-              case 'toback': 
-                app.history.back()
-                break;
-              case 'tologin':
-                app.history.go(login)
-                break;
-              default:;
-            }
-          }
-        })
-      }
-    });
-  </script>
+  <h3>Hello PWA</h3>
 </body>
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js', {scope: '/'})
+            .then(function (registration) {
+
+                // 注册成功
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(function (err) {
+
+                // 注册失败:(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+    });
+}
+</script>
 </html>
