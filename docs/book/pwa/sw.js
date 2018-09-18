@@ -6,11 +6,9 @@ self.addEventListener('install', function (event) {
       caches.open('my-test-cache-v1').then(function (cache) {
           // 通过 cache 缓存对象的 addAll 方法添加 precache 缓存
           return cache.addAll([
-              '/',
-              '/index.html',
-              '/style.css',
-              '/main.js',
-              '/image.jpg'
+              './',
+              './index.html',
+              './style.css'
           ]);
       })
   );
