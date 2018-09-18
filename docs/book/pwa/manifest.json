@@ -1,15 +1,19 @@
+
 {
-  "name": "一个PWA示例",
-  "short_name": "PWA示例",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#fff",
-  "theme_color": "#3eaf7c",
-  "icons": [
-    {
-      "src": "/youhun.jpg",
-      "sizes": "120x120",
+  "name": "Progressive Web App",
+  "short_name": "PWA",
+  "description": "随时随地分享PWA",
+  "icons": [{
+      "src": "https://h5.sinaimg.cn/upload/696/2017/08/23/weibologo.png",
+      "sizes": "606x606",
       "type": "image/png"
-    }
-  ]
+    }],
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F3F3",
+  "theme_color": "#F3F3F3",
+  "related_applications": [],
+  "prefer_related_applications": false
 }
