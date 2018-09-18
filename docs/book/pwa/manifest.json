@@ -4,9 +4,9 @@
   "short_name": "PWA",
   "description": "随时随地分享PWA",
   "icons": [{
-      "src": "https://h5.sinaimg.cn/upload/696/2017/08/23/weibologo.png",
+      "src": "./images/logo.jpg",
       "sizes": "606x606",
-      "type": "image/png"
+      "type": "image/jpg"
     }],
   "start_url": "./index.html",
   "scope": "./",
