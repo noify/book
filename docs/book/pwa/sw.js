@@ -36,7 +36,7 @@ self.addEventListener('fetch', function (event) {
 
               // 请求成功的话，将请求缓存起来。
               var responseClone = httpRes.clone();
-              caches.open('my-test-cache-v1').then(function (cache) {
+              caches.open('my-test-cache-v0.1').then(function (cache) {
                   cache.put(event.request, responseClone);
               });
 
@@ -61,7 +61,7 @@ self.addEventListener('activate', function (event) {
           caches.keys().then(function (cacheList) {
               return Promise.all(
                   cacheList.map(function (cacheName) {
-                      if (cacheName !== 'my-test-cache-v1') {
+                      if (cacheName !== 'my-test-cache-v0.1') {
                           return caches.delete(cacheName);
                       }
                   })
