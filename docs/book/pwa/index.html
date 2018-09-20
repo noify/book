@@ -12,10 +12,23 @@
   <h3>PWA</h3>
 </body>
 <script>
-var registration;
+var registerServiceWorker;
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-        registerServiceWorker();
+        registerServiceWorker = (function () {
+            return navigator.serviceWorker.register('./sw.js', {scope: './'})
+            .then(function (registration) {
+
+                // 注册成功
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                return registration;
+            })
+            .catch(function (err) {
+
+                // 注册失败:(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        }());
         if ('PushManager' in window) {
             // Push isn't supported on this browser, disable or hide UI.
             let promiseChain = new Promise((resolve, reject) => {
@@ -38,22 +51,8 @@ if ('serviceWorker' in navigator) {
         }
     });
 }
-function registerServiceWorker() {
-    return navigator.serviceWorker.register('./sw.js', {scope: './'})
-    .then(function (registration) {
-
-        // 注册成功
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        return registration;
-    })
-    .catch(function (err) {
-
-        // 注册失败:(
-        console.log('ServiceWorker registration failed: ', err);
-    });
-}
 function showNotification(opt) {
-    registerServiceWorker().then(function (registration) {
+    registerServiceWorker.then(function (registration) {
         registration.showNotification(opt);
     });
 }
