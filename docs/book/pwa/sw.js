@@ -1,4 +1,4 @@
-var cacheVersion = 'v1.0.3.1';
+var cacheVersion = 'v1.0.3.2';
 // 监听 service worker 的 install 事件
 self.addEventListener('install', function (event) {
   // 如果监听到了 service worker 已经安装成功的话，就会调用 event.waitUntil 回调函数
@@ -66,4 +66,76 @@ self.addEventListener('activate', function (event) {
           })
       ])
   );
+});
+// self.addEventListener('notificationclick', event => {
+//     let clickedNotification = event.notification;
+//     clickedNotification.close();
+
+//     // 执行某些异步操作，等待它完成
+//     let promiseChain = new Promise((resolve, reject) => {
+//         console.log('被点击了！')
+//         resolve(result);
+//     });
+//     event.waitUntil(promiseChain);
+// });
+self.addEventListener('notificationclick', event => {
+    if (!event.action) {
+        // 没有点击在按钮上
+        console.log('Notification Click.');
+        return;
+    }
+
+    const notificationData = event.notification.data;
+    console.log('The data notification had the following parameters:');
+    Object.keys(notificationData).forEach(key => {
+        console.log(`  ${key}: ${notificationData[key]}`);
+    });
+    switch (event.action) {
+        case 'action-action':
+            console.log('User \'s action.');
+            break;
+        case 'qqcom-action':
+            let examplePage = 'https://www.qq.com/';
+            let promiseChain = clients.openWindow(examplePage);
+            event.waitUntil(promiseChain);
+            console.log('User \'s qqcom.');
+            break;
+        case 'gramophone-action':
+            console.log('User \'s music.');
+            break;
+        case 'atom-action':
+            console.log('User \'s science.');
+            break;
+        default:
+            console.log(`Unknown action clicked: '${event.action}'`);
+            break;
+    }
+    // let urlToOpen = new URL(examplePage, self.location.origin).href;
+
+    // let promiseChain = clients.matchAll({
+    //     type: 'window',
+    //     includeUncontrolled: true
+    // })
+    // .then(windowClients => {
+    //     let matchingClient = null;
+
+    //     for (let i = 0, max = windowClients.length; i < max; i++) {
+    //         let windowClient = windowClients[i];
+    //         if (windowClient.url === urlToOpen) {
+    //             matchingClient = windowClient;
+    //             break;
+    //         }
+    //     }
+
+    //     return matchingClient
+    //         ? matchingClient.focus()
+    //         : clients.openWindow(urlToOpen);
+    // });
+
+    // event.waitUntil(promiseChain);
+});
+self.addEventListener('notificationclose', event => {
+    let dismissedNotification = event.notification;
+    let promiseChain = notificationCloseAnalytics();
+    event.waitUntil(promiseChain);
 });

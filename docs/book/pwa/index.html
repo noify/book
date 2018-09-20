@@ -31,7 +31,7 @@ if ('serviceWorker' in navigator) {
         }());
         if ('PushManager' in window) {
             // Push isn't supported on this browser, disable or hide UI.
-            let promiseChain = new Promise((resolve, reject) => {
+            var promiseChain = new Promise((resolve, reject) => {
                 const permissionPromise = Notification.requestPermission(result => {
                     resolve(result);
                 });
@@ -49,6 +49,37 @@ if ('serviceWorker' in navigator) {
                 }
             });
         }
+        showNotification('看这里~', {
+            body: '你在看什么？',
+            tag: 'mg1',
+            data: {
+                time: (new Date()).toString(),
+                message: '看到你了！'
+            },
+            renotify: true,
+            // silent: true,
+            requireInteraction: true,
+            icon: './images/logo.jpg',
+            badge: './images/logo.jpg',
+            image: './images/logo.jpg',
+            actions: [
+                {
+                    action: 'action-action',
+                    title: 'Action',
+                    icon: './images/logo.jpg'
+                },
+                {
+                    action: 'qqcom-action',
+                    title: 'QQcom',
+                    icon: './images/logo.jpg'
+                }
+            ],
+            dir: 'auto',
+            vibrate: [500, 110, 500, 110, 450, 110, 200, 110, 170, 40, 450, 110, 200, 110, 170, 40, 500],
+            // sound: './.mp3',
+            timestamp: (new Date().getTime() + 6000),
+            
+        })
     });
 }
 function showNotification(opt) {
@@ -56,5 +87,100 @@ function showNotification(opt) {
         registration.showNotification(opt);
     });
 }
+function showNotifications() {
+    registerServiceWorker.then(function (registration) {
+        const userName = 'X';
+        let promiseChain = registration.getNotifications()
+        .then(notifications => {
+            let currentNotification;
+
+            for(let i = 0, max = notifications.length; i < max; i++) {
+                if (notifications[i].data && notifications[i].data.userName === userName) {
+                    currentNotification = notifications[i];
+                    break;
+                }
+            }
+
+            return currentNotification;
+        });
+        promiseChain.then(currentNotification => {
+        let notificationTitle;
+        let options = {
+            icon: userIcon
+        };
+
+        if (currentNotification) {
+            // 找到之前X发送信息的通知，整合通知。
+            let messageCount = currentNotification.data.newMessageCount + 1;
+
+            options.body = `You have ${messageCount} new messages from ${userName}.`;
+            options.data = {
+                userName: userName,
+                newMessageCount: messageCount
+            };
+            notificationTitle = `New Messages from ${userName}`;
+
+            // 把之前的信息删除
+            currentNotification.close();
+        }
+        else {
+            // 没找到，则常规处理
+            options.body = `"${userMessage}"`;
+            options.data = {
+                userName: userName,
+                newMessageCount: 1
+            };
+            notificationTitle = `New Message from ${userName}`;
+        }
+
+        return registration.showNotification(notificationTitle, options);
+    });
+    });
+}
+
+// modify isClientFocused
+// function isClientFocused() {
+//     return clients.matchAll({
+//         type: 'window',
+//         includeUncontrolled: true
+//     })
+//     .then(windowClients => {
+//         let clientIsFocused = false;
+
+//         for (let i = 0, max = windowClients.length; i < max; i++) {
+//             if (windowClients[i].focused) {
+//                 clientIsFocused = true;
+//                 break;
+//             }
+//         }
+
+//         // modify here
+//         return {clientIsFocused, windowClients};
+//     });
+// }
+
+// const promiseChain = isClientFocused()
+//     .then(function (clientIsFocused, windowClients) {
+//         // 如果处于激活状态，向页面发送数据
+//         if (clientIsFocused) {
+//             windowClients.forEach(windowClient => {
+//                 windowClient.postMessage({
+//                     message: 'Received a push message.',
+//                     time: new Date().toString()
+//                 });
+//             });
+//         }
+//         // 否则发送通知
+//         else {
+//             return self.registration.showNotification('No focused windows', {
+//                 body: 'Had to show a notification instead of messaging each page.'
+//             });
+//         }
+//     });
+
+// event.waitUntil(promiseChain);
+// navigator.serviceWorker.addEventListener('message', event => {
+//     console.log('Received a message from service worker: ', event.data);
+// });
 </script>
 </html>
