@@ -12,19 +12,49 @@
   <h3>PWA</h3>
 </body>
 <script>
+var registration;
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./sw.js', {scope: './'})
-            .then(function (registration) {
+        registerServiceWorker();
+        if ('PushManager' in window) {
+            // Push isn't supported on this browser, disable or hide UI.
+            let promiseChain = new Promise((resolve, reject) => {
+                const permissionPromise = Notification.requestPermission(result => {
+                    resolve(result);
+                });
 
-                // 注册成功
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                if (permissionPromise) {
+                    permissionPromise.then(resolve);
+                }
             })
-            .catch(function (err) {
-
-                // 注册失败:(
-                console.log('ServiceWorker registration failed: ', err);
+            .then(result => {
+                if (result === 'granted') {
+                    console.log('permission');
+                }
+                else {
+                    console.log('no permission');
+                }
             });
+        }
+    });
+}
+function registerServiceWorker() {
+    return navigator.serviceWorker.register('./sw.js', {scope: './'})
+    .then(function (registration) {
+
+        // 注册成功
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        return registration;
+    })
+    .catch(function (err) {
+
+        // 注册失败:(
+        console.log('ServiceWorker registration failed: ', err);
+    });
+}
+function showNotification(opt) {
+    registerServiceWorker().then(function (registration) {
+        registration.showNotification(opt);
     });
 }
 </script>

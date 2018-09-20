@@ -1,4 +1,4 @@
-var cacheVersion = 'v1.0.2';
+var cacheVersion = 'v1.0.3';
 // 监听 service worker 的 install 事件
 self.addEventListener('install', function (event) {
   // 如果监听到了 service worker 已经安装成功的话，就会调用 event.waitUntil 回调函数
