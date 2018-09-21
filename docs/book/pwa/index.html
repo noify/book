@@ -89,9 +89,10 @@ if ('serviceWorker' in navigator) {
         })
     });
 }
-function showNotification(opt) {
+function showNotification() {
+    opt = arguments
     registerServiceWorker.then(function (registration) {
-        registration.showNotification(...arguments);
+        registration.showNotification(...opt);
     });
 }
 function showNotifications() {
