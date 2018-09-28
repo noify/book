@@ -16,7 +16,7 @@
   5. 地理(Geolocation) API
   6. 本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
   7. sessionStorage 的数据在浏览器关闭后自动删除
-  8. 表单控件，calendar、date、time、email、url、search  
+  8. 表单控件，calendar、date、time、email、url、search
   9. 新的技术webworker, websocket, Geolocation
   参考资料：http://www.jb51.net/html5/45220.html
   https://www.jianshu.com/p/a4f38d6c4035
@@ -25,7 +25,8 @@
   选择器：
   边框、背景、渐变、文本效果、字体：
   转换、变形、3D转换：
-  过渡、动画：
+  过渡、动画：                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
   多列：
   盒模型：
   Flex布局：

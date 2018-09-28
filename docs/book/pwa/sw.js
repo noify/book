@@ -136,8 +136,9 @@ self.addEventListener('notificationclick', event => {
 });
 self.addEventListener('notificationclose', event => {
     let dismissedNotification = event.notification;
-    let promiseChain = function () {
+    let promiseChain = new Promise((resolve, reject) => {
+        resolve(event)
         console.log('notificationclose', event);
-    };
+    })
     event.waitUntil(promiseChain);
 });

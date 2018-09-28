@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +7,13 @@
   <title>Document</title>
 </head>
 <body>
+<select id="tp">
+  <option value="zy">中意</option>
+  <option value="hx">华夏</option>
+</select>
 <input id="file" type="file" value="上传" multiple/>
 <script lang="javascript" src="./xlsx.full.min.js"></script>
-<script type="text/javascript" src="https://js.live.net/v7.2/OneDrive.js"></script>
 <script>
-  var odOptions = {
-  clientId: "5f77f08e-1cb3-453e-b0ec-bc8b094b2ffb",
-  action: "query",
-  multiSelect: true,
-  advanced: {},
-  success: function(files) { /* success handler */ },
-  cancel: function() { /* cancel handler */ },
-  error: function(e) { /* error handler */ }
-}
-OneDrive.open(odOptions);
 var addEvent = (function (){
     if(window.attachEvent){
       return function (ele, event, func) {
@@ -34,41 +27,57 @@ var addEvent = (function (){
     }
 })()
 var _file  = document.getElementById('file')
-
+var _tp  = document.getElementById('tp')
+addEvent(_tp, 'change', function () {
+  if (_file.value !== '') {
+    _file.value = ''
+  }
+})
 addEvent(_file , 'change', function (e) {
   var files = e.target.files
   for (var i = 0; i < files.length; i++) {
-      let file = files[i];
+      let file = files[i]
       let reader = new FileReader()
       reader.readAsArrayBuffer(file)
       reader.onload = function (e) {
         var workbook = XLSX.read(this.result, {type:"array"})
         var Sheets = workbook.Sheets
+        XLSX.writeFile(workbook, _tp.value + file.name, { bookType: 'xlml'})
         for (var sheet in Sheets) {
           var sheetJson = XLSX.utils.sheet_to_json(Sheets[sheet])
           for (var i in sheetJson) {
-            sheetJson[i].分公司代码 = 62
             sheetJson[i].年龄 = Math.round((new Date()-new Date(sheetJson[i]['年龄/出生日期']))/1000/60/60/24/365)
             sheetJson[i].生日 = sheetJson[i]['年龄/出生日期']
-            sheetJson[i].下单日期 = sheetJson[i]['登录时间']
-            sheetJson[i].手机号码 = sheetJson[i]['手机号']
-            sheetJson[i].省 = sheetJson[i]['省份']
-            sheetJson[i].市 = sheetJson[i]['城市']
+            sheetJson[i].手机 = sheetJson[i]['手机号']
             delete sheetJson[i]['年龄/出生日期']
-            delete sheetJson[i]['登录时间']
             delete sheetJson[i]['手机号']
-            delete sheetJson[i]['省份']
-            delete sheetJson[i]['城市']
-            if (sheetJson[i].性别 === '男') {
-              sheetJson[i].性别 = 1
-            } else if  (sheetJson[i].性别 === '女') {
-              sheetJson[i].性别 = 2
+            if (_tp.value == 'zy') {
+              sheetJson[i].分公司代码 = 62
+              sheetJson[i].下单日期 = sheetJson[i]['登录时间']
+              sheetJson[i].省 = sheetJson[i]['省份']
+              sheetJson[i].市 = sheetJson[i]['城市']
+              delete sheetJson[i]['登录时间']
+              delete sheetJson[i]['省份']
+              delete sheetJson[i]['城市']
+              if (sheetJson[i].性别 === '男') {
+                sheetJson[i].性别 = 1
+              } else if  (sheetJson[i].性别 === '女') {
+                sheetJson[i].性别 = 2
+              }
+            } else if (_tp.value == 'hx') {
+              sheetJson[i].证件号码 = sheetJson[i]['身份证号']
+              delete sheetJson[i]['身份证号']
+              if (sheetJson[i].性别 === '男') {
+                sheetJson[i].性别 = 0
+              } else if (sheetJson[i].性别 === '女') {
+                sheetJson[i].性别 = 1
+              }
             }
           }
           Sheets[sheet] = XLSX.utils.json_to_sheet(sheetJson)
         }
         workbook.Sheets = Sheets
-        XLSX.writeFile(workbook, '_' + file.name, { bookType: 'xlml'})
+        // XLSX.writeFile(workbook, _tp.value + file.name, { bookType: 'xlml'})
       }
   }
 })
