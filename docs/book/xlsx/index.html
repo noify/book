@@ -8,6 +8,7 @@
 </head>
 <body>
 <input id="file" type="file" value="上传" multiple/>
+<div id="name_list"></div>
 <script lang="javascript" src="./xlsx.full.min.js"></script>
 <script>
 var addEvent = (function (){
@@ -23,7 +24,59 @@ var addEvent = (function (){
     }
 })()
 
-addEvent(document.getElementById('file') , 'change', function (e) {
+Date.prototype.format  = function(fmt) {  
+  var o = {   
+    "M+" : this.getMonth()+1,                 //月份   
+    "d+" : this.getDate(),                    //日   
+    "h+" : this.getHours(),                   //小时   
+    "m+" : this.getMinutes(),                 //分   
+    "s+" : this.getSeconds(),                 //秒   
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度   
+    "S"  : this.getMilliseconds()             //毫秒   
+  };   
+  if(/(y+)/.test(fmt))   
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+  for(var k in o)   
+    if(new RegExp("("+ k +")").test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+  return fmt;   
+}
+
+var fileEl = document.getElementById('file')
+var now = new Date().format('yyyyMMdd')
+var nameList = []
+nameList.push(`XDZJ${now}_1Call`)
+document.getElementById('name_list').innerHTML = `
+XDZJ${now}_1Call
+${now}_新旦重疾险_1Call
+
+XDYW${now}_1Call
+${now}_新旦意外险_1Call
+
+XDHXF${now}_1Call
+${now}_新旦华夏福_1Call
+
+XDHXF${now}_POM
+${now}_新旦华夏福_POM
+
+XDHXF${now}_WinBack
+${now}_新旦华夏福_WinBack
+
+XDCQT${now}_1Call
+${now}_新旦常青藤_1Call
+
+XDCQT${now}_WinBack
+${now}_新旦常青藤_WinBack
+
+XDCQT${now}_POM
+${now}_新旦常青藤_POM`.replace(/\n/g,"<br/>").replace(/^/g,"1").replace(/$/g,"1")
+
+addEvent(fileEl, 'click', function (e) {
+  if (e.target.value !== '') {
+    e.target.value = ''
+  }
+})
+addEvent(fileEl, 'change', function (e) {
   var files = e.target.files
   for (var i = 0; i < files.length; i++) {
       let file = files[i]
@@ -76,6 +129,57 @@ addEvent(document.getElementById('file') , 'change', function (e) {
       }
   }
 })
+/**
+ * 一键粘贴
+ * @param  {String} id [需要粘贴的内容]
+ * @param  {String} attr [需要 copy 的属性，默认是 innerText，主要用途例如赋值 a 标签上的 href 链接]
+ *
+ * range + selection
+ *
+ * 1.创建一个 range
+ * 2.把内容放入 range
+ * 3.把 range 放入 selection
+ *
+ * 注意：参数 attr 不能是自定义属性
+ * 注意：对于 user-select: none 的元素无效
+ * 注意：当 id 为 false 且 attr 不会空，会直接复制 attr 的内容
+ */
+ function copy (id, attr) {
+    let target = null;
+
+    if (attr) {
+        target = document.createElement('div');
+        target.id = 'tempTarget';
+        target.style.opacity = '0';
+        if (id) {
+            let curNode = document.querySelector('#' + id);
+            target.innerText = curNode[attr];
+        } else {
+            target.innerText = attr;
+        }
+        document.body.appendChild(target);
+    } else {
+        target = document.querySelector('#' + id);
+    }
+
+    try {
+        let range = document.createRange();
+        range.selectNode(target);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        console.log('复制成功')
+    } catch (e) {
+        console.log('复制失败')
+    }
+
+    if (attr) {
+        // remove temp target
+        target.parentElement.removeChild(target);
+    }
+}
+
 </script>
 </body>
 </html>
