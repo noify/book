@@ -8,7 +8,7 @@
 </head>
 <body>
 <input id="file" type="file" value="上传" multiple/>
-<div id="name_list"></div>
+<ul id="name_list"></ul>
 <script lang="javascript" src="./xlsx.full.min.js"></script>
 <script>
 var addEvent = (function (){
@@ -43,34 +43,42 @@ Date.prototype.format  = function(fmt) {
 }
 
 var fileEl = document.getElementById('file')
+var nameListEl = document.getElementById('name_list')
 var now = new Date().format('yyyyMMdd')
-var nameList = []
-nameList.push(`XDZJ${now}_1Call`)
-document.getElementById('name_list').innerHTML = `
-XDZJ${now}_1Call
-${now}_新旦重疾险_1Call
-
-XDYW${now}_1Call
-${now}_新旦意外险_1Call
-
-XDHXF${now}_1Call
-${now}_新旦华夏福_1Call
-
-XDHXF${now}_POM
-${now}_新旦华夏福_POM
-
-XDHXF${now}_WinBack
-${now}_新旦华夏福_WinBack
-
-XDCQT${now}_1Call
-${now}_新旦常青藤_1Call
-
-XDCQT${now}_WinBack
-${now}_新旦常青藤_WinBack
-
-XDCQT${now}_POM
-${now}_新旦常青藤_POM`.replace(/\n/g,"<br/>").replace(/^/g,"1").replace(/$/g,"1")
-
+var nameList = [
+`XDZJ${now}_1Call`,
+`${now}_新旦重疾险_1Call`,
+``,
+`XDYW${now}_1Call`,
+`${now}_新旦意外险_1Call`,
+``,
+`XDHXF${now}_1Call`,
+`${now}_新旦华夏福_1Call`,
+``,
+`XDHXF${now}_POM`,
+`${now}_新旦华夏福_POM`,
+``,
+`XDHXF${now}_WinBack`,
+`${now}_新旦华夏福_WinBack`,
+``,
+`XDCQT${now}_1Call`,
+`${now}_新旦常青藤_1Call`,
+``,
+`XDCQT${now}_WinBack`,
+`${now}_新旦常青藤_WinBack`,
+``,
+`XDCQT${now}_POM`,
+`${now}_新旦常青藤_POM`,
+].map(function (name) {
+  return `<li>${name}</li>`
+})
+nameListEl.innerHTML = nameList.join('')
+addEvent(nameListEl, 'click', function (e) {
+  var target = e.target
+  if (target.nodeName.toLowerCase() === 'li') {
+    copy(target)
+  }
+})
 addEvent(fileEl, 'click', function (e) {
   if (e.target.value !== '') {
     e.target.value = ''
@@ -144,22 +152,22 @@ addEvent(fileEl, 'change', function (e) {
  * 注意：对于 user-select: none 的元素无效
  * 注意：当 id 为 false 且 attr 不会空，会直接复制 attr 的内容
  */
- function copy (id, attr) {
+ function copy (el, attr) {
     let target = null;
 
     if (attr) {
         target = document.createElement('div');
         target.id = 'tempTarget';
         target.style.opacity = '0';
-        if (id) {
-            let curNode = document.querySelector('#' + id);
+        if (el) {
+            let curNode = el;
             target.innerText = curNode[attr];
         } else {
             target.innerText = attr;
         }
         document.body.appendChild(target);
     } else {
-        target = document.querySelector('#' + id);
+        target = el;
     }
 
     try {
