@@ -149,7 +149,7 @@ addEvent(fileEl, 'change', e => {
       let file = files[i]
       let reader = new FileReader()
       reader.readAsArrayBuffer(file)
-      reader.onload = e =>  {
+      reader.onload = function() {
         let workbook = XLSX.read(this.result, {type:'array'})
         let Sheets = workbook.Sheets
         for (let sheet in Sheets) {
