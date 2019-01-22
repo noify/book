@@ -1299,7 +1299,7 @@ call/apply/bind
 (obj1.)fn.call(obj2,a1,a2,a3...)//obj2没有提供，则默认为Global对象
 (obj1.)fn.apply(obj2,[a1,a2,a3...])//obj2没有提供，则默认为Global对象，且无法传递参数
 (obj1.)fn.bind(obj2)(a1,a2,a3...) //bind的返回值是函数,call//apply则是立即执行
-(obj1.)fn.bind(obj2,a1,a2)(a1,a2,a3... ) //bind返回绑定默认参数/绑定执行对象的方法，默认参数/执行对象在后来执行时不会被替换(a1,a2不会被替换，a3...则可以)
+(obj1.)fn.bind(obj2,a1,a2)(a3... ) //bind返回绑定默认参数/绑定执行对象的方法，默认参数/执行对象在后来执行时不会被替换(a1,a2不会被替换，a3...则可以)
 obj2.fn(a1,a2,a3...)
  
 (fn./Function.prototype.)bind.apply(fn1,[obj1,a1,a2,a3...])
