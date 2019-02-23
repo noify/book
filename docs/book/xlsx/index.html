@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang='zh'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+</head>
+<body>
+<input id='file' type='file' value='上传' multiple/>
+<ul id='name_list'></ul>
+<script lang='javascript' src='./xlsx.full.min.js'></script>
+<script>
+let addEvent = (() => {
+    if(window.attachEvent){
+      return (ele, event, func) => {
+        ele.attachEvent('on' + event, func)
+      }
+    }
+    else{
+      return (ele, event, func, options) => {
+        ele.addEventListener(event, func, typeof options === 'undefined' ? false : options)
+      }
+    }
+})()
+let format = (date, fmt) => {  
+  let o = {   
+    'M+': date.getMonth()+1,                 //月份   
+    'd+': date.getDate(),                    //日   
+    'h+': date.getHours(),                   //小时   
+    'm+': date.getMinutes(),                 //分   
+    's+': date.getSeconds(),                 //秒   
+    'q+': Math.floor((date.getMonth()+3)/3), //季度   
+    'S': date.getMilliseconds()             //毫秒   
+  }
+  if(/(y+)/.test(fmt))   
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear()+'').substr(4 - RegExp.$1.length))
+  for(let k in o)   
+    if(new RegExp('('+ k +')').test(fmt))   
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (('00'+ o[k]).substr((''+ o[k]).length)))
+  return fmt   
+}
+let copy = (el, attr) => {
+    /**
+     * 一键粘贴
+     * @param  {String} id [需要粘贴的内容]
+     * @param  {String} attr [需要 copy 的属性，默认是 innerText，主要用途例如赋值 a 标签上的 href 链接]
+     *
+     * range + selection
+     *
+     * 1.创建一个 range
+     * 2.把内容放入 range
+     * 3.把 range 放入 selection
+     *
+     * 注意：参数 attr 不能是自定义属性
+     * 注意：对于 user-select: none 的元素无效
+     * 注意：当 id 为 false 且 attr 不会空，会直接复制 attr 的内容
+    */
+    let target = null,
+      resolve = function() {},
+      reject = function() {},
+      promise = new Promise((res, rej) => {
+        resolve = res
+        reject = rej
+      })
+    if (attr) {
+        target = document.createElement('div')
+        target.id = 'tempTarget'
+        target.style.opacity = '0'
+        if (el) {
+            let curNode = el
+            target.innerText = curNode[attr]
+        } else {
+            target.innerText = attr
+        }
+        document.body.appendChild(target)
+    } else {
+        target = el;
+    }
+
+    try {
+        let range = document.createRange()
+        range.selectNode(target)
+        window.getSelection().removeAllRanges()
+        window.getSelection().addRange(range)
+        document.execCommand('copy')
+        window.getSelection().removeAllRanges()
+        resolve()
+    } catch (e) {
+        reject()
+    }
+    if (attr) {
+        // remove temp target
+        target.parentElement.removeChild(target)
+    }
+    return promise
+}
+
+let fileEl = document.getElementById('file')
+let nameListEl = document.getElementById('name_list')
+let now = format(new Date(), 'yyyyMMdd')
+
+nameListEl.innerHTML = [
+// `XDZJ${now}_1Call`,
+// `${now}_新旦重疾险_1Call`,
+// ``,
+`XDYW${now}_1Call`,
+`${now}_新旦意外险_1Call`,
+``,
+// `XDHXF${now}_1Call`,
+// `${now}_新旦华夏福_1Call`,
+// ``,
+// `XDHXF${now}_POM`,
+// `${now}_新旦华夏福_POM`,
+// ``,
+// `XDHXF${now}_WinBack`,
+// `${now}_新旦华夏福_WinBack`,
+// ``,
+`XDCQT${now}_1Call`,
+`${now}_新旦常青藤_1Call`,
+``,
+// `XDCQT${now}_WinBack`,
+// `${now}_新旦常青藤_WinBack`,
+// ``,
+// `XDCQT${now}_POM`,
+// `${now}_新旦常青藤_POM`,
+].map(function (name) {
+  return `<li>${name}</li>`
+}).join('')
+addEvent(nameListEl, 'click', e => {
+  let target = e.target
+  if (target.nodeName.toLowerCase() === 'li') {
+    copy(target).then(() => {
+      target.style = 'color: dodgerblue;'
+      setTimeout(() => {
+        target.removeAttribute('style')
+      }, 200)
+    })
+  }
+})
+addEvent(fileEl, 'click', e => {
+  if (e.target.value !== '') {
+    e.target.value = ''
+  }
+})
+addEvent(fileEl, 'change', e => {
+  let files = e.target.files
+  for (let i = 0; i < files.length; i++) {
+      let file = files[i]
+      let reader = new FileReader()
+      reader.readAsArrayBuffer(file)
+      reader.onload = function() {
+        let workbook = XLSX.read(this.result, {type:'array'})
+        let Sheets = workbook.Sheets
+        for (let sheet in Sheets) {
+          let sheetJson = XLSX.utils.sheet_to_json(Sheets[sheet])
+          
+          for (let i in sheetJson) {
+            let sji = sheetJson[i]
+            let assignList = [
+              // 新旦
+              {o: '生日', n: '年龄/出生日期'},
+              {o: '手机号码', n: '手机号'},
+              {o: '手机', n: '手机号'},
+              {o: '下单日期', n: '登录时间'},
+              {o: '省', n: '省份'},
+              {o: '市', n: '城市'},
+              {o: '证件号码', n: '身份证号'},
+              // 爱保
+              {o: '生日', n: '出生日期'},
+              {o: '保额', n: '保险金额'},
+            ]
+            
+            for (let i in assignList) {
+              let al = assignList[i]
+              let sn = sji[al.n]
+
+              if(sn !== undefined) {
+                sji[al.o] = sn
+              }
+            }
+
+            if (sji.性别 === '男') {
+              sji.性别 = 0
+            } else if (sji.性别 === '女') {
+              sji.性别 = 1
+            }
+            
+            sji.分公司代码 = 62
+            sji.年龄 = Math.round((new Date()-new Date(sji.生日))/1000/60/60/24/365)
+          }
+          Sheets[sheet] = XLSX.utils.json_to_sheet(sheetJson)
+        }
+        workbook.Sheets = Sheets
+        XLSX.writeFile(workbook, file.name, { bookType: 'xlml', bookSST: true, type: 'base64'})
+      }
+  }
+})
+</script>
+</body>
+</html>

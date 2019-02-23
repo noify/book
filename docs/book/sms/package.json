@@ -1,0 +1,83 @@
+{
+  "name": "sms",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "i": "npm i"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "vue": "^2.5.16",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "lodash": "^4.17.10",
+    "viewport-units-buggyfill": "^0.6.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
+    "@vue/cli-service": "latest",
+    "vue-template-compiler": "^2.5.16",
+    "postcss-aspect-ratio-mini": "^0.0.2",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-px-to-viewport": "^0.0.3",
+    "postcss-write-svg": "^3.0.1",
+    "cssnano": "^4.0.5",
+    "cssnano-preset-advanced": "^4.0.0",
+    "postcss-viewport-units": "^0.1.4"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "postcss-aspect-ratio-mini": {},
+      "postcss-write-svg": {
+        "utf8": false
+      },
+      "postcss-cssnext": {},
+      "postcss-px-to-viewport": {
+        "viewportWidth": 750,
+        "viewportHeight": 1334,
+        "unitPrecision": 3,
+        "viewportUnit": "vw",
+        "selectorBlackList": [
+          ".ignore",
+          ".hairlines"
+        ],
+        "minPixelValue": 1,
+        "mediaQuery": false
+      },
+      "postcss-viewport-units": {},
+      "cssnano": {
+        "preset": "advanced",
+        "autoprefixer": false,
+        "postcss-zindex": false
+      }
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

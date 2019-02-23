@@ -38,3 +38,152 @@
     * Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。
  
 ![生命周期](http://cn.vuejs.org/images/lifecycle.png)
+
+```js
+// 配置
+
+Vue.config.silent = true // 取消 Vue 所有的日志与警告。
+
+optionMergeStrategies // 不会
+
+// 务必在加载 Vue 之后，立即同步设置以下内容
+Vue.config.devtools = true // 配置是否允许 vue-devtools 检查代码。开发版本默认为 true，生产版本默认为 false。生产版本设为 true 可以启用检查。
+
+Vue.config.errorHandler = function (err, vm, info) {
+  // handle error
+  // `info` 是 Vue 特定的错误信息，比如错误所在的生命周期钩子
+  // 只在 2.2.0+ 可用
+}
+
+Vue.config.warnHandler = function (msg, vm, trace) {
+  // `trace` 是组件的继承关系追踪
+}
+
+ignoredElements // 不会
+
+Vue.config.keyCodes = { // 给 v-on 自定义键位别名。 <input type="text" @keyup.media-play-pause="method">
+  v: 86,
+  f1: 112,
+  // camelCase 不可用
+  mediaPlayPause: 179,
+  // 取而代之的是 kebab-case 且用双引号括起来
+  "media-play-pause": 179,
+  up: [38, 87]
+}
+
+performance // 不会
+
+productionTip // 不会
+
+//API
+
+
+
+// 选项
+
+Vue.extend({}) // 不会
+
+new Vue({
+    // ...
+})
+// or .vue
+export default {
+    // 数据
+    data () { // Object | Function 组件的定义只接受 function
+
+    },
+    props: { // Array<string> | Object
+
+    },
+    propsData: { // { [key: string]: any } 只用于 new 创建的实例中
+
+    },
+    computed: { // { [key: string]: Function | { get: Function, set: Function } }
+
+    },
+    methods: { // { [key: string]: Function }
+
+    },
+    watch: { // { [key: string]: string | Function | Object | Array }
+
+    },
+    // DOM
+    el: '', // string | HTMLElement
+    template: '', // string
+    render () { // (createElement: () => VNode) => VNode
+
+    },
+    renderError () { // (createElement: () => VNode, error: Error) => VNode
+
+    },
+    // 生命周期钩子
+    beforeCreate () {
+
+    },
+    created () {
+
+    },
+    beforeMount () {
+
+    },
+    mounted () {
+
+    },
+    beforeUpdate () {
+
+    },
+    updated () {
+
+    },
+    activated () {
+
+    },
+    deactivated () {
+
+    },
+    beforeDestroy () {
+
+    },
+    destroyed () {
+
+    },
+    errorCaptured () {
+
+    },
+    // 资源
+    directives: {
+
+    },
+    filters: {
+
+    },
+    components: {
+
+    },
+    // 组合
+    // parent this.$parent this.$children
+    mixins: [ // Array<Object>
+
+    ],
+    extends: { // Object | Function
+
+    },
+    provide () { // Object | () => Object
+
+    },
+    inject: [ // Array<string> | { [key: string]: string | Symbol | Object }
+
+    ],
+    // 其他
+    name: '',
+    delimiters: [ // Array<string> 默认值：["{{", "}}"]
+
+    ],
+    functional: true, // boolean
+    model: { // { prop?: string, event?: string }
+
+    },
+    inheritAttrs: true, // boolean
+    comments: false, // boolean
+}
+```

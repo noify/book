@@ -218,7 +218,7 @@ mapGetters({
 
 # Mutation
 
-更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 mutation 非常类似于事件：
+更改 Vuex 的 store 中的状态的唯一方法是提交 mutation。Vuex 中的 Mutation 非常类似于事件：
 
 ```js
 const store = new Vuex.Store({
@@ -227,6 +227,10 @@ const store = new Vuex.Store({
   },
   mutations: {
     increment (state) {
+      // 变更状态
+      state.count++
+    }
+    connect_stomp (state, flag) {
       // 变更状态
       state.count++
     }
@@ -301,7 +305,7 @@ export default {
 
 # Action
 
-Action 是为了解决 mutation 必须同步执行的问题。Action就不受约束，内部可以包含任意异步操作，并提交 mutation。
+Action 是为了解决 Mutation 必须同步执行的问题。Action就不受约束，内部可以包含任意异步操作，并提交 Mutation
 
 ```js
 const store = new Vuex.Store({
@@ -315,6 +319,7 @@ const store = new Vuex.Store({
   },
   actions: {
     increment (context) {
+      //...code....
       context.commit('increment')
     }
   }

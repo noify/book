@@ -1,0 +1,19 @@
+
+{
+  "name": "Progressive Web App",
+  "short_name": "PWA",
+  "description": "随时随地分享PWA",
+  "icons": [{
+      "src": "./images/logo.jpg",
+      "sizes": "606x606",
+      "type": "image/jpeg"
+    }],
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F3F3",
+  "theme_color": "#F3F3F3",
+  "related_applications": [],
+  "prefer_related_applications": false
+}

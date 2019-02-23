@@ -32,6 +32,28 @@
     !important >  id > class > tag
     important 比 内联优先级高
 
+  优先级
+  (1)、同类型，同级别的样式后者先于前者
+  (2))、ID > 类样式 > 标签 > *
+  (3)、内联>ID选择器>伪类>属性选择器>类选择器>标签选择器>通用选择器(*)>继承的样式
+  (4)、具体 > 泛化的，特殊性即css优先级
+  (5)、近的 > 远的 (内嵌样式 > 内部样式表 > 外联样式表)
+    内嵌样式：内嵌在元素中，<span style="color:red">span</span>
+    内部样式表：在页面中的样式，写在<style></style>中的样式
+        外联样式表：单独存在一个css文件中，通过link引入或import导入的样式
+  (6)、!important 权重最高，比 inline style 还要高
+
+  计算特殊性值
+  important > 内嵌 > ID > 类 > 标签 | 伪类 | 属性选择 > 伪对象 > 继承 > 通配符
+  权重、特殊性计算法： 
+  CSS样式选择器分为4个等级，a、b、c、d
+  (1)、如果样式是行内样式（通过Style=“”定义），那么a=1，1,0,0,0 
+  (2)、b为ID选择器的总数 0,1,0,0 
+  (3)、c为属性选择器，伪类选择器和class类选择器的数量。0,0,1,0
+  (4)、d为标签、伪元素选择器的数量 0,0,0,1
+  (5)、!important 权重最高，比 inline style 还要高
+  比如结果为：1093比1100，按位比较，从左到右，只要一位高于则立即胜出，否则继续比较。
+
   css定义的权重规则：
   
   标签的权重为1，class的权重为10，id的权重为100，以下例子是演示各种定义的权重值
@@ -122,14 +144,14 @@
 		  首先，巧妙的使用“\9”这一标记，将IE游览器从所有情况中分离出来。
 		  接着，再次使用“+”将IE8和IE7、IE6分离开来，这样IE8已经独立识别。
 
-          css
-	          .bb{
-		          background-color:red;/*所有识别*/
-			      background-color:#00deff\9; /*IE6、7、8识别*/
-			      +background-color:#a200ff;/*IE6、7识别*/
-			      _background-color:#1e0bd1;/*IE6识别*/
-	          }
-
+      ```css
+      .bb{
+        background-color:red;/*所有识别*/
+        background-color:#00deff\9; /*IE6、7、8识别*/
+        +background-color:#a200ff;/*IE6、7识别*/
+        _background-color:#1e0bd1;/*IE6识别*/
+      }
+      ```
 
 		*  IE下,可以使用获取常规属性的方法来获取自定义属性,
 		   也可以使用getAttribute()获取自定义属性;
@@ -314,7 +336,7 @@
 
 - 让页面里的字体变清晰，变细用CSS怎么做？
 
-		-webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
 
 - font-style属性可以让它赋值为“oblique” oblique是什么意思？
 
@@ -390,13 +412,11 @@
 		同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，
 		提高了webserver的http请求的解析速度。
 
-
 - style标签写在body后与body前有什么区别？
 
   从有html标准以来到目前为止（2017年5月），标准一直是规定style元素不应出现在body元素中。（除非style处于template元素中，因为template中的内容是不直接在dom树中的。另外曾经`<style scoped>`这一特殊用法是可以在body元素中的。）不过网页浏览器一直有容错设计。
   
   如果style元素出现在body元素，最终效果和style元素出现在head里是一样的。但是可能引起FOUC、重绘或重新布局。
-
 
 - 什么是CSS 预处理器 / 后处理器？
 
@@ -480,282 +500,37 @@ Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏�
 目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？
 可以通过css3里面的动画属性scale进行缩放。
 
-# 垂直居中/水平居中
- 
-## 绝对定位居中
- 
-```css
-.Absolute-Center { 
-    margin: auto;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-}
-/*  在容器内  */
-.Center-Container {
-  position: relative;
-}
-.Absolute-Center {
-  width: 50%;
-  height: 50%;
-  overflow: auto;
-  margin: auto;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-}
-/* 在视图内 */
-.Absolute-Center.is-Fixed {
-  position: fixed;
-  z-index: 999;
-}
-/* 偏移 */
-.Absolute-Center.is-Right {
-  left: auto; right: 20px;
-  text-align: right;
-}
-.Absolute-Center.is-Left {
-  right: auto; left: 20px;
-  text-align: left;
-}
-/* 响应式 */
-.Absolute-Center.is-Responsive {
-  width: 60%; 
-  height: 60%;
-  min-width: 200px;
-  max-width: 400px;
-  padding: 40px;
-}
-/* Overflow */
-.Absolute-Center.is-Overflow {
-  overflow: auto;
-}
-/* 调整大小Resizing */
-.Absolute-Center.is-Resizable {
-  min-width: 20%;
-  max-width: 80%;
-  min-height: 20%;
-  max-height: 80%;
-  resize: both;
-  overflow: auto;
-}
-/* 图片 */
-.Absolute-Center.is-Image {
-  height: auto;
-}
-.Absolute-Center.is-Image img { 
-  width: 100%;
-  height: auto;
-}
-/* 可变高度 */
-.absolutecentercontent .Absolute-Center.is-Variable {
-  display: table;
-  height: auto;
-}
-/* js */
-/* Modernizr Test for Variable Height Content */
-Modernizr.testStyles('#modernizr { display: table; height: 50px; width: 50px; margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0; }', function(elem, rule) {
-  Modernizr.addTest('absolutecentercontent', Math.round(window.innerHeight / 2 - 25) === elem.offsetTop);
-});
-/*
-1. 与上述重绘(Resizing)情况的方法不兼容
-2. Firefox/IE8:使用display:table会使内容块垂直居上，不过水平还是居中的
-3. IE9/10: 使用display:table会使内容块显示在容器左上角
-4. Mobile Safari:内容块垂直居中；若使用百分比宽度，水平方向居中会稍微偏离中心位置
-*/
-```
- 
-优点：
-1. 支持跨浏览器，包括IE8-IE10.
-2. 无需其他特殊标记，CSS代码量少
-3. 支持百分比%属性值和min-/max-属性
-4. 只用这一个类可实现任何内容块居中
-5. 不论是否设置padding都可居中（在不使用box-sizing属性的前提下）
-6. 内容块可以被重绘。
-7. 完美支持图片居中。
- 
-缺点：
-1. 必须声明高度（查看可变高度Variable Height）。
-2. 建议设置overflow:auto来防止内容越界溢出。（查看溢出Overflow）。
-3. 在Windows Phone设备上不起作用。
- 
-浏览器兼容性：
-Chrome,Firefox, Safari, Mobile Safari, IE8-10.
- 
-[引申](http://codepen.io/shshaw/details/gEiDt)
- 
-## 负边距居中
- 
-```css
-.is-Negative {
-    width: 300px;
-    height: 200px;
-    padding: 20px;
-    position: absolute;
-    top: 50%; left: 50%;
-    margin-left: -170px; /* (width + padding)/2 */
-    margin-top: -120px; /* (height + padding)/2 */
-}
-```
- 
-优点：
-1. 更好的支持跨浏览器，甚至IE6-IE7
- 
-缺点：
-1. 不能自适应。不支持百分比尺寸和min-/max-属性设置
-2. 内容可能会溢出容器
-3. 边距大小与padding,和是否定义box-sizing: border-box有关，计算需要根据不同情况
- 
- 
-## Transforms居中
- 
-```css
-.is-Transformed { 
-  width: 50%;
-  margin: auto;
-  position: absolute;/* relative... */
-  top: 50%; left: 50%;
-  -webkit-transform: translate(-50%,-50%);
-      -ms-transform: translate(-50%,-50%);
-          transform: translate(-50%,-50%);
-}
-/* preserve-3d */
-.parent-element {
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-}
-.element {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
-/* 或者set the perspective of the element */
-.element {
-  position: relative;
-  top: 50%;
-  transform: perspective(1px) translateY(-50%);
-}
-```
- 
-优点：
-1. 内容可变高度
- 
-缺点：
-1. 不支持IE8
-2. 需要供应商的前缀
-3. 可能干扰其他Transforms效果
-4. 结果在某些情况下，边缘和文本的模糊渲染,解决办法 preserve-3d
- 
-* [引申](https://css-tricks.com/centering-percentage-widthheight-elements/)
-* [preserve-3d](http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/)
- 
-## Table-Cell居中
- 
-```html
-<div class="Center-Container is-Table">
-  <div class="Table-Cell">
-    <div class="Center-Block">
-    <!-- CONTENT -->
-    </div>
-  </div>
-</div>
-<style>
-.Center-Container.is-Table { display: table; }
-.is-Table .Table-Cell {
-  display: table-cell;
-  vertical-align: middle;
-}
-.is-Table .Center-Block {
-  width: 50%;
-  margin: 0 auto;
-}
-</style>
-```
- 
-优点：
-1. 支持跨浏览器
-2. 内容通过拉伸父元素溢出
-3. 高度可变，可以不设置高度
- 
-缺点：
-1. 需要额外的html
- 
-[引申](http://www.456bereastreet.com/archive/201103/flexible_height_vertical_centering_with_css_beyond_ie7/)
- 
-## Inline-Block居中
- 
-```html
-<div class="Center-Container is-Inline">
-  <div class="Center-Block">
-    <!-- CONTENT -->
-  </div>
-</div>
-<style>
-.Center-Container.is-Inline { 
-  text-align: center;
-  overflow: auto;
-}
- 
-.Center-Container.is-Inline:after,
-.is-Inline .Center-Block {
-  display: inline-block;
-  vertical-align: middle;
-}
- 
-.Center-Container.is-Inline:after {
-  content: '';
-  height: 100%;
-  margin-left: -0.25em; /* To offset spacing. May vary by font */
-}
- 
-.is-Inline .Center-Block {
-  max-width: 99%; /* Prevents issues with long content causes the content block to be pushed to the top */
-  /* max-width: calc(100% - 0.25em) /* Only for IE9+ */ 
-}
-</style>
-```
- 
-优点：
-1. 支持跨浏览器,支持IE7
-2. 内容通过拉伸父元素溢出
-3. 高度可变，可以不设置高度
- 
-缺点：
-1. 需要一个容器
-2. 水平居中依赖于margin-left: -0.25em;该尺寸对于不同的字体/字号需要调整。
-3. 内容块宽度不能超过容器的100% - 0.25em。
- 
-## Flexbox居中
- 
-```css
-.Center-Container.is-Flexbox {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-     -moz-box-align: center;
-     -ms-flex-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: center;
-     -moz-box-pack: center;
-     -ms-flex-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
-}
-```
- 
-优点：
-1. 内容可以是任何宽度或高度，甚至可以优雅地溢出
-2. 可用于更高级的排版技术。
- 
-缺点：
-1. 不支持 IE8-9
-2. Body需要特定的容器和CSS样式
-3. [需要许多不同的语法研究现代浏览器供应商的前缀](https://css-tricks.com/using-flexbox/)
-4. [可能存在的性能问题](https://css-tricks.com/does-flexbox-have-a-performance-problem/)
- 
+# 浮动&清除浮动 
+
+  (1)、父级div定义 height 
+  原理：父级div手动定义height，就解决了父级div无法自动获取到高度的问题。 
+  优点：简单、代码少、容易掌握 
+  缺点：只适合高度固定的布局，要给出精确的高度，如果高度和父级div不一样时，会产生问题 
+  建议：不推荐使用，只建议高度固定的布局时使用 
+
+  (2)、结尾处加空div标签 clear:both 
+  原理：添加一个空div，利用css提高的clear:both清除浮动，让父级div能自动获取到高度 
+  优点：简单、代码少、浏览器支持好、不容易出现怪问题 
+  缺点：不少初学者不理解原理；如果页面浮动布局多，就要增加很多空div，让人感觉很不好 
+  建议：不推荐使用，但此方法是以前主要使用的一种清除浮动方法 
+
+  (3)、父级div定义 伪类:after 和 zoom 
+  原理：IE8以上和非IE浏览器才支持:after，原理和方法2有点类似，zoom(IE转有属性)可解决ie6,ie7浮动问题 
+  优点：浏览器支持好、不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等） 
+  缺点：代码多、不少初学者不理解原理，要两句代码结合使用才能让主流浏览器都支持。 
+  建议：推荐使用，建议定义公共类，以减少CSS代码。
+
+  (4)、父级div定义 overflow:hidden 
+  原理：必须定义width或zoom:1，同时不能定义height，使用overflow:hidden时，浏览器会自动检查浮动区域的高度 
+  优点：简单、代码少、浏览器支持好 
+  缺点：不能和position配合使用，因为超出的尺寸的会被隐藏。 
+  建议：只推荐没有使用position或对overflow:hidden理解比较深的朋友使用。 
+
+  (5)、父级div定义 overflow:auto 
+  原理：必须定义width或zoom:1，同时不能定义height，使用overflow:auto时，浏览器会自动检查浮动区域的高度 
+  优点：简单、代码少、浏览器支持好 
+  缺点：内部宽高超过父级div时，会出现滚动条。 
+  建议：不推荐使用，如果你需要出现滚动条或者确保你的代码不会出现滚动条就使用吧。
 
 # media query
 
@@ -839,3 +614,32 @@ html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
         -webkit-text-size-adjust:100%; 
 }
 ```
+
+CSS hack技巧
+	只在IE下生效
+	<!--[if IE]>
+	这段文字只在IE浏览器显示
+	<![endif]-->
+	
+	只在IE6下生效
+	<!--[if IE 6]>
+	这段文字只在IE6浏览器显示
+	<![endif]-->
+	
+	只在IE6以上版本生效
+	<!--[if gte IE 6]>
+	这段文字只在IE6以上(包括)版本IE浏览器显示
+	<![endif]-->
+	
+	只在IE8上不生效
+	<!--[if ! IE 8]>
+	这段文字在非IE8浏览器显示
+	<![endif]-->
+	
+	非IE浏览器生效
+	<!--[if !IE]>
+	这段文字只在非IE浏览器显示
+	<![endif]-->
+  https://blog.csdn.net/freshlover/article/details/12132801
+  https://www.duitang.com/static/csshack.html
+  https://blog.csdn.net/liu_rong_fei/article/details/51555438
