@@ -281,7 +281,8 @@
 * regulate
 * regulation
 * customer
-# unit 3
+
+# unit3
 * legal
 * illegal
 * legally
@@ -398,6 +399,7 @@
 * adulthood
 * childhood
 * likelihood
+
 # unit4
 * available
 * availability
@@ -493,3 +495,35 @@
 * habit
 * development
 * developer
+* suggest
+* suggestion
+* traffic
+* panic
+* consider
+* consideration
+* considerate
+* considerable
+* considerably
+* reconsider
+* discipline
+* disciplinary
+* realise
+* reality
+* unrealistic
+* virtual
+
+# unit5
+* initial
+* initially
+* initiative
+* initiate
+* initiation
+* initiator
+* administration
+* confuse
+* confusion
+* refuse
+* refusal
+* diffuse
+* describe
+* description
