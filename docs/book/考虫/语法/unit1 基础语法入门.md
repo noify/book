@@ -9,13 +9,7 @@
 1. 副词
 1. 动词
    * 实义动词
-      * 及物动词
-      
-         **vt.**
-         及物动词后面必须加宾语
-
-         **例**
-         I can't stand the heat.
+      * <a href="#及物动词">及物动词</a>
       * 不及物动词
 
          **vi.**
@@ -148,12 +142,20 @@
       1. I have a pen.I have an apple.Ah,pineapple pen!×
       1. She has met Borther Train on the train.√
       1. Brother Train has been called "shiliusuideshaonian" for a year.√
+## 及物动词
+**vt.**
+及物动词后面必须加宾语
+
+**例**
+I can't stand the heat.
 ## 修饰关系
 * **名词** 被形容词修饰
 * **形容词** 被副词修饰
 * **副词** 被副词修饰
 * **动词** 被副词修饰
-### 例子
+
+**例子**
+
 Tom runs very fast.
 > very fast 修饰 runs
 
