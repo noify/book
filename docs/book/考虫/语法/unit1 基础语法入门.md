@@ -161,14 +161,115 @@ Lady Gaga looks funny.
 
 1. 主语
 1. 谓语
+
+   谓语 = 动词
+
+   动词 ≠ 谓语
+
+   非谓语动词 = doing/done/to do
+
+   谓语 = 助动词 + 非谓语动词(be doing/have done/...)
 1. 宾语
 
    助动词 + 后面的 doing/done = 谓语
+
+   动宾/介宾
 1. 定语
+
+   限定！修饰！
+
+   定语--adj性
 1. 状语
+
+   壮大句子，修饰句子，修饰动词，一般用副词来充当状语。
+
+   （时间，地点，方式，原因，条件，目的，结果...）
 1. 补语
 1. 同位语
 1. 系动词
 1. 表语
+
+   系动词后的一切都可以叫表语
+
+## 分析句子成分
+1. Many students learn English. 主谓宾
+1. Many students learn English in America in recent years. 主谓宾状(地点)状(时间)
+1. The girl is attractive. 主系表
+1. The girl who will be admitted by xxx is attractive. 主定(从)系表
+>第三页讲义 划出句子成分
+1. I came.I saw. I conquer. 主谓
+1. You jump.I jump. 主谓
 # 五大基础句型
-> next => 1.1.21.49
+1. 主谓(vi.)
+
+   **例1**
+   It is snowing. 主谓(助动词+非谓语动词)
+
+   **例2**
+   They laugh. 主谓
+
+   They laugh at Harry. 主谓介宾
+1. 主谓(vt.)宾
+
+   **例1**
+   Curiosity killed the cat.
+
+   **例2**
+   I don't know what to say. what to say(短语当宾语)
+
+   **例3**
+   You lower the IQ of the whole street. 主谓宾定(of+名词常常用于后置定语修饰前面的名词)
+1. 主系表
+
+   **例1**
+   Tom is a cowboy.
+
+   Tom is handsome.
+
+   Tom is in the classroom.
+   
+   **例2**
+   The dog,Mr.Newman,feels sad. 主同系表
+1. 主谓宾宾
+
+   直接宾语 = 物
+
+   间接宾语 = 人
+
+   **例1**
+   A student once sent a short message to his parents.
+
+   **例2**
+   I will give/teach you a lesson.
+
+   **例3**
+   The sun gives us light and heat.
+
+   **常接双宾语的动词**
+   * tell (tell sth. to you/tell you sth.)
+   * show
+   * give
+   * teach
+   * lend
+   * explain
+1. 主谓宾宾补
+
+   **例1**
+   They elected Trump president of the USA.
+
+   **常接宾+宾补的动词**
+
+   宾补 = 补充说明那个宾语的
+   * find 发现...
+   * make 使得...
+   * elect 选举...
+   * call 叫做...
+   * name 叫做...
+   * keep 保持...
+
+   **判断下列句子结果**
+   * I made you a pizza. 双宾
+   * I made you famous. 宾 + 补
+   * I found you the dog. 双宾
+   * I found a dog hungry. 宾 + 补
+> next => 1.2.2.2
