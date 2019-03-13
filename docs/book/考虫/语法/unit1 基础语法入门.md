@@ -174,16 +174,18 @@ Lady Gaga looks funny.
    助动词 + 后面的 doing/done = 谓语
 
    动宾/介宾
-1. 定语
+1. 定语(同)
 
    限定！修饰！
 
-   定语--adj性
+   定语 = adj./n.
 1. 状语
 
    壮大句子，修饰句子，修饰动词，一般用副词来充当状语。
 
    （时间，地点，方式，原因，条件，目的，结果...）
+
+   状语 = adv.
 1. 补语
 1. 同位语
 1. 系动词
@@ -272,4 +274,22 @@ Lady Gaga looks funny.
    * I made you famous. 宾 + 补
    * I found you the dog. 双宾
    * I found a dog hungry. 宾 + 补
-> next => 1.2.2.2
+
+   **如何判断双宾还是宾+宾补**
+   The elected Trump president of the USA.
+   >在后面两个成分之间加be动词。
+
+   Trump is president of the USA.
+   >* 通顺：宾语+宾补
+   >* 不通顺：双宾语
+
+   I will you a lesson.(You are a lesson)
+
+**分析一下句子的成分**
+* I like hotpot very much. 主谓宾(壮)
+* Vivian gave me a book about the topic. 主谓宾宾(定)
+* I like the boy standing over there. 主谓宾(定)
+* I don't know what to do. 主谓宾
+* She came with a book which was published in 1991. 主谓(壮定)
+
+> next => 2
