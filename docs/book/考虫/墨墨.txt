@@ -764,7 +764,7 @@
 * indicator
 * treat
 * treatment
-* maltreatt
+* maltreat
 * ill-treat
 * malfunction
 * urge
