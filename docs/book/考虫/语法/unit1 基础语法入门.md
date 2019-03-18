@@ -179,6 +179,14 @@ Lady Gaga looks funny.
    限定！修饰！
 
    定语 = adj./n.
+
+   **定于和宾语补足语怎么区别?**
+   1. 定语位置不定，宾补只能再宾语后面。
+   1. 定语：修饰定语。宾补：补充说明。去掉定语，句子主旨不变；但去掉宾补，意思就不完整了
+
+      I have a lovely bag. I found him lovely.
+   1. 宾补常常出现在find,make,elect,call,name,keep+宾语的后面。
+   1. 补语没有从句。所以碰到从句的时候别瞎纠结。
 1. 状语
 
    壮大句子，修饰句子，修饰动词，一般用副词来充当状语。
@@ -291,5 +299,3 @@ Lady Gaga looks funny.
 * I like the boy standing over there. 主谓宾(定)
 * I don't know what to do. 主谓宾
 * She came with a book which was published in 1991. 主谓(壮定)
-
-> next => 2
