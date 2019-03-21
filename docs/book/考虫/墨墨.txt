@@ -1,882 +1,871 @@
-标题 =   G003(^\n|^>.*\n)
-简介 =   暂无简介
-标签 = 
-
-
+# (^\n|^>.*\n|^\* )
 # unit1
-* text
-* context
-* contest
-* textual
-* contextual
-* coauthor
-* cooperate
-* collaborate
-* commodity
-* newly
-* renew
-* renewal
-* renewable
-* resource
-* reject
-* recession
-* depression
-* replay
-* renow
-* reshape
-* revise
-* acceptabale
-* reliable
-* profitable
-* varibale
-* newsstand
-* novel
-* innovation
-* renovate
-* humanity
-* humanist
-* govern
-* government
-* governor
-* governance
-* governmental
-* psychology
-* psychologist
-* psychological
-* psychologically
-* psychoactive
-* profession
-* conservative
-* inherent
-* ecology
-* biology
-* geology
-* anthropology
-* biography
-* autobiography
-* photography
-* science
-* prescientific
-* prehistoric
-* prewar
-* predict
-* predictable
-* unpredictability
-* postgraduate
-* postwar
-* post90s
-* postpone
-* conscious
-* unconscious
-* consciousness
-* subconscious
-* subconsciousness
-* subtitle
-* submarine
-* subfield
-* suburban
-* way
-* railway
-* headway
-* highway
-* expressway
-* freeway
-* even
-* evenly
-* uneven
-* odd
-* odds
-* lifetime
-* author
-* authority
-* authorize
-* authorization
-* work
-* workforce
-* labor
-* labour
-* collaborate
-* collaboration
-* collaborative
-* collaborator
-* undergraduate
-* underlie
-* underlying
-* undergo
-* underground
-* underfund
-* lawsuit
-* lawful
-* lawmaker
-* legislator
-* colorful
-* respectful
-* respectable
-* change
-* exchange
-* unchangeable
-* state
-* continent
-* statement
-* statesman
-* understatement
-* overstatement
-* line
-* underline
-* highlight
-* spotlight
-* emphasize
-* stress
-* headline
-* guideline
-* outline
-* against
-* lineage
-* deadline
-* lining
-* mean
-* meaningful
-* meaningless
-* meanwhile
-* economy
-* economic
-* economical
-* economics
-* economist
-* socioeconomic
-* uneconomic
-* economically
-* socialism
-* socialist
-* capitalism
-* capitalist
-* individualism
-* collectivism
-* school
-* scholar
-* scholarly
-* scholarship
-* flagship
-* scholastic
-* long
-* prolong
-* extend
-* longstanding
-* longterm
-
+text
+context
+contest
+textual
+contextual
+coauthor
+cooperate
+collaborate
+commodity
+newly
+renew
+renewal
+renewable
+resource
+reject
+recession
+depression
+replay
+renow
+reshape
+revise
+acceptabale
+reliable
+profitable
+varibale
+newsstand
+novel
+innovation
+renovate
+humanity
+humanist
+govern
+government
+governor
+governance
+governmental
+psychology
+psychologist
+psychological
+psychologically
+psychoactive
+profession
+conservative
+inherent
+ecology
+biology
+geology
+anthropology
+biography
+autobiography
+photography
+science
+prescientific
+prehistoric
+prewar
+predict
+predictable
+unpredictability
+postgraduate
+postwar
+post90s
+postpone
+conscious
+unconscious
+consciousness
+subconscious
+subconsciousness
+subtitle
+submarine
+subfield
+suburban
+way
+railway
+headway
+highway
+expressway
+freeway
+even
+evenly
+uneven
+odd
+odds
+lifetime
+author
+authority
+authorize
+authorization
+work
+workforce
+labor
+labour
+collaborate
+collaboration
+collaborative
+collaborator
+undergraduate
+underlie
+underlying
+undergo
+underground
+underfund
+lawsuit
+lawful
+lawmaker
+legislator
+colorful
+respectful
+respectable
+change
+exchange
+unchangeable
+state
+continent
+statement
+statesman
+understatement
+overstatement
+line
+underline
+highlight
+spotlight
+emphasize
+stress
+headline
+guideline
+outline
+against
+lineage
+deadline
+lining
+mean
+meaningful
+meaningless
+meanwhile
+economy
+economic
+economical
+economics
+economist
+socioeconomic
+uneconomic
+economically
+socialism
+socialist
+capitalism
+capitalist
+individualism
+collectivism
+school
+scholar
+scholarly
+scholarship
+flagship
+scholastic
+long
+prolong
+extend
+longstanding
+longterm
 # unit2
-* novel
-* novelist
-* novelty
-* innovation
-* innovational
-* innovative
-* innovativeness
-* innovator
-* renovation
-* company
-* accompany
-* companion
-* accelerate
-* acceleration
-* aggravate
-* addict
-* abuse
-* misuse
-* underused
-* usage
-* useless
-* just
-* unjust
-* justice
-* injustice
-* justify
-* justification
-* justifiable
-* judge
-* adjust
-* adjustment
-* adjustable
-* democracy
-* bureaucracy
-* purify
-* clarify
-* simplify
-* assumption
-* apartment
-* department
-* society
-* social
-* socially
-* sociology
-* sociologist
-* sociable
-* associate
-* association
-* public
-* publication
-* publish
-* publisher
-* publicize
-* publicity
-* rate
-* deflate
-* deflation
-* prescribe
-* ratio
-* overrate
-* underrate
-* mistake
-* mislead
-* misleading
-* misplaced
-* misinterpret
-* misguided
-* misconception
-* mistrust
-* misfortune
-* misunderstand
-* misdeed
-* right
-* copyright
-* power
-* create
-* creative
-* creation
-* creativity
-* creature
-* recreate
-* benefit
-* beneficial
-* benefactor
-* manufacture
-* manufacturer
-* developer
-* defect
-* back
-* reluctance
-* reluctant
-* background
-* information
-* backyard
-* backbone
-* ground
-* groundbreaking
-* groundless
-* influence
-* influential
-* exert
-* differ
-* different
-* difference
-* differentiate
-* differentiation
-* industry
-* industrial
-* industrialize
-* industrialization
-* concrete
-* revolution
-* regular
-* regulate
-* regulation
-* customer
-
+novel
+novelist
+novelty
+innovation
+innovational
+innovative
+innovativeness
+innovator
+renovation
+company
+accompany
+companion
+accelerate
+acceleration
+aggravate
+addict
+abuse
+misuse
+underused
+usage
+useless
+just
+unjust
+justice
+injustice
+justify
+justification
+justifiable
+judge
+adjust
+adjustment
+adjustable
+democracy
+bureaucracy
+purify
+clarify
+simplify
+assumption
+apartment
+department
+society
+social
+socially
+sociology
+sociologist
+sociable
+associate
+association
+public
+publication
+publish
+publisher
+publicize
+publicity
+rate
+deflate
+deflation
+prescribe
+ratio
+overrate
+underrate
+mistake
+mislead
+misleading
+misplaced
+misinterpret
+misguided
+misconception
+mistrust
+misfortune
+misunderstand
+misdeed
+right
+copyright
+power
+create
+creative
+creation
+creativity
+creature
+recreate
+benefit
+beneficial
+benefactor
+manufacture
+manufacturer
+developer
+defect
+back
+reluctance
+reluctant
+background
+information
+backyard
+backbone
+ground
+groundbreaking
+groundless
+influence
+influential
+exert
+differ
+different
+difference
+differentiate
+differentiation
+industry
+industrial
+industrialize
+industrialization
+concrete
+revolution
+regular
+regulate
+regulation
+customer
 # unit3
-* legal
-* illegal
-* legally
-* irresponsible
-* irrational
-* irresistible
-* illegally
-* legitimate
-* legitimacy
-* legislation
-* legislative
-* legislature
-* legislator
-* tend
-* tendency
-* trend
-* trendy
-* attend
-* attendance
-* attention
-* extend
-* extension
-* extensive
-* impossible
-* intend
-* intention
-* intentionally
-* unintentional
-* extent
-* degree
-* peer
-* review
-* process
-* exit
-* port
-* export
-* import
-* airport
-* passport
-* number
-* numerical
-* numerically
-* numerous
-* norm
-* normal
-* normally
-* enormous
-* abnormality
-* very
-* end
-* ending
-* endless
-* remind
-* reminder
-* technology
-* technique
-* technological
-* technical
-* hitech
-* technically
-* technicist
-* technologist
-* emerge
-* intellectual
-* international
-* internet
-* race
-* racist
-* racism
-* interracial
-* intellectualism
-* intellectualize
-* urbanize
-* urbanization
-* intelligent
-* intelligence
-* intellect
-* select
-* selection
-* selective
-* selectively
-* negative
-* neglect
-* negligence
-* negligible
-* collect
-* collection
-* collective
-* collectivism
-* elect
-* election
-* electoral
-* eligible
-* provide
-* provider
-* provided
-* common
-* uncommon
-* commonly
-* conscience
-* commonness
-* commonality
-* define
-* compute
-* computational
-* consume
-* consumer
-* consumption
-* consumerism
-* paper
-* support
-* supportrt
-* supportive
-* adulthood
-* childhood
-* likelihood
-
+legal
+illegal
+legally
+irresponsible
+irrational
+irresistible
+illegally
+legitimate
+legitimacy
+legislation
+legislative
+legislature
+legislator
+tend
+tendency
+trend
+trendy
+attend
+attendance
+attention
+extend
+extension
+extensive
+impossible
+intend
+intention
+intentionally
+unintentional
+extent
+degree
+peer
+review
+process
+exit
+port
+export
+import
+airport
+passport
+number
+numerical
+numerically
+numerous
+norm
+normal
+normally
+enormous
+abnormality
+very
+end
+ending
+endless
+remind
+reminder
+technology
+technique
+technological
+technical
+hitech
+technically
+technicist
+technologist
+emerge
+intellectual
+international
+internet
+race
+racist
+racism
+interracial
+intellectualism
+intellectualize
+urbanize
+urbanization
+intelligent
+intelligence
+intellect
+select
+selection
+selective
+selectively
+negative
+neglect
+negligence
+negligible
+collect
+collection
+collective
+collectivism
+elect
+election
+electoral
+eligible
+provide
+provider
+provided
+common
+uncommon
+commonly
+conscience
+commonness
+commonality
+define
+compute
+computational
+consume
+consumer
+consumption
+consumerism
+paper
+support
+supportrt
+supportive
+adulthood
+childhood
+likelihood
 # unit4
-* available
-* availability
-* value
-* ethic
-* ethnic
-* immoral
-* immortal
-* highly
-* valuable
-* evaluate
-* undervalue
-* overvalue
-* devalue
-* equal
-* equivalent
-* equivalence
-* popular
-* popularity
-* popularize
-* unpopular
-* populate
-* population
-* regard
-* disregard
-* regardless
-* pose
-* posture
-* position
-* oppose
-* opposite
-* opposition
-* opponent
-* expose
-* exposure
-* compose
-* composer
-* composition
-* proposal
-* propose
-* proposition
-* impose
-* dispose
-* disposable
-* obtain
-* obtainable
-* contain
-* container
-* maintain
-* maintenance
-* manipulate
-* retain
-* remain
-* sustain
-* sustainable
-* sustainability
-* sustainably
-* acquire
-* acquisition
-* merge
-* merger
-* federal
-* issue
-* interdependence
-* interact
-* interaction
-* interpersonal
-* interrelationship
-* interprovincial
-* province
-* interrelate
-* densely
-* replace
-* replacement
-* encourage
-* enhance
-* enlighten
-* enforce
-* entitle
-* entitlement
-* enlarge
-* endanger
-* encode
-* enrage
-* section
-* sector
-* private
-* species
-* courageous
-* discourage
-* recall
-* develop
-* habit
-* development
-* developer
-* suggest
-* suggestion
-* traffic
-* panic
-* consider
-* consideration
-* considerate
-* considerable
-* considerably
-* reconsider
-* discipline
-* disciplinary
-* realise
-* reality
-* unrealistic
-* virtual
-
+available
+availability
+value
+ethic
+ethnic
+immoral
+immortal
+highly
+valuable
+evaluate
+undervalue
+overvalue
+devalue
+equal
+equivalent
+equivalence
+popular
+popularity
+popularize
+unpopular
+populate
+population
+regard
+disregard
+regardless
+pose
+posture
+position
+oppose
+opposite
+opposition
+opponent
+expose
+exposure
+compose
+composer
+composition
+proposal
+propose
+proposition
+impose
+dispose
+disposable
+obtain
+obtainable
+contain
+container
+maintain
+maintenance
+manipulate
+retain
+remain
+sustain
+sustainable
+sustainability
+sustainably
+acquire
+acquisition
+merge
+merger
+federal
+issue
+interdependence
+interact
+interaction
+interpersonal
+interrelationship
+interprovincial
+province
+interrelate
+densely
+replace
+replacement
+encourage
+enhance
+enlighten
+enforce
+entitle
+entitlement
+enlarge
+endanger
+encode
+enrage
+section
+sector
+private
+species
+courageous
+discourage
+recall
+develop
+habit
+development
+developer
+suggest
+suggestion
+traffic
+panic
+consider
+consideration
+considerate
+considerable
+considerably
+reconsider
+discipline
+disciplinary
+realise
+reality
+unrealistic
+virtual
 # unit5
-* initial
-* initially
-* initiative
-* initiate
-* initiation
-* initiator
-* administration
-* confuse
-* confusion
-* refuse
-* refusal
-* diffuse
-* describe
-* description
-* convince
-* convincingly
-* contribute
-* contribution
-* contributory
-* distribute
-* distribution
-* attribute
-* tailor
-* retailer
-* retail
-* wholesaler
-* quest
-* question
-* require
-* requirement
-* request
-* control
-* uncontrolled
-* uncontrollable
-* rule
-* policy
-* policymaker
-* insure
-* ensure
-* futurist
-* futurological
-* humanities
-* social sciences
-* methodology
-* geology
-* sociology
-* psychology
-* biology
-* ecology
-* anthropology
-* ideology
-* neurology
-* archaeology
-* physiology
-* astrology
-* astronomy
-* futurology
-* theology
-* demography
-* geography
-* robotics
-* aeronautics
-* genetics
-* economics
-* mathematics
-* physics
-* politics
-* linguistics
-* join
-* joint
-* involve
-* involvement
-* evolution
-* evolve
-* evolutionary
-* revolve
-* revolution
-* revolutionary
-* volume
-* immigrant
-* assistant
-* immigration
-* migration
-* migrate
-* emigrate
-* expect
-* expectation
-* unexpected
-* expectancy
-* prospect
-* suspect
-* suspicion
-* suspicious
-* aspect
-* speculate
-* perspective
-* respect
-* respectable
-* respectively
-* nation
-* national
-* multiple
-* multimedia
-* multilingual
-* multifunctional
-* multinational
-* nationwide
-* chemical
-* chemistry
-* constitution
-* constitutional
-* journal
-* journalist
-* journalism
-* journalistic
-* form
-* uniform
-* uniformity
-* transform
-* reform
-* field
-* religion
-* religious
-
+initial
+initially
+initiative
+initiate
+initiation
+initiator
+administration
+confuse
+confusion
+refuse
+refusal
+diffuse
+describe
+description
+convince
+convincingly
+contribute
+contribution
+contributory
+distribute
+distribution
+attribute
+tailor
+retailer
+retail
+wholesaler
+quest
+question
+require
+requirement
+request
+control
+uncontrolled
+uncontrollable
+rule
+policy
+policymaker
+insure
+ensure
+futurist
+futurological
+humanities
+social sciences
+methodology
+geology
+sociology
+psychology
+biology
+ecology
+anthropology
+ideology
+neurology
+archaeology
+physiology
+astrology
+astronomy
+futurology
+theology
+demography
+geography
+robotics
+aeronautics
+genetics
+economics
+mathematics
+physics
+politics
+linguistics
+join
+joint
+involve
+involvement
+evolution
+evolve
+evolutionary
+revolve
+revolution
+revolutionary
+volume
+immigrant
+assistant
+immigration
+migration
+migrate
+emigrate
+expect
+expectation
+unexpected
+expectancy
+prospect
+suspect
+suspicion
+suspicious
+aspect
+speculate
+perspective
+respect
+respectable
+respectively
+nation
+national
+multiple
+multimedia
+multilingual
+multifunctional
+multinational
+nationwide
+chemical
+chemistry
+constitution
+constitutional
+journal
+journalist
+journalism
+journalistic
+form
+uniform
+uniformity
+transform
+reform
+field
+religion
+religious
 # unit6
-* profession
-* professional
-* professionalism
-* professionalize
-* professionalization
-* professor
-* professorship
-* serve
-* service
-* preserve
-* conservative
-* conservation
-* reserve
-* reservoir
-* depend
-* dependent
-* dependence
-* dependency
-* independent
-* independence
-* interdependence
-* subject
-* subjective
-* objective
-* objectivity
-* inform
-* information
-* uninformed
-* intense
-* intensive
-* intensify
-* intensity
-* gravity
-* structure
-* infrastructure
-* construct
-* construction
-* constructive
-* reconstruct
-* destruction
-* destroy
-* outlive
-* retirement
-* outweigh
-* outnumber
-* disadvantage
-* outlook
-* outcome
-* outrage
-* demonstrate
-* demonstration
-* democrat
-* democratic
-* bureaucrat
-* bureaucratic
-* property
-* asset
-* possession
-* estate
-* pay
-* paycheck
-* payment
-* sound
-* resounding
-* warn
-* warning
-* approve
-* approval
-* disapproval
-* attract
-* attractive
-* unattractive
-* contract
-* contractor
-* abstract
-* distract
-* extract
-* address
-* stimulus
-* stimuli
-* complete
-* completely
-* incomplete
-* compete
-* impetus
-* competition
-* competitive
-* competitiveness
-* competitor
-* competent
-* incompetently
-* competence
-* occur
-* occurrence
-* electronic
-* electricity
-* hydroelectric
-
+profession
+professional
+professionalism
+professionalize
+professionalization
+professor
+professorship
+serve
+service
+preserve
+conservative
+conservation
+reserve
+reservoir
+depend
+dependent
+dependence
+dependency
+independent
+independence
+interdependence
+subject
+subjective
+objective
+objectivity
+inform
+information
+uninformed
+intense
+intensive
+intensify
+intensity
+gravity
+structure
+infrastructure
+construct
+construction
+constructive
+reconstruct
+destruction
+destroy
+outlive
+retirement
+outweigh
+outnumber
+disadvantage
+outlook
+outcome
+outrage
+demonstrate
+demonstration
+democrat
+democratic
+bureaucrat
+bureaucratic
+property
+asset
+possession
+estate
+pay
+paycheck
+payment
+sound
+resounding
+warn
+warning
+approve
+approval
+disapproval
+attract
+attractive
+unattractive
+contract
+contractor
+abstract
+distract
+extract
+address
+stimulus
+stimuli
+complete
+completely
+incomplete
+compete
+impetus
+competition
+competitive
+competitiveness
+competitor
+competent
+incompetently
+competence
+occur
+occurrence
+electronic
+electricity
+hydroelectric
 # unit7
-* test
-* contest
-* testify
-* untested
-* uncontested
-* part
-* apart
-* partly
-* partial
-* impartial
-* effect
-* effectively
-* ineffectiveness
-* privacy
-* include
-* inclusive
-* exclude
-* exclusion
-* exclusionary
-* exclusive
-* exclusively
-* conclude
-* conclusion
-* conclusive
-* inconclusive
-* domestic
-* indicator
-* treat
-* treatment
-* maltreat
-* ill-treat
-* malfunction
-* urge
-* urgent
-* urgency
-* engineer
-* threaten
-* weaken
-* heighten
-* liken
-* harden
-* broaden
-* shorten
-* widen
-* deepen
-* credit
-* credible
-* credibility
-* incredible
-* rely
-* reliable
-* reliability
-* unreliable
-* reliance
-* special
-* specialize
-* specialization
-* specialist
-* speciality
-* specific
-* specifically
-* specify
-* progress
-* progressive
-* congress
-* congressional
-* aggressive
-* provoke
-* provocative
-* biotic
-* biology
-* biologist
-* biological
-* biologically
-* biomedical
-* biomass
-* biographical
-* biographer
-* autobiography
-* mass
-* massive
-* centre
-* central
-* centered
-* centralized
-* concentrate
-* concentration
-* circuit
-* circulation
-* cycle
-* cyclic
-* recycle
-* code
-* decode
-
+test
+contest
+testify
+untested
+uncontested
+part
+apart
+partly
+partial
+impartial
+effect
+effectively
+ineffectiveness
+privacy
+include
+inclusive
+exclude
+exclusion
+exclusionary
+exclusive
+exclusively
+conclude
+conclusion
+conclusive
+inconclusive
+domestic
+indicator
+treat
+treatment
+maltreat
+ill-treat
+malfunction
+urge
+urgent
+urgency
+engineer
+threaten
+weaken
+heighten
+liken
+harden
+broaden
+shorten
+widen
+deepen
+credit
+credible
+credibility
+incredible
+rely
+reliable
+reliability
+unreliable
+reliance
+special
+specialize
+specialization
+specialist
+speciality
+specific
+specifically
+specify
+progress
+progressive
+congress
+congressional
+aggressive
+provoke
+provocative
+biotic
+biology
+biologist
+biological
+biologically
+biomedical
+biomass
+biographical
+biographer
+autobiography
+mass
+massive
+centre
+central
+centered
+centralized
+concentrate
+concentration
+circuit
+circulation
+cycle
+cyclic
+recycle
+code
+decode
 # unit8
-* final
-* define
-* redefine
-* definition
-* confine
-* finite
-* infinite
-* finish
-* definite
-* error
-* erroneous
-* escape
-* inescapably
-* fashion
-* machine
-* fashionable
-* custom
-* accustom
-* customer
-* customize
-* customary
-* examine
-* examination
-* exceed
-* excess
-* excessive
-* precede
-* precedent
-* unprecedented
-* access
-* accessible
-* found
-* foundation
-* founder
-* move
-* movement
-* remove
-* revive
-* revival
-* survive
-* survival
-* vivid
-* vital
-* revitalize
-* vitality
-* vigorously
-* viable
+final
+define
+redefine
+definition
+confine
+finite
+infinite
+finish
+definite
+error
+erroneous
+escape
+inescapably
+fashion
+machine
+fashionable
+custom
+accustom
+customer
+customize
+customary
+examine
+examination
+exceed
+excess
+excessive
+precede
+precedent
+unprecedented
+access
+accessible
+found
+foundation
+founder
+move
+movement
+remove
+revive
+revival
+survive
+survival
+vivid
+vital
+revitalize
+vitality
+vigorously
+viable
