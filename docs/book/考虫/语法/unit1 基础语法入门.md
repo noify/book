@@ -306,13 +306,14 @@ Lady Gaga looks funny.
 1. That was <u>how they were defeated</u>.（表）
 1. The nursery takes good care of <u>our children</u>.（宾）
 1. I'll return the book <u>to you</u> tomorrow.（宾）
-1. There are many films <u>that I'd like to see</u>.（宾补）
+1. There are many films <u>that I'd like to see</u>.（宾补）× / （定）✔
 ## 判断下列句子分别是哪种句型：
 1. The moon rose. 月亮升起了。 主谓
-1. Who cares? 管它呢？ 主谓宾
+1. Who cares? 管它呢？ 主谓宾× / 主谓✔
 1. Everything looks different. 一切看来都不同了。 主系表
-1. The trouble is that they are short of money. 麻烦的是他们缺少钱。 主谓宾宾补
+1. The trouble is that they are short of money. 麻烦的是他们缺少钱。 主谓宾宾补× / 主系表✔
 1. He has refused to help them. 他拒绝帮助他们。 主谓宾
 1. He said "Good morning." 他说：”早上好！“ 主谓宾
 1. I gave my car a wash. 我洗了我的汽车。 主谓宾宾
 1. They found the house deserted. 他们发现那房子无人居住。 主谓宾宾补
+> next => 2.0.33.33
