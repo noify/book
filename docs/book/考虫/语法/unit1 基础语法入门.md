@@ -316,4 +316,3 @@ Lady Gaga looks funny.
 1. He said "Good morning." 他说：”早上好！“ 主谓宾
 1. I gave my car a wash. 我洗了我的汽车。 主谓宾宾
 1. They found the house deserted. 他们发现那房子无人居住。 主谓宾宾补
-> next => 2.0.33.33
