@@ -55,5 +55,18 @@ because/if/whether/as soon as/no matter what...
    1. The boys were running,shouting and laughing.
 1. 句子的并行并列
    1. We need them to feel that home can be both here and there and that they can belong to two nations honorably.
-   1. The behavioral sciences have been slow to change partly because the explanatory item often seem to be directly observed and partly because other kinds of explanations have been hard to find.
-> next => 3.5
+   1. The behavioral sciences have been slow to change partly because the explanatory items often seem to be directly observed and partly because other kinds of explanations have been hard to find.
+   1. Along with the many folks looking to make a permanent home in the US came those who had no intention to stay,and who would make some money and the go home.
+   1. For the time,attention,and money of the art-loving public,classical instrumentalists must compete not only with opera houses,dance troupes,theater companies,and museums,but also with the recorded performances of the great classic musicians of the 20th century.
+
+例：We tend to think of the decades immediately following World War Ⅱ as a time of prosperity and growth,with soldiers returning home by the millions,going off to college on the G.I.Bill and lining up at the marriage bureaus. 
+翻：我们常将二战后的数十年视为一个繁荣与增长的年代，数以百万计的士兵重返家乡；他们在《退伍军人权力法案》的帮助下走进了大学；在婚姻登记处排起了长队。
+### 找平行结构的三步
+1. 找并列连词
+1. 看连词后面的单个并列的词性和形式
+1. 找相同结构
+> 找主谓，看连接，还不明白已入套；平行要把连词找，举一反三连串捞，相同部分都是宝；
+## 小三————分裂结构
+1. 同位语，插入语
+   Bob Liodice,the executive of the Association of National Advertisers,says consumers will be worse off if the industry can not collect information about their preferences.
+> next => 4
