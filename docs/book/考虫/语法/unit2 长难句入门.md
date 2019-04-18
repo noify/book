@@ -69,4 +69,4 @@ because/if/whether/as soon as/no matter what...
 ## 小三————分裂结构
 1. 同位语，插入语
    Bob Liodice,the executive of the Association of National Advertisers,says consumers will be worse off if the industry can not collect information about their preferences.
-> next => 4
+> next => 4.5
