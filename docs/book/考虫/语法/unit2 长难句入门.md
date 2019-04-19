@@ -66,7 +66,16 @@ because/if/whether/as soon as/no matter what...
 1. 看连词后面的单个并列的词性和形式
 1. 找相同结构
 > 找主谓，看连接，还不明白已入套；平行要把连词找，举一反三连串捞，相同部分都是宝；
+
 ## 小三————分裂结构
+
+英语分裂结构(split structure)
+  是指依照正常的语序和句法结构，关系密切、本应
+紧连在⼀起的两个句⼦成分被另⼀些句⼦成分所隔开或者是词语的习惯搭配关系拆开，从⽽使这两部分产
+⽣分隔的现象。
+
 1. 同位语，插入语
    Bob Liodice,the executive of the Association of National Advertisers,says consumers will be worse off if the industry can not collect information about their preferences.
-> next => 4.5
+1. 相邻紧密成分被短语，从句等⼩三拆开 主谓宾定状补（主系表）
+> 代PDF补充
+> next => 5
