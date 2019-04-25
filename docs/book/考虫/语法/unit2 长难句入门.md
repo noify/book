@@ -78,4 +78,33 @@ because/if/whether/as soon as/no matter what...
    Bob Liodice,the executive of the Association of National Advertisers,says consumers will be worse off if the industry can not collect information about their preferences.
 1. 相邻紧密成分被短语，从句等⼩三拆开 主谓宾定状补（主系表）
 > 代PDF补充
-> next => 5
+## 以下哪种形式是谓语?
+> 过去分词是非谓语，过去分词和过去式有区别
+1. bring √
+1. brought √ / ×
+1. came √
+1. writing ×
+1. wrote √
+1. written ×
+1. jumped √ / ×
+1. to jump ×
+1. jumping ×
+## 什么是非谓语动词(do/play)
+* 不定式 to do/to play ———— 可充当谓语以外一切成分
+* 动名词 doing/playing ———— 所有名词可以做的成分: 主，宾，表，定
+* 分词(动形词) 现在分词:doing/playing 过去分词: done/played ———— 所有形容词可以做的成分: 定，表，状，补 现在分词（主动/进行） 过去分词（被动/完成）
+## doing: 动名词和现在分词(动形词)怎么区分？
+1. 联想: 名词和形容词怎么区分？
+   * My dream is playing with you. 我的梦想是和你玩。/我的梦想正在和你玩。
+   * 我想静静
+1. n.类别，性质，功能，材料； adj.——描述(且分词doing情调：)
+   * n. an invisibility / a gold watch / a walking stick
+   * adj. an invisible cloak / a golden watch / a walking stick
+## done：一些过去式和过去分词相同的词怎么判断到底是过去式形式的谓语，还是非谓语？
+1. 过去式： ago,yesterday,last,week等时间标志。 / 其他的表示过去的动词。（句子里只有一个动词，只能是谓语。）
+1. 过去分词：表示被动（放在be之后，或者省略be动词，但依然是被动） / 表示完成（放在have之后）
+## 定/状从句 怎样变成简单句？
+1. 抽串儿 ———— 去连接词
+1. 多颗山楂变一颗 ———— 只留一套主谓，其他谓语变非谓语（be doing/done 的形式只需要去掉没有实际含义的谓语be，留下非谓语doing或done）
+1. 主句与从句主语： 主语相同时——去掉从句主语/主语不同时——保留从句主语
+> next => 6
