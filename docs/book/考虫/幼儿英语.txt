@@ -1,0 +1,71 @@
+one
+two
+three
+four
+five
+six
+seven
+eight
+nine
+
+eleven
+twelve
+thirteen
+fourteen
+fifteen
+sixteen
+seventeen
+eighteen
+nineteen
+
+ten
+twenty
+thirty
+forty
+fifty
+sixty
+seventy
+eighty
+ninety
+
+hundred
+thousand
+million
+billion
+
+1234567890
+one billion two hundred and thirty-four million five hundred and sixty-seven thousand eight hundred and ninety
+
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+
+Two rival civilizations are battling for supremacy.
+两个敌对文明正在争夺霸主地位。
+Civilization A is stronger than Civilization B and is perceived by Civilization B as a grave threat;
+文明A比文明B更强，被文明B视为严重的威胁； be perceived as 被动语态
+its position, however, is more fragile than it seems.
+然而，它的位置比看起来的更脆弱。
+Neither side hesitates to employ espionage,subterfuge and surveillance,
+双方都毫不犹豫地使用间谍、诡计和监视手段，
+because the rules of conduct—to the extent that they exist—are ill-deened and frequently contested But the battle lines are clear: 
+因为他们存在的行为准则是不成熟的，经常有争议，但作战路线是明确的：
+whoever controls the technological frontier controls the future.
+谁控制前沿科技技术谁就控制了未来。 whoever = no matter + who
