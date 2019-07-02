@@ -1,3 +1,4 @@
+# 数字
 one
 two
 three
@@ -35,6 +36,18 @@ billion
 
 1234567890
 one billion two hundred and thirty-four million five hundred and sixty-seven thousand eight hundred and ninety
+
+一、1到100的序数英文单词的记忆规律：
+
+1至100的序数英文单词也和基数英文单词一样有一定的规律。在十位以内1，2，3这三个序数英文单词需要分别记忆，4至10的后缀都是th，其中five-fifth变ve为f再加th，eight- eighth共用t，nine-ninth去e加th。
+
+11-19，基数词加上th，其中twelve变为twelfth。20，30，40...整数变y 为 i 加eth，如: twenty- twentieth带个位的数以个位为，如: twenty- one twenty-first。
+
+二、1到100的序数的数字记法
+
+1至100的序数英文单词还有更简单的表示方法就是直接用阿拉伯数字表示。个位为1→1st，2→2nd，3→3rd，其余的加th，例如31th，43rd，65th。
+
+# 日期
 
 Monday
 Tuesday
