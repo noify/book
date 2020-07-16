@@ -13,7 +13,7 @@
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "viewport-units-buggyfill": "^0.6.2"
   },
   "devDependencies": {
