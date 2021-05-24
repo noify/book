@@ -7,10 +7,12 @@
 ## 关联 github
 
 ```bash
+# 生成ssh key
 $ ssh-keygen -t rsa -C "your_email@youremail.com"
+# 查看ssh key
+$ cat ~/.ssh/id_rsa.pub
 ```
-之后会生成.ssh文件夹，复制id_rsa.pub里面的文本。
-打开github -> Setting -> SHH and GPG keys -> New SHH key -> 粘贴到key，标题随便写 -> Add SHH key。
+打开github -> Setting -> SHH and GPG keys -> New SHH key -> 粘贴ssh key(标题随便写) -> Add SHH key
 
 设置姓名和邮箱
 
