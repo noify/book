@@ -21,6 +21,11 @@ $ git config --global user.name "your name"
 $ git config --global user.email "your_email@youremail.com"
 ```
 
+测试是否连接
+```bash
+$ ssh -T git@github.com
+```
+
 ## 远程主机
 
 远程主机是一个网址，支持http[s]、SSH、Git、本地文件协议等多种协议。
